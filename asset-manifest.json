@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/CodeCraze_TaskPro/static/css/main.7acaea2f.css",
+    "main.js": "/CodeCraze_TaskPro/static/js/main.07d3183d.js",
+    "index.html": "/CodeCraze_TaskPro/index.html",
+    "main.7acaea2f.css.map": "/CodeCraze_TaskPro/static/css/main.7acaea2f.css.map",
+    "main.07d3183d.js.map": "/CodeCraze_TaskPro/static/js/main.07d3183d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.07d3183d.js"
+  ]
+}
