@@ -19,6 +19,11 @@ const EditProfile = () => {
       <div>
         <img src="" alt="User avatar" />
       </div>
+      <button>
+        <svg>
+          <use />
+        </svg>
+      </button>
 
       <form onSubmit={formik.handleSubmit}>
         <input
