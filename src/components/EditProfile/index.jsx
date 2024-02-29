@@ -17,7 +17,7 @@ const EditProfile = () => {
       <p>Edit Profile</p>
 
       <div>
-        <img />
+        <img alt="User avatar" />
       </div>
 
       <form onSubmit={formik.handleSubmit}>
