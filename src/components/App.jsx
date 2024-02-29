@@ -1,5 +1,5 @@
-import WelcomePage from 'pages/WelcomePage';
 import { Route, Routes } from 'react-router-dom';
+import WelcomePage from 'pages/WelcomePage';
 import NotFound from './NotFound/NotFound';
 
 export const App = () => {

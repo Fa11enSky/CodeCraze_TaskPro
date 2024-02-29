@@ -7,6 +7,7 @@ const EditProfile = () => {
       email: '',
       password: '',
     },
+
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
     },
