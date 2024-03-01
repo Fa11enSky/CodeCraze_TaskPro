@@ -4,10 +4,14 @@ import logoMobileRetina from '../../assets/img/welcome_boy_mobile@2x.png';
 import logoDeskAndTab from '../../assets/img/welcome_boy_tab-desk.png';
 import logoDeskAndTabRetina from '../../assets/img/welcome_boy_tab-desk@2x.png';
 
+import { WelcomeContent } from './Welcome.styled';
+
+import { Link } from 'react-router-dom';
+
 const WelcomeInner = () => {
   return (
-    <>
-      <picture>
+    <WelcomeContent>
+      <picture className="WelcomeContent__img">
         <source
           srcSet={`${logoDeskAndTab}, ${logoDeskAndTabRetina}`}
           media="(min-width: 1440px)"
@@ -22,7 +26,7 @@ const WelcomeInner = () => {
         />
         <img src={logoMobile} alt="Boy with laptop" />
       </picture>
-      <a href="#">
+      <Link className="WelcomeContent__logo" to={'/'}>
         <svg width="48" height="48" viewBox="0 0 32 32">
           <path d="M24 0h-16c-4.418 0-8 3.582-8 8v16c0 4.418 3.582 8 8 8h16c4.418 0 8-3.582 8-8v-16c0-4.418-3.582-8-8-8z"></path>
           <path
@@ -31,17 +35,21 @@ const WelcomeInner = () => {
           ></path>
         </svg>
         <p>Task Pro</p>
-      </a>
+      </Link>
 
-      <p>
+      <p className="WelcomeContent__text">
         Supercharge your productivity and take control of your tasks with Task
         Pro - Don't wait, start achieving your goals now!
       </p>
-      <div>
-        <a href="#">Registration</a>
-        <a href="#">Log In</a>
+      <div className="WelcomeContent__navigation">
+        <Link className="WelcomeContent__btn-reg" to={'/auth/register'}>
+          Registration
+        </Link>
+        <Link className="WelcomeContent__btn-log" to={'/auth/login'}>
+          Log In
+        </Link>
       </div>
-    </>
+    </WelcomeContent>
   );
 };
 
