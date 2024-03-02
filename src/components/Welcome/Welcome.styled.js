@@ -10,7 +10,7 @@ export const Welcome = styled.div`
   );
 `;
 export const WelcomeContent = styled.div`
-  margin-top: 211px;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,7 +41,6 @@ export const WelcomeContent = styled.div`
     flex-direction: column;
   }
   .WelcomeContent__btn-reg {
-    display: block;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: -0.02em;
@@ -59,8 +58,15 @@ export const WelcomeContent = styled.div`
     letter-spacing: -0.02em;
     padding: 14px 122px;
   }
+  @media screen and (max-width: 340px) {
+    .WelcomeContent__btn-reg {
+      padding: 14px 75px;
+    }
+    .WelcomeContent__btn-log {
+      padding: 14px 75px;
+    }
+  }
   @media screen and (min-width: 768px) {
-    margin-top: 293px;
     .WelcomeContent__img {
       margin-bottom: 24px;
     }
@@ -70,8 +76,11 @@ export const WelcomeContent = styled.div`
     .WelcomeContent__text {
       max-width: 473px;
     }
-  }
-  @media screen and (min-width: 1440px) {
-    margin-top: 166px;
+    .WelcomeContent__btn-reg {
+      padding: 14px 122px;
+    }
+    .WelcomeContent__btn-log {
+      padding: 14px 122px;
+    }
   }
 `;
