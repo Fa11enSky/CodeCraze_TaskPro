@@ -1,0 +1,47 @@
+.helpContainer {
+  background: #f6f6f7;
+  padding: 14px;
+  margin-bottom: 24px;
+}
+
+.textHelp {
+  width: 168px;
+  margin-top: 12px;
+  margin-bottom: 18px;
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  color: var(--sidebar_text_color);
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    width: 172px;
+  }
+}
+
+.textHelpDecor {
+  color: var(--accent);
+}
+
+.buttonHelpContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.buttonHelp {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.buttonIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.textHelpButton {
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: var(--sidebar_text_color);
+}

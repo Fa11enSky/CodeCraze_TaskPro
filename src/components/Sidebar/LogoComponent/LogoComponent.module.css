@@ -1,0 +1,17 @@
+.logoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.logoTitle {
+  font-size: 16px;
+  letter-spacing: -0.04em;
+  color: var(--sidebar_text_color);
+}
