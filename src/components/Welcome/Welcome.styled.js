@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Welcome = styled.div`
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh; */
+  /* width: 100vw; */
   background: linear-gradient(
     180deg,
     rgba(196, 196, 196, 0) 25%,
