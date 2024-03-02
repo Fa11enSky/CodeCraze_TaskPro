@@ -1,19 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const Button = styled.button`
-  position: absolute;
-  width: 334px;
-  height: 56px;
-  left: 284px;
-  top: 116px;
-  background: #121212;
-  border-radius: 8px;
-  color: #ffffff;
-`;
+import { AiOutlinePlus } from 'react-icons/ai';
+import { Button, ButtonText, Title } from './styles';
 
 function AddColumnButton({ onAddColumn }) {
-  return <Button onClick={onAddColumn}>Add Column</Button>;
+  return (
+    <div>
+      <Title>Project office</Title>
+      <Button onClick={onAddColumn}>
+        <AiOutlinePlus size={24} />
+        <ButtonText>Add another column</ButtonText>
+      </Button>
+    </div>
+  );
 }
 
 export default AddColumnButton;

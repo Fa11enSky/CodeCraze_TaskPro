@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
+import Modal from '../Modal';
 
 const CreateCardModal = ({ isOpen, onClose, onCreateCard }) => {
   const [title, setTitle] = useState('');
@@ -18,7 +18,7 @@ const CreateCardModal = ({ isOpen, onClose, onCreateCard }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} onSubmit={handleCreateCard}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <h2>Create New Card</h2>
       <input
         type="text"
@@ -43,6 +43,7 @@ const CreateCardModal = ({ isOpen, onClose, onCreateCard }) => {
         value={deadline}
         onChange={e => setDeadline(e.target.value)}
       />
+      <button onClick={handleCreateCard}>Create Card</button>
     </Modal>
   );
 };

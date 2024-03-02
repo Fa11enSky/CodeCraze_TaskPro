@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import './CreateColumnModal.css';
+import Modal from '../Modal';
 
-const CreateColumnModal = ({ onAddColumn }) => {
+const ColumnFormModal = ({ isOpen, onClose, onCreateColumn }) => {
   const [columnName, setColumnName] = useState('');
 
-  const handleAddColumn = () => {
+  const handleCreateColumn = () => {
     if (columnName.trim() !== '') {
-      onAddColumn(columnName);
+      onCreateColumn(columnName);
       setColumnName('');
+      onClose();
     }
   };
 
   return (
-    <div className="create-column-modal">
+    <Modal isOpen={isOpen} onClose={onClose}>
       <h2>Create New Column</h2>
       <input
         type="text"
@@ -20,9 +21,9 @@ const CreateColumnModal = ({ onAddColumn }) => {
         value={columnName}
         onChange={e => setColumnName(e.target.value)}
       />
-      <button onClick={handleAddColumn}>Add Column</button>
-    </div>
+      <button onClick={handleCreateColumn}>Add Column</button>
+    </Modal>
   );
 };
 
-export default CreateColumnModal;
+export default ColumnFormModal;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../Card/Card';
-import CreateCardModal from '../Modal/CreateCardModal';
-import './Column.css';
+import CreateCardModal from '../Modal/Card/CreateCardModal';
+import './styles.js';
 
 const Column = ({ title, cards, onAddCard }) => {
   const [localCards, setLocalCards] = useState([]);

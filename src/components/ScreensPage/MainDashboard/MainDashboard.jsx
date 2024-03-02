@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AddColumnButton from '../AddColumnButton/AddColumnButton';
 import HeaderDashboard from '../HeaderDashboard/HeaderDashboard';
 import Column from '../Column/Column';
-import ColumnFormModal from '../Modal/ColumnFormModal';
+import ColumnFormModal from '../Modal/Column/ColumnFormModal';
 
 const MainContainer = styled.div`
   display: flex;

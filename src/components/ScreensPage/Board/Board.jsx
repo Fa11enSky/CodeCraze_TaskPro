@@ -1,9 +1,8 @@
 import React from 'react';
-import HeaderDashboard from './HeaderDashboard';
-import Sidebar from './Sidebar';
-import MainDashboard from './MainDashboard';
-import Column from './Column';
-import './Board.css';
+import HeaderDashboard from '../HeaderDashboard/HeaderDashboard';
+import MainDashboard from '../MainDashboard/MainDashboard';
+import Column from '../Column/Column';
+import './styles.js';
 
 const Board = ({
   boardName,
@@ -16,7 +15,6 @@ const Board = ({
     <div className="board">
       <HeaderDashboard />
       <div className="content">
-        <Sidebar />
         <MainDashboard
           columns={columns}
           onCreateCard={onCreateCard}
