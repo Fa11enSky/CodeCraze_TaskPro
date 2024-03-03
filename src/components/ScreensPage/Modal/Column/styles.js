@@ -1,24 +1,26 @@
-.create-column-modal {
+import styled from 'styled-components';
+
+export const CreateColumnModal = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: var (--main_text_color);
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   padding: 20px;
-}
+`;
 
-.create-column-modal h2 {
+export const CreateColumnModalTitle = styled.h2`
   margin-top: 0;
-}
+`;
 
-.create-column-modal input {
+export const CreateColumnModalInput = styled.input`
   width: 100%;
   margin-bottom: 10px;
-}
+`;
 
-.create-column-modal button {
+export const CreateColumnModalButton = styled.button`
   display: block;
   width: 100%;
   padding: 10px 0;
@@ -27,8 +29,8 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
+`;
 
-.create-column-modal button:hover {
+export const CreateColumnModalButtonHover = styled.button`
   background-color: #0056b3;
-}
+`;

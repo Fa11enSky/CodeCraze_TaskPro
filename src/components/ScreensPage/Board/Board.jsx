@@ -22,15 +22,16 @@ const Board = ({
           onDeleteCard={onDeleteCard}
         />
         <div className="columns">
-          {columns.map(column => (
-            <Column
-              key={column.id}
-              column={column}
-              onCreateCard={onCreateCard}
-              onEditCard={onEditCard}
-              onDeleteCard={onDeleteCard}
-            />
-          ))}
+          {columns &&
+            columns.map(column => (
+              <Column
+                key={column.id}
+                column={column}
+                onCreateCard={onCreateCard}
+                onEditCard={onEditCard}
+                onDeleteCard={onDeleteCard}
+              />
+            ))}
         </div>
       </div>
     </div>
