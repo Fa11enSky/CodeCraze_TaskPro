@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import styled from './CreateBoardButton.module.css';
+import {
+  ContainerBoards,
+  TitleBoard,
+  ButtonBoardContainer,
+  CreateBoard,
+  ButtonBoard,
+  ButtonIcon,
+} from './CreateBoardButton.styled';
 import iconsSprite from '../../../assets/svgSprite/iconsSprite.svg';
 
 const CreateBoardButton = () => {
@@ -13,26 +20,25 @@ const CreateBoardButton = () => {
     setIsModalOpen(false);
   };
   return (
-    <div className={styled.containerBoards}>
-      <p className={styled.titleBoard}>My boards</p>
-      <div className={styled.buttonBoardContainer}>
-        <p className={styled.createBoard}>Create a new board</p>
-        <button
-          className={styled.buttonBoard}
+    <ContainerBoards>
+      <TitleBoard>My boards</TitleBoard>
+      <ButtonBoardContainer>
+        <CreateBoard>Create a new board</CreateBoard>
+        <ButtonBoard
           onClick={openModalBoard}
           type="submit"
           aria-label="CreateBoard"
         >
-          <svg className={styled.buttonIcon}>
-            <use xlinkHref={`${iconsSprite}#icon-plus`} />
-          </svg>
-        </button>
-      </div>
+          <ButtonIcon>
+            <use xlinkHref={`${iconsSprite}#plus`} />
+          </ButtonIcon>
+        </ButtonBoard>
+      </ButtonBoardContainer>
       {/* ///////////////////////// */}
       {/* вставити модальне вікно */}
       {/* {isModalOpen && <Modal onClose={closeModalBoard} />} */}
       {/* ///////////////////////// */}
-    </div>
+    </ContainerBoards>
   );
 };
 
