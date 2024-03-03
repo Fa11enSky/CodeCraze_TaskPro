@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import NotFound from './NotFound/NotFound';
 import ThemeProvider from '../providers/themeProvider';
 
-
 export const App = () => {
   return (
     <div>

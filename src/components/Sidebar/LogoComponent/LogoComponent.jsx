@@ -1,17 +1,18 @@
 import React from 'react';
 import iconsSprite from '../../../assets/svgSprite/iconsSprite.svg';
 import { Link } from 'react-router-dom';
-import styled from './LogoComponent.module.css';
+
+import { LogoContainer, LogoIcon, LogoTitle } from './LogoComponent.styled';
 
 const LogoComponent = () => {
   return (
     <Link to={'/'}>
-      <div className={styled.logoContainer}>
-        <svg className={styled.logoIcon}>
+      <LogoContainer>
+        <LogoIcon>
           <use xlinkHref={`${iconsSprite}#icon-logo`} />
-        </svg>
-        <h1 className={styled.logoTitle}>Task Pro</h1>
-      </div>
+        </LogoIcon>
+        <LogoTitle>Task Pro</LogoTitle>
+      </LogoContainer>
     </Link>
   );
 };
