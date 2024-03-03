@@ -25,6 +25,7 @@ const TaskCard = ({ cardData }) => {
       cardColor = 'gray';
       break;
   }
+
   /* -------------------- CARD CONTROLS FUNCTIONS --------------------*/
   const replaceCard = () => {
     return;
@@ -75,6 +76,7 @@ const TaskCard = ({ cardData }) => {
                   <use xlinkHref={`${sprite}#icon-arrov_circle`} />
                 </svg>
               </button>
+
               {/* Tooltip */}
               <Tooltip
                 anchorSelect="#my-tooltip"
