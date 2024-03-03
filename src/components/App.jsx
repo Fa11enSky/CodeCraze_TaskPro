@@ -8,8 +8,8 @@ export const App = () => {
     <div>
       <ThemeProvider>
         <Routes>
-          {/* <Route path="/" element={<WelcomePage />} />
-          <Route path="*" element={<NotFound />} /> */}
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </ThemeProvider>
     </div>
