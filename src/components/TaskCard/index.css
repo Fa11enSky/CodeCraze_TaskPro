@@ -4,6 +4,7 @@
   --secondary-text-color: rgba(255, 255, 255, 0.5);
   --additional-project-color: rgb(190, 219, 176);
 }
+
 .card-full-wrapper {
   display: flex;
   border-radius: 8px;
@@ -13,9 +14,11 @@
 }
 .color-tag {
   width: 4px;
-  background-color: red;
 }
-.card-wrapper {
+
+/** -------------------- FULL --------------------*/
+
+.card-content-wrapper {
   width: 100%;
   padding: 14px 20px;
   box-sizing: border-box;
@@ -24,6 +27,9 @@
   flex-direction: column;
   justify-content: center;
 }
+
+/** -------------------- TOP --------------------*/
+
 .card-title {
   font-size: 14px;
   letter-spacing: -0.02em;
@@ -47,12 +53,21 @@
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
+
+/** -------------------- BOTTOM --------------------*/
+
 .card-bottom {
   display: flex;
-  align-items: flex-end;
+}
+
+/* -------------------- INFO-LIST --------------------*/
+
+.card-info-list {
+  align-self: start;
+  display: flex;
   gap: 14px;
 }
-.card-info-wrapper {
+.card-info-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -68,29 +83,71 @@
   letter-spacing: -0.02em;
   color: var(--main-text-color);
 }
-.card-controls-wrapper {
+
+/* -------------------- CONTROLS-LIST --------------------*/
+
+.card-controls-list {
   display: flex;
   gap: 8px;
   margin-left: auto;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
-.card-button {
-  stroke-width: 1.3px;
-  stroke: var(--secondary-text-color);
+.card-controls-list button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
 }
 .card-control {
   height: 16px;
   width: 16px;
   stroke: var(--main-text-color);
   fill: transparent;
-  cursor: pointer;
+  transition: 150ms ease-in-out;
 }
-.bell-svg-container > .card-control {
+
+.card-control:hover,
+.card-control:focus {
+  filter: drop-shadow(0 0 4px var(--additional-project-color));
   stroke: var(--additional-project-color);
 }
-.bell-svg-container {
-  background-color: rgba(190, 219, 176, 0.3);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+.card-notification-icon {
+  width: 16px;
+  height: 16px;
+  fill: transparent;
+  stroke: var(--additional-project-color);
+  filter: drop-shadow(0 0 4px var(--additional-project-color));
+}
+
+/* -------------------- TOOLTIP --------------------*/
+
+.tooltip {
+  background-color: black;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tooltip-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.tooltip-option-text {
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.5);
+  transition: 150ms ease-in-out;
+}
+
+.tooltip-btn:hover > .tooltip-option-text,
+.tooltip-btn:focus > .tooltip-option-text,
+.tooltip-btn:hover > .card-control,
+.tooltip-btn:focus > .card-control {
+  color: var(--additional-project-color);
+  stroke: var(--additional-project-color);
+  filter: drop-shadow(0 0 4px var(--additional-project-color));
 }
