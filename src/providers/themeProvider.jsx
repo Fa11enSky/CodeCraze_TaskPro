@@ -3,7 +3,7 @@ import React, { createContext, useEffect, useState } from 'react';
 export const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState({value:"light"});
   useEffect(() => {
     if (theme.value === 'dark') document.body.classList.add('dark');
     else document.body.classList.remove('dark');
