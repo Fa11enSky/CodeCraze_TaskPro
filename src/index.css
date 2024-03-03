@@ -46,7 +46,7 @@ body.dark{
   --main_text_color:#FFFFFF;
   --sidebar_text_color: #ffffff;
   --accent: #BEDBB0;
-  --light_text:  rgba(22, 22, 22, 0.5);
+  --light_text: rgba(255, 255, 255, 0.5);
   --background_sidebar: #121212;
   --background_header: #161616;
   --background_taskList: #1F1F1F;
