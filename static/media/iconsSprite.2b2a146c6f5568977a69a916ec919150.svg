@@ -79,5 +79,8 @@
     </clipPath>
   </defs>
 </symbol>
+<symbol id="icon-vector" viewBox="0 0 41 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.9714" d="M1.714 16s6.857-13.714 18.857-13.714 18.857 13.714 18.857 13.714-6.857 13.714-18.857 13.714-18.857-13.714-18.857-13.714z"></path>
+</symbol>
 </defs>
 </svg>
