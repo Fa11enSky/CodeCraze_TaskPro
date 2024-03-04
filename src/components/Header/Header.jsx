@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useLayoutEffect } from 'react';
+import { ThemeContext } from '../../providers/themeProvider';
 import { Container, List, ListItem, P } from './Header.styled';
 import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
 import defaultAvatar from './user_Ligt.png';
 // import { useSelector } from "react-redux";
 
@@ -10,22 +10,10 @@ const options = [
   { value: 'dark', label: 'Dark' },
   { value: 'violet', label: 'Violet' },
 ];
-
-const animatedComponents = makeAnimated();
-
 const Header = () => {
   // const name = useSelector(authSelectors.getUsername);
+  const [theme, setTheme] = useContext(ThemeContext);
   const avatar = defaultAvatar;
-
-  const [currentTheme, setcurrentTheme] = useState('Theme');
-
-  const getValue = e => {
-    return currentTheme ? options.find(e => e.value === currentTheme) : 'Theme';
-  };
-
-  const onCheng = newValue => {
-    setcurrentTheme(newValue.value);
-  };
 
   return (
     <Container>
@@ -38,18 +26,51 @@ const Header = () => {
                 border: 'none',
                 fontSize: '14px',
                 fontWeight: '500',
-                appearance: 'none',
+                fontFamily: 'Poppins, sans-serif',
                 backgroundColor: 'transparent',
                 cursor: 'pointer',
               }),
+
+              indicatorSeparator: (baseStyles, state) => ({
+                ...baseStyles,
+                display: 'none',
+              }),
+              menuList: (baseStyles, state) => ({
+                ...baseStyles,
+                color: 'var(--main_text_color)',
+              }),
+              placeholder: (baseStyles, state) => ({
+                ...baseStyles,
+                color: 'var(--main_text_color)',
+              }),
+              singleValue: (baseStyles, state) => ({
+                ...baseStyles,
+                color: 'var(--main_text_color)',
+              }),
+              dropdownIndicator: (baseStyles, state) => ({
+                ...baseStyles,
+                color: 'var(--main_text_color)',
+              }),
+              menu: (baseStyles, state) => ({
+                ...baseStyles,
+                backgroundColor: 'var(--background_header)',
+              }),
+
+              option: (baseStyles, state) => ({
+                ...baseStyles,
+                '&:active': {
+                  color: 'var(--accent)',
+                },
+                '&:hover': {
+                  color: 'var(--accent)',
+                },
+              }),
             }}
-            onChenge={onCheng}
-            value={getValue()}
+            onChange={setTheme}
             options={options}
             placeholder="Theme"
             components={{
               IndicatorSeparator: () => null,
-              animatedComponents,
             }}
           />
         </List>
