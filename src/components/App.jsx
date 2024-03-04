@@ -2,6 +2,8 @@ import WelcomePage from 'pages/WelcomePage';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './NotFound/NotFound';
 import ThemeProvider from '../providers/themeProvider';
+import PublicRoute from 'guards/PublicRoute';
+import AuthPage from 'pages/AuthPage';
 
 export const App = () => {
   return (
@@ -9,6 +11,14 @@ export const App = () => {
       <ThemeProvider>
         <Routes>
           <Route path="/" element={<WelcomePage />} />
+          <Route
+            path="/auth/:id"
+            element={
+              <PublicRoute redirectTo="/home">
+                <AuthPage />
+              </PublicRoute>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ThemeProvider>
