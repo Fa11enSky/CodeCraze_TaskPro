@@ -4,24 +4,28 @@
 // import { logout } from "..........redux/auth/operations"
 // Імпортуються змінні з "..........redux/auth/operations"
 import iconsSprite from '../../../assets/svgSprite/iconsSprite.svg';
-import styled from './LogOut.module.css';
+import {
+  LogOutContainer,
+  LogoutButton,
+  IconLogOut,
+  LogOutText,
+} from './LogOut.styled';
 
 const LogOut = () => {
   // const dispatch = useDispatch();
   return (
-    <div className={styled.logOutContainer}>
-      <button
-        className={styled.logoutButton}
+    <LogOutContainer>
+      <LogoutButton
         type="submit"
         aria-label="Help"
         // onClick={() => dispatch(logout())}
       >
-        <svg className={styled.iconLogOut}>
+        <IconLogOut>
           <use xlinkHref={`${iconsSprite}#icon-login`} />
-        </svg>
-      </button>
-      <p className={styled.logOutText}>Log out</p>
-    </div>
+        </IconLogOut>
+      </LogoutButton>
+      <LogOutText>Log out</LogOutText>
+    </LogOutContainer>
   );
 };
 export default LogOut;
