@@ -1,7 +1,8 @@
 import { Formik } from 'formik';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { register } from '../../redux/auth/operations';
 
 import RegisterSchema from './RegisterSchema';
 import {
@@ -17,7 +18,6 @@ import {
   SubButton,
 } from '../LoginForm/Form.styled';
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
-import { register } from '../../redux/auth/operations';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,9 @@ const RegisterForm = () => {
     setShowPassword(prev => !prev);
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    setSubmitting(true);
+
     const name = values.name;
     const email = values.email;
     const password = values.password;
@@ -39,7 +41,9 @@ const RegisterForm = () => {
         password,
       })
     );
+
     setSubmitting(false);
+    resetForm();
   };
 
   const initialValues = {
@@ -55,10 +59,12 @@ const RegisterForm = () => {
       onSubmit={handleSubmit}
     >
       <FormContainer>
-        <StyledForm autoComplete="on">
+        <StyledForm>
           <NavContainer>
-            <NavLink to="/auth/register">Registration</NavLink>
-            <NavLink to="/auth/login">Log In</NavLink>
+            <Link style={{ color: '#ffffff' }} to="/auth/register">
+              Registration
+            </Link>
+            <Link to="/auth/login">Log In</Link>
           </NavContainer>
 
           <InputContainer>
@@ -69,8 +75,10 @@ const RegisterForm = () => {
               name="name"
               placeholder="Enter your name"
             />
-            <StyledErrorMessage name="name" component="div" />
+            <StyledErrorMessage name="name" component="span" />
+          </InputContainer>
 
+          <InputContainer>
             <label htmlFor="email" />
             <StyledInput
               type="text"
@@ -78,30 +86,30 @@ const RegisterForm = () => {
               name="email"
               placeholder="Enter your email"
             />
-            <StyledErrorMessage name="email" component="div" />
-
-            <label htmlFor="password" />
-            <PassInputContainer>
-              <StyledInputPass
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-              />
-              <ShowHideButton type="button" onClick={togglePasswordVisibility}>
-                {showPassword ? (
-                  <svg width="18" height="18" fill="none" className="icon">
-                    <use xlinkHref={`${sprite}#icon-vector`} />
-                  </svg>
-                ) : (
-                  <svg width="18" height="18" fill="none" className="icon">
-                    <use xlinkHref={`${sprite}#icon-eye`} />
-                  </svg>
-                )}
-              </ShowHideButton>
-            </PassInputContainer>
-            <StyledErrorMessage name="password" component="div" />
+            <StyledErrorMessage name="email" component="span" />
           </InputContainer>
+
+          <PassInputContainer>
+            <label htmlFor="password" />
+            <StyledInputPass
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+            />
+            <ShowHideButton type="button" onClick={togglePasswordVisibility}>
+              {showPassword ? (
+                <svg width="18" height="18" fill="none" className="icon">
+                  <use xlinkHref={`${sprite}#icon-vector`} />
+                </svg>
+              ) : (
+                <svg width="18" height="18" fill="none" className="icon">
+                  <use xlinkHref={`${sprite}#icon-eye`} />
+                </svg>
+              )}
+            </ShowHideButton>
+          </PassInputContainer>
+          <StyledErrorMessage name="password" component="span" />
 
           <SubButton type="submit">Register Now</SubButton>
         </StyledForm>
