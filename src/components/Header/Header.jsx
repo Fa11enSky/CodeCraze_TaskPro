@@ -35,17 +35,14 @@ const Header = () => {
                 ...baseStyles,
                 display: 'none',
               }),
-
               menuList: (baseStyles, state) => ({
                 ...baseStyles,
                 color: 'var(--main_text_color)',
               }),
-
               placeholder: (baseStyles, state) => ({
                 ...baseStyles,
                 color: 'var(--main_text_color)',
               }),
-
               singleValue: (baseStyles, state) => ({
                 ...baseStyles,
                 color: 'var(--main_text_color)',
@@ -54,7 +51,6 @@ const Header = () => {
                 ...baseStyles,
                 color: 'var(--main_text_color)',
               }),
-
               menu: (baseStyles, state) => ({
                 ...baseStyles,
                 backgroundColor: 'var(--background_header)',
