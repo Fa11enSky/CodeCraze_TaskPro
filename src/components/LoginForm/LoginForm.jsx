@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
@@ -28,7 +28,8 @@ const LoginForm = () => {
     setShowPassword(prev => !prev);
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    setSubmitting(true);
     const email = values.email;
     const password = values.password;
 
@@ -38,7 +39,7 @@ const LoginForm = () => {
         password,
       })
     );
-
+    resetForm();
     setSubmitting(false);
   };
 
@@ -56,8 +57,10 @@ const LoginForm = () => {
       <FormContainer>
         <StyledForm>
           <NavContainer>
-            <NavLink to="/auth/register">Registration</NavLink>
-            <NavLink to="/auth/login">Log In</NavLink>
+            <Link to="/auth/register">Registration</Link>
+            <Link style={{ color: '#ffffff' }} to="/auth/login">
+              Log In
+            </Link>
           </NavContainer>
 
           <InputContainer>
@@ -68,30 +71,31 @@ const LoginForm = () => {
               name="email"
               placeholder="Enter your email"
             />
-            <StyledErrorMessage name="email" component="div" />
-
-            <label htmlFor="password" />
-            <PassInputContainer>
-              <StyledInputPass
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-              />
-              <ShowHideButton type="button" onClick={togglePasswordVisibility}>
-                {showPassword ? (
-                  <svg width="18" height="18" fill="none" className="icon">
-                    <use xlinkHref={`${sprite}#icon-vector`} />
-                  </svg>
-                ) : (
-                  <svg width="18" height="18" fill="none" className="icon">
-                    <use xlinkHref={`${sprite}#icon-eye`} />
-                  </svg>
-                )}
-              </ShowHideButton>
-            </PassInputContainer>
-            <StyledErrorMessage name="password" component="div" />
+            <StyledErrorMessage name="email" component="span" />
           </InputContainer>
+
+          <label htmlFor="password" />
+          <PassInputContainer>
+            <StyledInputPass
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+            />
+            <ShowHideButton type="button" onClick={togglePasswordVisibility}>
+              {showPassword ? (
+                <svg width="18" height="18" fill="none" className="icon">
+                  <use xlinkHref={`${sprite}#icon-vector`} />
+                </svg>
+              ) : (
+                <svg width="18" height="18" fill="none" className="icon">
+                  <use xlinkHref={`${sprite}#icon-eye`} />
+                </svg>
+              )}
+            </ShowHideButton>
+          </PassInputContainer>
+
+          <StyledErrorMessage name="password" component="span" />
 
           <SubButton type="submit">Log In Now</SubButton>
         </StyledForm>
