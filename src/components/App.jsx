@@ -2,8 +2,7 @@ import WelcomePage from 'pages/WelcomePage';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './NotFound/NotFound';
 import ThemeProvider from '../providers/themeProvider';
-import HomePage from '../pages/HomePage';
-import ScreensPage from '../pages/ScreensPage';
+import HomePage from 'pages/HomePage';
 
 export const App = () => {
   return (
@@ -12,7 +11,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/home" element={<HomePage />}>
-            <Route index element={<ScreensPage />} />
+            <Route path=":boadrId" element={<div>adfadgadgadfgfasf</div>}></Route>
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
