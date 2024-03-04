@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/CodeCraze_TaskPro/static/css/main.454fda2d.css",
+    "main.css": "/CodeCraze_TaskPro/static/css/main.b5963515.css",
     "main.js": "/CodeCraze_TaskPro/static/js/main.047fe14c.js",
     "static/media/Poppins-Regular.ttf": "/CodeCraze_TaskPro/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/Poppins-Medium.ttf": "/CodeCraze_TaskPro/static/media/Poppins-Medium.673ed42382ab264e0bf5.ttf",
@@ -9,11 +9,11 @@
     "static/media/welcome_boy_tab-desk.png": "/CodeCraze_TaskPro/static/media/welcome_boy_tab-desk.ed0d2e2b8eaf51594184.png",
     "static/media/welcome_boy_mobile@2x.png": "/CodeCraze_TaskPro/static/media/welcome_boy_mobile@2x.a7b242e138250975ee73.png",
     "index.html": "/CodeCraze_TaskPro/index.html",
-    "main.454fda2d.css.map": "/CodeCraze_TaskPro/static/css/main.454fda2d.css.map",
+    "main.b5963515.css.map": "/CodeCraze_TaskPro/static/css/main.b5963515.css.map",
     "main.047fe14c.js.map": "/CodeCraze_TaskPro/static/js/main.047fe14c.js.map"
   },
   "entrypoints": [
-    "static/css/main.454fda2d.css",
+    "static/css/main.b5963515.css",
     "static/js/main.047fe14c.js"
   ]
 }
