@@ -10,17 +10,81 @@ max-height: 900px;
 
 border-radius: 8px;
 border: 1px;
-background: rgba(21, 21, 21, 1);
-border: 1px solid rgba(190, 219, 176, 0.5);
+background: var(--background_task_item);
+border: 1px solid var(--accent);
 padding: 24px
 `
 
+export const StyledDiv = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+position: relative;
+`
+
+export const CloseButton = styled.button`
+position: absolute;
+top: -2px;
+right: 0;
+border: none;
+background-color: inherit;
+width: 18px;
+height: 18px;
+margin-right: -8px;
+rotate: 45deg;
+
+
+span{
+position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+
+        background-color: inherit;
+        
+        
+
+
+
+&::before {
+    content: ' ';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--main_text_color);
+    border-width:0 0 2px 2px ;
+    
+}
+
+&::after {
+    content: ' ';
+    top: 8px;
+    left: 1px;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--main_text_color);
+    border-width: 2px 2px 0 0;
+}
+&:hover {
+  
+  &::before, &::after{
+        transform: rotate(360deg);
+        transition: border-color, rotate, 0.3s ease-in-out;
+        border-color: grey
+     }}
+}
+`
+
 export const H3 = styled.h3`
+color: var(--main_text_color);
 font-size: 18px;
 font-weight: 500;
 line-height: 27px;
 letter-spacing: -0.32px;
-text-align: left;
 margin-bottom: 24px;
 `
 
@@ -28,17 +92,16 @@ margin-bottom: 24px;
 export const TitleInput = styled(Field)`
 font-family: Poppins;
 font-size: 14px;
-font-weight: 400;
 line-height: 21px;
 letter-spacing: -0.32px;
 text-align: left;
-color: rgba(255, 255, 255, 1);
+color: var(--main_text_color);
 
 background-color: inherit;
 width: 287px;
 height: 49px;
 border-radius: 8px;
-border: 1px solid rgba(190, 219, 176, 1);
+border: 1px solid var(--accent);
 opacity: 40%;
 padding: 14px 18px;
 margin-bottom: 14px;
@@ -57,12 +120,12 @@ line-height: 18px;
 letter-spacing: -0.32px;
 text-align: left;
 
-color: rgba(255, 255, 255, 1);
+color: var(--main_text_color);
 background-color: inherit;
 width: 287px;
 height: 154px;
 border-radius: 8px;
-border: 1px solid rgba(190, 219, 176, 1);
+border: 1px solid var(--accent);
 opacity: 40%;
 padding: 14px 18px;
 margin-bottom: 24px;
@@ -89,7 +152,7 @@ display: flex;
 `
 
 export const RadioBtn = styled(Field)`
-position: absolute;
+  position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
@@ -98,14 +161,12 @@ position: absolute;
 
 export const RadioLabel = styled.label`
     display: inline-block;
-    position: relative; /* Для позиціонування кружечка */
-    width: 14px; /* Розмір батьківського елементу */
+    position: relative;
+    width: 14px; 
     height: 14px;
     border-radius: 50%;
-    
-    cursor: pointer;
 
-    /* Змініть кольори за необхідності */
+    cursor: pointer;
     &.blue {
         background-color: rgba(143, 161, 208, 1);
         
@@ -134,11 +195,12 @@ export const RadioLabel = styled.label`
     }
 
     &.grey {
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: grey;
 
         transition: background-color, 0.3s;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    opacity: 0.5;
+    background-color: grey;
   }
     }
 
@@ -152,7 +214,7 @@ export const RadioLabel = styled.label`
         border-radius: 50%;
         
         background-color: inherit;
-        border: 2px solid rgba(21, 21, 21, 1);
+        border: 1.5px solid var(--background_task_item);
 
         opacity: 0;
         transition: border, opacity 0.3s;
@@ -184,7 +246,7 @@ height: 49px;
 padding: 10px 0px 11px 0px;
 border-radius: 8px;
 border: none;
-background: rgba(190, 219, 176, 1);
+background: var(--accent);
 transition: background 0.3s;
 
 p {
@@ -199,7 +261,7 @@ color: rgba(22, 22, 22, 1);
 }
 
 &:hover {
-    background: rgba(190, 219, 176, 0.5);
+    background: var(--accent_hover);
      span::before, span::after{
         transform: rotate(360deg);
         transition: rotate, 0.3s;

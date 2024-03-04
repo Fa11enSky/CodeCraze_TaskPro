@@ -1,26 +1,41 @@
 import { Formik, Form } from 'formik';
 import { useState } from 'react';
 import { ModifiedDatePicker } from '../DatePicker';
-import { DescriptionTextArea, H3, Layout, ModalDiv, RadioBtn, RadioButtonDiv, RadioLabel, StyledP, SubmitButton, SubmitSpan, TitleInput } from './AddCardModal.styled.js'
+import { CloseButton, DescriptionTextArea, H3, Layout, ModalDiv, RadioBtn, RadioButtonDiv, RadioLabel, StyledDiv, StyledP, SubmitButton, SubmitSpan, TitleInput } from './CardModal.styled.js'
 
-export const AddCardModal = () => {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+
+
+// ** Card modal component
+// ** Компонент створює динамічну розмітку модального вікна в залежності від пропсів.
+// ** Очікує пропс initialValues, це об'єкт в якому можуть бути наступні змінні:
+// **   title - титул картки (пустий рядок за замовч)
+// **   description - опис картки (пустий рядок за замовч)
+// **   radio - вибір пріорітету таски (варіант без пріорітету за замовч(сірий))
+// **   date - об'єкт дати (сьогодняшня дата за замовч)
+// **   newCard - булеве значення (true за замовч)
+
+export const CardModal = ({ initialValues = { title: '', description: '', radio: "4", date: new Date(), newCard: "true" } }) => {
+    const { title, description, date, radio, newCard } = initialValues
+
+    const [selectedDate, setSelectedDate] = useState(date);
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
 
+
     return (
         <ModalDiv>
-            <H3>Add card</H3>
+            {newCard && <StyledDiv><H3>Add card</H3>
+                <CloseButton
+                ><span></span></CloseButton></StyledDiv>}
+            {!newCard && <H3>Edit card</H3>}
             <Formik
-                initialValues={{
-                    title: '',
-                    description: '',
-                    radio: '4'
-                }}
+                initialValues={{ title, description, radio }}
                 onSubmit={async (values) => {
-                    await new Promise((r) => setTimeout(r, 500));
+                    console.log('values======>', values)
+                    console.log('selectedDate======>', selectedDate)
+                    await new Promise((r) => setTimeout(r, 1000));
                     alert(JSON.stringify({ values, selectedDate }, null, 2));
                 }}
             >
@@ -71,9 +86,15 @@ export const AddCardModal = () => {
                         <StyledP htmlFor="date_picker">Deadline</StyledP>
                         <ModifiedDatePicker
                             onChange={handleDateChange}
+                            date={selectedDate}
+                            newCard={newCard}
                         />
                     </Layout>
-                    <SubmitButton type="submit"><SubmitSpan className='btn_layout'></SubmitSpan><p>Add</p></SubmitButton>
+                    <SubmitButton type="submit">
+                        <SubmitSpan className='btn_layout'></SubmitSpan>
+                        {newCard && <p>Add</p>}
+                        {!newCard && <p>Edit</p>}
+                    </SubmitButton>
                 </Form>
             </Formik>
         </ModalDiv>
