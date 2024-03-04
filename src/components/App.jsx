@@ -19,7 +19,12 @@ export const App = () => {
               <PublicRoute redirectTo="/home" component={<AuthPage />} />
             }
           />
-          <Route path="/home" element={<PrivateRoute redirectTo='/auth/login' component={<HomePage />}/>}>
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute redirectTo="/auth/login" component={<HomePage />} />
+            }
+          >
             <Route
               path=":boadrId"
               element={<div>Тут буде рендер колонок дошки</div>}
