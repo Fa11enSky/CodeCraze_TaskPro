@@ -2,7 +2,7 @@ import WelcomePage from 'pages/WelcomePage';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './NotFound/NotFound';
 import ThemeProvider from '../providers/themeProvider';
-import PublicRoute from 'guards/PublicRoute';
+import PublicRoute from '../guards/PublicRoute';
 import AuthPage from 'pages/AuthPage';
 
 export const App = () => {
@@ -14,9 +14,7 @@ export const App = () => {
           <Route
             path="/auth/:id"
             element={
-              <PublicRoute redirectTo="/home">
-                <AuthPage />
-              </PublicRoute>
+              <PublicRoute redirectTo="/home" component={<AuthPage />} />
             }
           />
           <Route path="*" element={<NotFound />} />
