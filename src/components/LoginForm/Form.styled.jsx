@@ -18,6 +18,7 @@ export const StyledForm = styled(Form)`
   padding: 24px;
   display: flex;
   flex-direction: column;
+
   @media screen and (min-width: 768px) {
     max-width: 424px;
     padding: 40px;
@@ -34,7 +35,7 @@ export const NavContainer = styled.div`
 `;
 
 export const InputContainer = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 14px;
 `;
 export const StyledInput = styled(Field)`
   border: 1px solid #bedbb0;
@@ -42,7 +43,6 @@ export const StyledInput = styled(Field)`
   width: 100%;
   max-width: 287px;
   height: 49px;
-  margin-bottom: 14px;
   padding: 14px 18px;
   box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
   background: #1f1f1f;
@@ -69,10 +69,9 @@ export const StyledInput = styled(Field)`
 
 export const StyledErrorMessage = styled(ErrorMessage)`
   color: red;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 12px;
   letter-spacing: -0.02em;
-  margin-bottom: 6px;
 `;
 
 export const PassInputContainer = styled.div`
@@ -103,6 +102,7 @@ export const SubButton = styled.button`
   max-width: 287px;
   height: 49px;
   padding: 0;
+  margin-top: 24px;
   background: #bedbb0;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
