@@ -41,9 +41,9 @@ const TaskCard = ({ cardData }) => {
   const isDeadlineToday = deadline;
 
   return (
-    <div className="card-full-wrapper">
+    <div data-id={id} className="card-full-wrapper">
       <div style={{ background: `${cardColor}` }} className="color-tag"></div>
-      <div data-id={id} className="card-content-wrapper">
+      <div className="card-content-wrapper">
         <div className="card-top">
           <h3 className="card-title">{title}</h3>
           <p className="card-description">{description}</p>
@@ -71,7 +71,7 @@ const TaskCard = ({ cardData }) => {
               </li>
             )}
             <li>
-              <button type="button" onClick={replaceCard} id="my-tooltip">
+              <button type="button" onClick={replaceCard} id="replace-card">
                 <svg className="card-control">
                   <use xlinkHref={`${sprite}#icon-arrov_circle`} />
                 </svg>
@@ -79,19 +79,19 @@ const TaskCard = ({ cardData }) => {
 
               {/* Tooltip */}
               <Tooltip
-                anchorSelect="#my-tooltip"
+                anchorSelect="#replace-card"
                 place="bottom"
                 clickable="true"
-                className="tooltip"
+                className="replace-tooltip"
               >
-                <button className="tooltip-btn">
-                  <p className="tooltip-option-text">Column1</p>
+                <button className="replace-tooltip-btn">
+                  <p className="replace-tooltip-option-text">Column1</p>
                   <svg className="card-control">
                     <use xlinkHref={`${sprite}#icon-arrov_circle`} />
                   </svg>
                 </button>
-                <button className="tooltip-btn">
-                  <p className="tooltip-option-text">Column2</p>
+                <button className="replace-tooltip-btn">
+                  <p className="replace-tooltip-option-text">Column2</p>
                   <svg className="card-control">
                     <use xlinkHref={`${sprite}#icon-arrov_circle`} />
                   </svg>
