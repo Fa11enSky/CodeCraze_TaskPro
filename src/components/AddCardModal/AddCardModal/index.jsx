@@ -4,7 +4,7 @@ import { ModifiedDatePicker } from '../DatePicker';
 import { DescriptionTextArea, H3, Layout, ModalDiv, RadioBtn, RadioButtonDiv, RadioLabel, StyledP, SubmitButton, SubmitSpan, TitleInput } from './AddCardModal.styled.js'
 
 export const AddCardModal = () => {
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
