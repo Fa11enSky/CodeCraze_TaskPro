@@ -1,6 +1,13 @@
 import { useFormik } from 'formik';
 import Modal from 'components/Modal/Modal';
-import { EditProfileContent } from './EditProfile.styled';
+import {
+  AvatarContainer,
+  AvatarImageContainer,
+  EditProfileContent,
+  EditProfileForm,
+  UploadAvatarButton,
+} from './EditProfile.styled';
+import sprite from '../../assets/svgSprite/iconsSprite.svg';
 
 const EditProfile = () => {
   const formik = useFormik({
@@ -16,51 +23,63 @@ const EditProfile = () => {
   });
 
   return (
-    <Modal>
-      <EditProfileContent>
-        <p>Edit Profile</p>
+    // <Modal>
+    <EditProfileContent>
+      <h2>Edit Profile</h2>
 
-        <div>
-          <img src="" alt="User avatar" />
-        </div>
-        <button>
-          <svg>
-            <use />
-          </svg>
-        </button>
-
-        <form onSubmit={formik.handleSubmit}>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            placeholder="xxx"
-            onChange={formik.handleChange}
-            value={formik.values.name}
-          />
+      <EditProfileForm onSubmit={formik.handleSubmit}>
+        <AvatarContainer>
+          <AvatarImageContainer>
+            <img src="" alt="User avatar" />
+          </AvatarImageContainer>
 
           <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="xxx"
-            onChange={formik.handleChange}
-            value={formik.values.email}
+            id="avatar"
+            name="avatar"
+            type="file"
+            accept="image/*"
+            hidden
           />
+          <label htmlFor="avatar">
+            <UploadAvatarButton>
+              <svg>
+                <use href={`${sprite}#plus`} />
+              </svg>
+            </UploadAvatarButton>
+          </label>
+        </AvatarContainer>
 
-          <input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="xxx"
-            onChange={formik.handleChange}
-            value={formik.values.password}
-          />
+        <input
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Name"
+          onChange={formik.handleChange}
+          // value={formik.values.name}
+        />
 
-          <button type="submit">Send</button>
-        </form>
-      </EditProfileContent>
-    </Modal>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Email"
+          onChange={formik.handleChange}
+          // value={formik.values.email}
+        />
+
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Password"
+          onChange={formik.handleChange}
+          // value={formik.values.password}
+        />
+
+        <button type="submit">Send</button>
+      </EditProfileForm>
+    </EditProfileContent>
+    // </Modal>
   );
 };
 
