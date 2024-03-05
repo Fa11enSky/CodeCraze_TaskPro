@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-
 
 export const Container = styled.div`
   display: flex;
@@ -10,6 +8,8 @@ export const Container = styled.div`
   list-style: none;
   width:100%;
   height: 68px;
+  background-color: var(--background_header);
+  transition: background-color 200ms linear;
 `;
 
 export const List = styled.li`
@@ -20,7 +20,8 @@ export const List = styled.li`
   height: 21px;
   margin-right: 15px;
   gap: 14px;
-
+  color: var(--text-color);
+  transition: color 500ms linear;
 `;
 
 export const ListItem = styled.ul`
@@ -38,4 +39,6 @@ export const P = styled.p`
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
+  color: var(--main_text_color);
+  transition: color 00ms linear;
 `;
