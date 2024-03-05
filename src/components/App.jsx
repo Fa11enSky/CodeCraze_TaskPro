@@ -1,5 +1,5 @@
-import WelcomePage from '../pages/WelcomePage';
 import { Route, Routes } from 'react-router-dom';
+import WelcomePage from 'pages/WelcomePage';
 import NotFound from './NotFound/NotFound';
 import ThemeProvider from '../providers/themeProvider';
 import HomePage from '../pages/HomePage';
