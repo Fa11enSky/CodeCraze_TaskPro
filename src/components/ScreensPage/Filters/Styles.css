@@ -1,51 +1,191 @@
-/* styles.css */
-
+/* Модальне вікно */
 .filters-wrapper {
-  /* Auto layout */
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px;
-  gap: 8px;
   position: absolute;
-  width: 64px;
-  height: 20px;
-  left: 1352px;
-  top: 82px;
+  background: #1f1f1f;
+  /* border: 1px solid rgba(190, 219, 176, 0.5); */
+  border-radius: 8px;
+  right: 24px;
+  top: 14%;
 }
 
-.filter-icon {
-  /* filter */
+.filters-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  background: #151515;
+}
+
+/* Кнопка з іконкою */
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  background: none;
+  border: none;
+  cursor: pointer;
+  right: 0;
+}
+
+.svg-icon {
   width: 16px;
   height: 16px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-.vector {
-  position: absolute;
-  left: 8.33%;
-  right: 8.33%;
-  top: 12.5%;
-  bottom: 12.5%;
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border: 1.5px solid #ffffff;
+  stroke-width: 1.50px;
+  stroke: rgba(255, 255, 255, 0.8);
+  background: #1f1f1f
 }
 
 .filters-text {
-  /* Filters */
-  width: 40px;
-  height: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #ffffff;
+}
+
+/* модалка */
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.modal-content {
+  border: 1px solid rgba(190, 219, 176, 0.5);
+  border-radius: 8px;
+  width: 300px;
+  height: 234px;
+  background: #151515;
+  position: relative;
+  width: 300px;
+
+  margin: 0 auto;
+  /* Це позиціонує контент по центру вікна */
+  padding: 20px;
+  /* Додає відступи для контенту */
+  box-sizing: border-box;
+}
+
+.modal-title {
+  position: absolute;
+  width: 51px;
+  height: 27px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  left: 24px;
+  top: 24px;
+}
+
+.modal-vector {
+  position: absolute;
+  width: 252px;
+  height: 0px;
+  left: calc(50% - 252px/2);
+  top: 65px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Label color */
+.modal-text {
+  position: absolute;
+  width: 74px;
+  height: 21px;
+  left: 24px;
+  top: 79px;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.8);
+  color: #FFFFFF;
+  margin-bottom: 14px;
 }
 
-.svg-icon {
-  border-radius: 100%;
-  fill: rgba(255, 255, 255, 0.3);
+.modal-show-all {
+  position: absolute;
+  width: 48px;
+  height: 18px;
+  left: 228px;
+  top: 79px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  text-decoration-line: underline;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-priorities {
+  width: 125px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  /* gap: 8px; */
+  position: absolute;
+  left: 24px;
+  top: 114px;
+}
+
+/* Without priority */
+.priority-item:nth-child(1) span {
+  padding-left: 8px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Low */
+.priority-item:nth-child(2) span {
+  padding-left: 8px;
+  color: #FFFFFF;
+}
+
+/* Medium */
+.priority-item:nth-child(3) span {
+  padding-left: 8px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* High */
+.priority-item:nth-child(4) span {
+  padding-left: 8px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-priorities span {
+  vertical-align: middle;
+}
+
+.priority-item {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  /* або використайте padding-top: 8px; */
 }

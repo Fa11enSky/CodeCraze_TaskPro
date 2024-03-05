@@ -1,6 +1,7 @@
+// ButtonStyles.js
 import styled from 'styled-components';
+import { AiOutlinePlus } from 'react-icons/ai';
 
-// Стилі для кнопки
 export const Button = styled.button`
   position: absolute;
   width: 334px;
@@ -16,9 +17,9 @@ export const Button = styled.button`
   align-items: center;
   padding: 0px;
   gap: 8px;
+  border: 2px solid rgb(16, 16, 16);
 `;
 
-// Стилі для тексту кнопки
 export const ButtonText = styled.span`
   font-family: 'Poppins';
   font-style: normal;
@@ -31,11 +32,21 @@ export const ButtonText = styled.span`
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-// Компонент "Заголовок"
+export const PlusIcon = styled(AiOutlinePlus)`
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 6px;
+  fill: #151515;
+  padding: 4px;
+`;
+
 export const Title = styled.div`
   position: absolute;
-  top: -40px;
-  left: 0;
-  font-size: 20px;
-  color: #ffffff;
+  top: 80px;
+  left: 27px;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.02em;
 `;

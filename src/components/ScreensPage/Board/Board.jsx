@@ -1,7 +1,5 @@
 import React from 'react';
-import HeaderDashboard from '../HeaderDashboard/HeaderDashboard';
 import MainDashboard from '../MainDashboard/MainDashboard';
-import Column from '../Column/Column';
 import './styles.js';
 
 const Board = ({
@@ -13,7 +11,6 @@ const Board = ({
 }) => {
   return (
     <div className="board">
-      <HeaderDashboard />
       <div className="content">
         <MainDashboard
           columns={columns}
@@ -21,18 +18,6 @@ const Board = ({
           onEditCard={onEditCard}
           onDeleteCard={onDeleteCard}
         />
-        <div className="columns">
-          {columns &&
-            columns.map(column => (
-              <Column
-                key={column.id}
-                column={column}
-                onCreateCard={onCreateCard}
-                onEditCard={onEditCard}
-                onDeleteCard={onDeleteCard}
-              />
-            ))}
-        </div>
       </div>
     </div>
   );

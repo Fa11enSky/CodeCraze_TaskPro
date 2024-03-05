@@ -1,18 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledImage = styled.img`
+const StyledBackground = styled.div`
   position: absolute;
-  width: 1180px;
-  height: 770px;
-  left: 260px;
-  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: #1f1f1f; /* Змінено background-color на background */
+  left: 0;
+  top: 0;
 `;
 
 function ImageComponent() {
-  return (
-    <StyledImage src="diego-ph-wyeapf7Gy-U-unsplash.jpg" alt="Some image" />
-  );
+  return <StyledBackground />;
 }
 
 export default ImageComponent;

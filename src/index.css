@@ -1,19 +1,24 @@
-@import-normalize; /* bring in normalize.css styles */
+@import-normalize;
+
+/* bring in normalize.css styles */
 @font-face {
   font-family: 'Poppins';
   font-weight: 500;
   src: url('./fonts/Poppins-Medium.ttf');
 }
+
 @font-face {
   font-family: 'Poppins';
   font-weight: 400;
   src: url('./fonts/Poppins-Regular.ttf');
 }
+
 @font-face {
   font-family: 'Poppins';
   font-weight: 600;
   src: url('./fonts/Poppins-SemiBold.ttf');
 }
+
 :root {
   font-size: 12px;
   color: #161616;
@@ -21,20 +26,24 @@
   font-style: normal;
   font-weight: 400;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
+  background: #1f1f1f;
   font-family: 'Poppins', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-body.light{
-  --main_text_color:#161616;
+
+body.light {
+  --main_text_color: #161616;
   --sidebar_text_color: #161616;
   --accent: #BEDBB0;
-  --light_text:  rgba(22, 22, 22, 0.5);
+  --light_text: rgba(22, 22, 22, 0.5);
   --background_sidebar: #ffffff;
   --background_header: #ffffff;
   --background_taskList: #fdfdfd;
@@ -42,11 +51,12 @@ body.light{
   --background_task_item: #ffffff;
   --scroll_bar_color: rgba(255, 255, 255, 0.1);
 }
-body.dark{
-  --main_text_color:#FFFFFF;
+
+body.dark {
+  --main_text_color: #FFFFFF;
   --sidebar_text_color: #ffffff;
   --accent: #BEDBB0;
-  --light_text:  rgba(22, 22, 22, 0.5);
+  --light_text: rgba(22, 22, 22, 0.5);
   --background_sidebar: #121212;
   --background_header: #161616;
   --background_taskList: #1F1F1F;
@@ -54,11 +64,12 @@ body.dark{
   --background_task_item: #121212;
   --scroll_bar_color: #E8E8E8;
 }
-body.violet{
-  --main_text_color:#161616;
+
+body.violet {
+  --main_text_color: #161616;
   --sidebar_text_color: #ffffff;
   --accent: #5255bc;
-  --light_text:  rgba(22, 22, 22, 0.7);
+  --light_text: rgba(22, 22, 22, 0.7);
   --background_sidebar: #5255bc;
   --background_header: #ffffff;
   --background_taskList: #d6d8ff;
@@ -114,6 +125,7 @@ img {
   padding-right: 15px;
   padding-left: 15px;
 }
+
 @media screen and (min-width: 375px) {
   .container {
     max-width: 375px;
@@ -121,6 +133,7 @@ img {
     padding-left: 20px;
   }
 }
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
@@ -128,6 +141,7 @@ img {
     padding-left: 32px;
   }
 }
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
@@ -135,6 +149,7 @@ img {
     padding-left: 32px;
   }
 }
+
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 1440px;

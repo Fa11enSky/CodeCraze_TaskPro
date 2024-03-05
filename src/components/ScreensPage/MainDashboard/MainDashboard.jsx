@@ -1,9 +1,8 @@
-import React, { useState } from 'react'; // Додали імпорт React та useState
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import AddColumnButton from '../AddColumnButton/AddColumnButton';
-import HeaderDashboard from '../HeaderDashboard/HeaderDashboard';
-import Column from '../Column/Column';
-import ColumnFormModal from '../Modal/Column/ColumnFormModal';
+import ColumnFormModal from '../Modal/ModalColum/Modal';
+import Filters from '../Filters/Filters'; // Імпорт компонента Filters
 
 const MainContainer = styled.div`
   display: flex;
@@ -48,10 +47,11 @@ function MainDashboard({ onBoardNameChange }) {
 
   return (
     <MainContainer>
-      <HeaderDashboard onBoardNameChange={onBoardNameChange} />
+      {/* Додайте компонент Filters тут */}
+      <Filters />
       {columns.map(column => (
         <ColumnContainer key={column.id}>
-          <Column title={column.title} cards={column.cards} />
+          {/* Ваш код для кожного стовпця тут */}
         </ColumnContainer>
       ))}
       <AddColumnButton onAddColumn={handleOpenColumnFormModal} />
