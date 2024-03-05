@@ -1,11 +1,11 @@
-import WelcomePage from 'pages/WelcomePage';
+import WelcomePage from '../pages/WelcomePage';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './NotFound/NotFound';
 import ThemeProvider from '../providers/themeProvider';
-import HomePage from 'pages/HomePage';
+import HomePage from '../pages/HomePage';
 import PublicRoute from '../guards/PublicRoute';
-import AuthPage from 'pages/AuthPage';
-import PrivateRoute from 'guards/PrivateRoute';
+import AuthPage from '../pages/AuthPage';
+import PrivateRoute from '../guards/PrivateRoute';
 
 export const App = () => {
   return (
