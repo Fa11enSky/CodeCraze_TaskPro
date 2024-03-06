@@ -30,8 +30,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-body.light{
-  --main_text_color:#161616;
+body.light {
+  --main_text_color: #161616;
   --sidebar_text_color: #161616;
   --accent: #bedbb0;
   --accent_hover: rgba(190, 219, 176, 0.5);
@@ -39,15 +39,16 @@ body.light{
   --background_sidebar: #ffffff;
   --background_header: #ffffff;
   --background_taskList: #fdfdfd;
-  --background_help: #E5E5E5;
+  --background_help: #e5e5e5;
   --background_task_item: #ffffff;
   --scroll_bar_color: rgba(255, 255, 255, 0.1);
   --calendar_help: rgba(22, 22, 22, 0.2);
+  --button_svg_background: #161616;
 }
-body.dark{
-  --main_text_color:#FFFFFF;
+body.dark {
+  --main_text_color: #ffffff;
   --sidebar_text_color: #ffffff;
-  --accent: #BEDBB0;
+  --accent: #bedbb0;
   --light_text: rgba(255, 255, 255, 0.5);
   --background_sidebar: #121212;
   --background_header: #161616;
@@ -56,6 +57,7 @@ body.dark{
   --background_task_item: #121212;
   --scroll_bar_color: #e8e8e8;
   --calendar_help: rgba(255, 255, 255, 0.2);
+  --button_svg_background: #161616;
 }
 body.violet {
   --main_text_color: #161616;
@@ -70,8 +72,8 @@ body.violet {
   --background_task_item: #ffffff;
   --scroll_bar_color: #b8bcfd;
   --calendar_help: rgba(22, 22, 22, 0.2);
+  --button_svg_background: #ffffff;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -9,12 +9,13 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-// import { persistedBoardsReducer } from './boards/slice';
 import { persistReducerAuth } from './auth/authSlice';
+// import { persistedBoardsReducer } from './boards/boardsSlice.js';
+
 export const store = configureStore({
   reducer: {
-    // boards: persistedBoardsReducer,
     auth: persistReducerAuth,
+    // boards: persistedBoardsReducer,
   },
 
   middleware: getDefaultMiddleware =>
