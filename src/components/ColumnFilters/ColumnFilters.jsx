@@ -17,7 +17,7 @@ import {
   PriorityCircle,
   CircleSvg,
   PriorityText,
-} from './styles';
+} from './ColumnFilters';
 
 const Filters = ({ onFilterPriority }) => {
   const [showModal, setShowModal] = useState(false);

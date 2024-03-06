@@ -13,7 +13,7 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  /* position: relative; */
+  position: relative;
   background-color: #161616;
   padding: 20px;
   border-radius: 5px;
