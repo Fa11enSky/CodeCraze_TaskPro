@@ -5,14 +5,12 @@ import {
   CloseButton,
   AddButton,
   AddButtonText,
-  EditColumnTitle,
+  AddColumnTitle,
   Input,
-} from './EditColumStyle';
+} from './AddColumModal';
 
-const EditColumModal = ({ isOpen, onClose, onSubmit, children }) => {
+const AddColumnModal = ({ isOpen, onClose, onSubmit }) => {
   const [inputValue, setInputValue] = useState('Text');
-
-  // if (!isOpen) return null;
 
   const handleInputChange = e => {
     setInputValue(e.target.value);
@@ -34,7 +32,7 @@ const EditColumModal = ({ isOpen, onClose, onSubmit, children }) => {
     <ModalOverlay onClick={onClose}>
       <ModalContent onClick={e => e.stopPropagation()}>
         <CloseButton onClick={onClose}>✕</CloseButton>
-        <EditColumnTitle>Edit column</EditColumnTitle>
+        <AddColumnTitle>Add column</AddColumnTitle>
         <Input
           type="text"
           value={inputValue}
@@ -75,4 +73,4 @@ const EditColumModal = ({ isOpen, onClose, onSubmit, children }) => {
   );
 };
 
-export default EditColumModal;
+export default AddColumnModal;
