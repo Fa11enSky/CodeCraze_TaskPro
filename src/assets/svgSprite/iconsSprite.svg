@@ -82,5 +82,14 @@
 <symbol id="icon-vector" viewBox="0 0 41 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.9714" d="M1.714 16s6.857-13.714 18.857-13.714 18.857 13.714 18.857 13.714-6.857 13.714-18.857 13.714-18.857-13.714-18.857-13.714z"></path>
 </symbol>
+<symbol id="icon-user_default" viewBox="0 0 37 32">
+<path d="M26.445 7.556c0 4.173-3.383 7.556-7.556 7.556s-7.556-3.383-7.556-7.556c0-4.173 3.383-7.556 7.556-7.556s7.556 3.383 7.556 7.556z"></path>
+<path d="M37.169 33.208c0-2.441-0.481-4.857-1.415-7.112s-2.303-4.303-4.029-6.029c-1.726-1.726-3.774-3.095-6.029-4.029s-4.671-1.415-7.112-1.415c-2.44 0-4.857 0.481-7.112 1.415s-4.303 2.303-6.029 4.029c-1.726 1.726-3.095 3.774-4.029 6.029s-1.415 4.671-1.415 7.112h37.169z"></path>
+</symbol>
+<symbol id="icon-menu" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.5" d="M4 16h24"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.5" d="M4 8h24"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.5" d="M4 24h24"></path>
+</symbol>
 </defs>
 </svg>
