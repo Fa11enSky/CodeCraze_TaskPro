@@ -13,7 +13,7 @@ import {
 } from './Header.styled';
 import Select from 'react-select';
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
-import EditProfile from 'components/EditProfile';
+import EditProfile from '../EditProfile/EditProfile';
 
 const options = [
   { value: 'light', label: 'Light' },
