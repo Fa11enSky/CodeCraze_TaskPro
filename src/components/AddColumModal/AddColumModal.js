@@ -62,7 +62,7 @@ export const AddButtonText = styled.span`
   margin-left: 8px;
 `;
 
-export const EditColumnTitle = styled.h2`
+export const AddColumnTitle = styled.h2`
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 18px;
