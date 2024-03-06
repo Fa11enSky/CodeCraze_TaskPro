@@ -1,16 +1,35 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-
 
 export const Container = styled.div`
   display: flex;
-  justify-content: end;
+  padding: 0 20px;
   align-items: center;
   text-decoration: none;
   list-style: none;
   width:100%;
-  height: 68px;
+  height: 60px;
+  background-color: var(--background_header);
+  transition: background-color 200ms linear;
+
+  @media screen and (min-width: 768px) {
+    height: 68px;
+    padding: 0 32px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 0 24px;
+
+  }
 `;
+
+export const Wrapper = styled.div`
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ width: 100%;
+ height: 100%;
+`;
+
 
 export const List = styled.li`
   display: flex;
@@ -18,24 +37,67 @@ export const List = styled.li`
   align-items: center;
   width: auto;
   height: 21px;
-  margin-right: 15px;
-  gap: 14px;
-
+  gap: 8px;
+  color: var(--text-color);
+  transition: color 500ms linear;
 `;
 
 export const ListItem = styled.ul`
   display: flex;
-  justify-content: start;
+  justify-content: end;
   align-items: center;
   text-decoration: none;
   list-style: none;
-  padding-right: 24px;
+  gap: 14px;
 `;
 
-export const P = styled.p`
-  margin-right: 8px;
+export const NameUser = styled.p`
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
+  color: var(--main_text_color);
+  transition: color 500ms linear;
+`;
+
+export const Button = styled.button`
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--background_taskList);
+  border: none;
+  padding: 0;
+
+  &:hover,
+  &focus {
+    scale: 1.1;
+  }
+`;
+
+export const BtnBurger = styled.button`
+  width: 24px;
+  height: 24px;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+
+  &:hover,
+  &focus {
+    scale: 1.1;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 0 24px;
+
+  }
+`;
+
+export const Svg = styled.svg`
+  fill: var(--background_header);
+  padding-top: 10px;
+`;
+
+export const Burger = styled.svg`
+  padding: 0;
+  fill: var(--main_text_color);
 `;
