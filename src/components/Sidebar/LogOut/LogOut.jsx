@@ -1,8 +1,6 @@
-// import { useDispatch } from 'react-redux';
-// Імпортуються змінні з react-redux
-
-// import { logout } from "..........redux/auth/operations"
-// Імпортуються змінні з "..........redux/auth/operations"
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../../redux/auth/operations';
 import iconsSprite from '../../../assets/svgSprite/iconsSprite.svg';
 import {
   LogOutContainer,
@@ -12,20 +10,22 @@ import {
 } from './LogOut.styled';
 
 const LogOut = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(logOut());
+  };
+
   return (
     <LogOutContainer>
-      <LogoutButton
-        type="submit"
-        aria-label="Help"
-        // onClick={() => dispatch(logout())}
-      >
+      <LogoutButton type="submit" aria-label="Log out" onClick={handleLogOut}>
         <IconLogOut>
-          <use xlinkHref={`${iconsSprite}#icon-login`} />
+          <use xlinkHref={`${iconsSprite}#icon-login`} />{' '}
         </IconLogOut>
       </LogoutButton>
-      <LogOutText>Log out</LogOutText>
+      <LogOutText>Log out</LogOutText>{' '}
     </LogOutContainer>
   );
 };
+
 export default LogOut;
