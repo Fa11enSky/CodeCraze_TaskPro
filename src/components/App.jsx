@@ -11,6 +11,7 @@ import { selectIsRefreshing } from '../redux/auth/selectors';
 import { useEffect } from 'react';
 import { refreshUser } from '../redux/auth/operations';
 import Loader from './Loader/Loader';
+import ColumnsList from './ColumnList/ColumnList';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -38,11 +39,9 @@ export const App = () => {
             element={
               <PrivateRoute redirectTo="/auth/login" component={<HomePage />} />
             }
+            // element={<HomePage />}
           >
-            <Route
-              path=":boadrId"
-              element={<div>Тут буде рендер колонок дошки</div>}
-            ></Route>
+            <Route path=":boadrId" element={<ColumnsList />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
