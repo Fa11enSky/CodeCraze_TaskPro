@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 
 import { Tooltip } from 'react-tooltip';
 import './index.css';
+import Modal from 'components/Modal/Modal';
+import { CardModal } from 'components/CardModal/CardModal/index';
+import TooltipOption from './TooltipOption/TooltipOption';
 
 const TaskCard = ({ cardData }) => {
-  const { title, description, priority, deadline, id } = cardData;
+  const { title, description, label, deadline, id } = cardData;
+
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  /* -------------------- TEST COLUMN NAMES --------------------*/
+
+  const testColumnNames = ['Column1', 'Column2', 'Column3'];
 
   /* -------------------- PICK A PRIORITY COLOR --------------------*/
   let cardColor = '';
 
-  switch (priority) {
+  switch (label) {
     case 'Low':
       cardColor = '#8fa1d0';
       break;
@@ -31,7 +40,7 @@ const TaskCard = ({ cardData }) => {
     return;
   };
   const editCard = () => {
-    return;
+    return setShowEditModal(!showEditModal);
   };
   const removeCard = () => {
     return;
@@ -41,9 +50,9 @@ const TaskCard = ({ cardData }) => {
   const isDeadlineToday = deadline;
 
   return (
-    <div className="card-full-wrapper">
+    <div data-id={id} className="card-full-wrapper">
       <div style={{ background: `${cardColor}` }} className="color-tag"></div>
-      <div data-id={id} className="card-content-wrapper">
+      <div className="card-content-wrapper">
         <div className="card-top">
           <h3 className="card-title">{title}</h3>
           <p className="card-description">{description}</p>
@@ -53,7 +62,7 @@ const TaskCard = ({ cardData }) => {
           <ul className="card-info-list">
             <li className="card-info-item">
               <h5 className="card-info-header">Prority</h5>
-              <p className="card-info-value">{priority}</p>
+              <p className="card-info-value">{label}</p>
             </li>
             <li className="card-info-item">
               <h5 className="card-info-header">Deadline</h5>
@@ -71,33 +80,25 @@ const TaskCard = ({ cardData }) => {
               </li>
             )}
             <li>
-              <button type="button" onClick={replaceCard} id="my-tooltip">
+              <button type="button" onClick={replaceCard} id="replace-card">
                 <svg className="card-control">
                   <use xlinkHref={`${sprite}#icon-arrov_circle`} />
                 </svg>
               </button>
-
               {/* Tooltip */}
+
               <Tooltip
-                anchorSelect="#my-tooltip"
+                anchorSelect="#replace-card"
                 place="bottom"
                 clickable="true"
-                className="tooltip"
+                className="replace-tooltip"
               >
-                <button className="tooltip-btn">
-                  <p className="tooltip-option-text">Column1</p>
-                  <svg className="card-control">
-                    <use xlinkHref={`${sprite}#icon-arrov_circle`} />
-                  </svg>
-                </button>
-                <button className="tooltip-btn">
-                  <p className="tooltip-option-text">Column2</p>
-                  <svg className="card-control">
-                    <use xlinkHref={`${sprite}#icon-arrov_circle`} />
-                  </svg>
-                </button>
+                {testColumnNames.map(name => (
+                  <TooltipOption key={name} optionName={name} />
+                ))}
               </Tooltip>
-              {/*Tooltip */}
+
+              {/* Tooltip */}
             </li>
             <li>
               <button type="button" onClick={editCard}>
@@ -116,6 +117,11 @@ const TaskCard = ({ cardData }) => {
           </ul>
         </div>
       </div>
+      {showEditModal && (
+        <Modal onClose={editCard}>
+          <CardModal></CardModal>
+        </Modal>
+      )}
     </div>
   );
 };
