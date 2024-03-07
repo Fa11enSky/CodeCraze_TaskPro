@@ -6,9 +6,9 @@ const StyledSidebar = styled.section`
   justify-content: space-between;
   height: 100vh;
   max-width: 197px;
-  outline: 1px solid red;
   padding-top: 14px;
   padding-bottom: 14px;
+  background-color: var(--background_sidebar);
 
   @media screen and (min-width: 768px) {
     max-width: 212px;

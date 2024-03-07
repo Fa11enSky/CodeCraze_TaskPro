@@ -10,10 +10,10 @@ const ContainerBoards = styled.div`
   }
 `;
 
-const TitleBoard = styled.div`
+const TitleBoard = styled.p`
   font-size: 12px;
   letter-spacing: -0.02em;
-  color: rgba(22, 22, 22, 0.5);
+  color: var(--title_board);
   margin-bottom: 8px;
 `;
 
@@ -23,8 +23,8 @@ const ButtonBoardContainer = styled.div`
   justify-content: space-between;
   padding-bottom: 14px;
   padding-top: 14px;
-  border-bottom: 1px solid rgba(22, 22, 22, 0.1);
-  border-top: 1px solid rgba(22, 22, 22, 0.1);
+  border-bottom: 1px solid var(--button_border_container);
+  border-top: 1px solid var(--button_border_container);
 `;
 
 const CreateBoard = styled.span`
@@ -38,7 +38,7 @@ const CreateBoard = styled.span`
 const ButtonBoard = styled.button`
   width: 40px;
   height: 36px;
-  background-color: var(--accent);
+  background-color: var(--accent_button_board);
   border: none;
   border-radius: 4px;
   display: flex;
@@ -46,12 +46,12 @@ const ButtonBoard = styled.button`
   justify-content: center;
 
   &:hover {
-    background-color: #9dc888;
+    background-color: var(--hover_logo);
   }
 `;
 
 const ButtonIcon = styled.svg`
-  stroke: var(--sidebar_text_color);
+  stroke: var(--plus_button_sidebar);
   width: 20px;
   height: 20px;
 `;
