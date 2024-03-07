@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { ThemeContext } from '../../providers/themeProvider';
 import {
   Container,
@@ -14,6 +15,9 @@ import {
 import Select from 'react-select';
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import EditProfile from '../EditProfile/EditProfile';
+import { selectUser } from '../../redux/auth/selectors.js';
+import Modal from 'components/Modal/Modal';
+// import { selectUser } from 'redux/auth/selectors';
 
 const options = [
   { value: 'light', label: 'Light' },
@@ -48,7 +52,7 @@ const Header = () => {
     setIsMenuOpen(true);
   };
 
-  // const { username } = selectUser();
+  const user = useSelector(selectUser);
 
   return (
     <Container>
@@ -115,14 +119,18 @@ const Header = () => {
             />
           </List>
           <List>
-            <NameUser>username</NameUser>
+            {user && <NameUser>{user.name ?? 'Name'}</NameUser>}
             <Button type="button" onClick={handleClik}>
               <Svg width={32} height={32}>
                 <use xlinkHref={`${sprite}#icon-user_default`} />
               </Svg>
             </Button>
 
-            {isShowModal && <EditProfile />}
+            {isShowModal && (
+              <Modal width={400} onClose={() => setIsShowModal(false)}>
+                <EditProfile />
+              </Modal>
+            )}
           </List>
         </ListItem>
       </Wrapper>
