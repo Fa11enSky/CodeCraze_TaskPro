@@ -10,12 +10,15 @@ import {
 } from 'redux-persist';
 
 import { persistReducerAuth } from './auth/authSlice';
+import { supportReducer } from './support/supportSlice';
+
 // import { persistedBoardsReducer } from './boards/boardsSlice.js';
 
 export const store = configureStore({
   reducer: {
     auth: persistReducerAuth,
     // boards: persistedBoardsReducer,
+    support: supportReducer,
   },
 
   middleware: getDefaultMiddleware =>
