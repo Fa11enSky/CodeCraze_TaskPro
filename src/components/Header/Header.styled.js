@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  padding: 0 20px;
-  align-items: center;
+  z-index:200;
+  position: relative;
+  padding: 14px 20px;
+  /* align-items: center; */
   text-decoration: none;
   list-style: none;
   width:100%;
@@ -13,21 +15,24 @@ export const Container = styled.div`
 
   @media screen and (min-width: 768px) {
     height: 68px;
-    padding: 0 32px;
+    padding: 18px 32px;
   }
 
   @media screen and (min-width: 1440px) {
-    padding: 0 24px;
+    padding: 18px 24px;
 
   }
 `;
 
 export const Wrapper = styled.div`
- display: flex;
- justify-content: space-between;
- align-items: center;
- width: 100%;
- height: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  width: 100%;
+  height: 100%;
+  @media screen and (min-width: 1440px) {
+    justify-content: flex-end;
+  }
 `;
 
 
@@ -64,7 +69,7 @@ export const Button = styled.button`
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background-color: var(--background_taskList);
+  background-color: var(--background_userdefault);
   border: none;
   padding: 0;
 

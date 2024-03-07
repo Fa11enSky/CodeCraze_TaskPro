@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { ThemeContext } from '../../providers/themeProvider';
 import {
   Container,
@@ -14,6 +15,8 @@ import {
 import Select from 'react-select';
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import EditProfile from '../EditProfile/EditProfile';
+import { selectUser } from '../../redux/auth/selectors.js';
+import Modal from 'components/Modal/Modal';
 
 const options = [
   { value: 'light', label: 'Light' },
@@ -21,8 +24,11 @@ const options = [
   { value: 'violet', label: 'Violet' },
 ];
 
-const Header = () => {
+const screenWidth = window.screen.width;
+
+const Header = ({ showSidebar }) => {
   const [, setTheme] = useContext(ThemeContext);
+
   // console.log(theme);
   // useEffect(() => {
   //   window.localStorage.setItem('theme', JSON.stringify(theme.value));
@@ -38,26 +44,23 @@ const Header = () => {
   // );
 
   const [isShowModal, setIsShowModal] = useState(false);
-  const [, setIsMenuOpen] = useState(false);
 
   const handleClik = () => {
     setIsShowModal(true);
   };
 
-  const openMenu = () => {
-    setIsMenuOpen(true);
-  };
-
-  // const { username } = selectUser();
+  const user = useSelector(selectUser);
 
   return (
     <Container>
       <Wrapper>
-        <BtnBurger type="button" onClick={openMenu}>
-          <Burger width={24} height={24}>
-            <use xlinkHref={`${sprite}#icon-menu`} />
-          </Burger>
-        </BtnBurger>
+        {screenWidth < 1440 && (
+          <BtnBurger type="button" onClick={showSidebar}>
+            <Burger width={24} height={24}>
+              <use xlinkHref={`${sprite}#icon-menu`} />
+            </Burger>
+          </BtnBurger>
+        )}
 
         <ListItem>
           <List>
@@ -111,18 +114,26 @@ const Header = () => {
               onChange={setTheme}
               options={options}
               placeholder="Theme"
-              components={{}}
             />
           </List>
           <List>
-            <NameUser>username</NameUser>
-            <Button type="button" onClick={handleClik}>
-              <Svg width={32} height={32}>
-                <use xlinkHref={`${sprite}#icon-user_default`} />
-              </Svg>
-            </Button>
+            {user && <NameUser>{user.name ?? 'Name'}</NameUser>}
 
-            {isShowModal && <EditProfile />}
+            {user ? (
+              <Button type="button" onClick={handleClik}>
+                <Svg width={32} height={32}>
+                  <use xlinkHref={`${sprite}#icon-user_default`} />
+                </Svg>
+              </Button>
+            ) : (
+              <img src={user.avatarURL} alt="img" />
+            )}
+
+            {isShowModal && (
+              <Modal width={400} onClose={() => setIsShowModal(false)}>
+                <EditProfile />
+              </Modal>
+            )}
           </List>
         </ListItem>
       </Wrapper>
