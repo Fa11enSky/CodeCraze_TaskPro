@@ -55,10 +55,12 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
     >
       <FormContainer>
-        <StyledForm>
+        <StyledForm autoComplete="off">
           <NavContainer>
-            <Link to="/auth/register">Registration</Link>
-            <Link style={{ color: '#ffffff' }} to="/auth/login">
+            <Link className="link" to="/auth/register">
+              Registration
+            </Link>
+            <Link className="activeLink" to="/auth/login">
               Log In
             </Link>
           </NavContainer>
@@ -70,6 +72,7 @@ const LoginForm = () => {
               id="email"
               name="email"
               placeholder="Enter your email"
+              autoComplete="off"
             />
             <StyledErrorMessage name="email" component="span" />
           </InputContainer>
@@ -81,6 +84,7 @@ const LoginForm = () => {
               id="password"
               name="password"
               placeholder="Enter your password"
+              autoComplete="off"
             />
             <ShowHideButton type="button" onClick={togglePasswordVisibility}>
               {showPassword ? (

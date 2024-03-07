@@ -6,9 +6,23 @@ import HomePage from '../pages/HomePage';
 import PublicRoute from '../guards/PublicRoute';
 import AuthPage from '../pages/AuthPage';
 import PrivateRoute from '../guards/PrivateRoute';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsRefreshing } from '../redux/auth/selectors';
+import { useEffect } from 'react';
+import { refreshUser } from '../redux/auth/operations';
+import Loader from './Loader/Loader';
 
 export const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <div>
       <ThemeProvider>
         <Routes>

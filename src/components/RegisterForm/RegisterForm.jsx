@@ -61,10 +61,12 @@ const RegisterForm = () => {
       <FormContainer>
         <StyledForm>
           <NavContainer>
-            <Link style={{ color: '#ffffff' }} to="/auth/register">
+            <Link className="activeLink" to="/auth/register">
               Registration
             </Link>
-            <Link to="/auth/login">Log In</Link>
+            <Link className="link" to="/auth/login">
+              Log In
+            </Link>
           </NavContainer>
 
           <InputContainer>
@@ -74,6 +76,7 @@ const RegisterForm = () => {
               id="name"
               name="name"
               placeholder="Enter your name"
+              autoComplete="off"
             />
             <StyledErrorMessage name="name" component="span" />
           </InputContainer>
@@ -85,6 +88,7 @@ const RegisterForm = () => {
               id="email"
               name="email"
               placeholder="Enter your email"
+              autoComplete="off"
             />
             <StyledErrorMessage name="email" component="span" />
           </InputContainer>
@@ -96,6 +100,7 @@ const RegisterForm = () => {
               id="password"
               name="password"
               placeholder="Enter your password"
+              autoComplete="off"
             />
             <ShowHideButton type="button" onClick={togglePasswordVisibility}>
               {showPassword ? (

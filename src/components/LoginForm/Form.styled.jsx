@@ -16,14 +16,13 @@ export const StyledForm = styled(Form)`
   background-color: #151515;
   border-radius: 8px;
   padding: 24px;
-  display: flex;
-  flex-direction: column;
 
   @media screen and (min-width: 768px) {
     max-width: 424px;
     padding: 40px;
   }
 `;
+
 export const NavContainer = styled.div`
   font-weight: 500;
   font-size: 18px;
@@ -32,6 +31,18 @@ export const NavContainer = styled.div`
   display: flex;
   gap: 14px;
   margin-bottom: 40px;
+
+  .link {
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .link:hover,
+  .link:focus {
+    color: #ffffff;
+  }
+  .activeLink {
+    color: #ffffff;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -90,14 +101,21 @@ export const ShowHideButton = styled.span`
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   .icon {
     stroke: rgba(255, 255, 255, 0.3);
+  }
+
+  .icon:hover,
+  .icon:focus {
+    stroke: #bedbb0;
   }
 `;
 
 export const SubButton = styled.button`
   border-radius: 8px;
+  border: none;
   width: 100%;
   max-width: 287px;
   height: 49px;

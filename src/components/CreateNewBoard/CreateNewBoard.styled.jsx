@@ -11,7 +11,7 @@ export const NewBoardTitle = styled.h2`
   font-size: 18px;
   line-height: 27px;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: var(--main_text_color);
 
   @media screen and (min-width: 1440px) {
     margin-left: 24px;
@@ -22,7 +22,7 @@ export const NewBoardTitle = styled.h2`
 `;
 
 export const ErrorMessage = styled.p`
-  color: #ffffff;
+  color: var(--main_text_color);
   margin-bottom: 10px;
   text-align: center;
 `;
@@ -38,7 +38,7 @@ export const Input = styled.input`
   border: 1px solid #bedbb0;
   box-shadow: 0px 4px 16px rgba(22, 22, 22, 0.08);
   border-radius: 8px;
-  color: #ffffff;
+  color: var(--sidebar_text_color);
 
   &::placeholder {
     width: 28px;
@@ -55,7 +55,7 @@ export const Input = styled.input`
 
   &:not(:placeholder-shown) {
     opacity: 1;
-    color: #ffffff;
+    color: var(--main_text_color);
   }
 
   &:focus {
@@ -79,7 +79,7 @@ export const IconTitle = styled.h3`
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: var(--main_text_color);
 
   @media screen and (min-width: 1440px) {
     margin-left: 24px;
@@ -98,7 +98,7 @@ export const Icon = styled.svg`
   width: 18px;
   height: 18px;
   fill: transparent;
-  stroke: ${({ selected }) => (selected ? '#ffffff' : 'grey')};
+  stroke: ${({ selected }) => (selected ? 'var(--main_text_color)' : 'grey')};
   cursor: pointer;
 
   @media screen and (min-width: 1440px) {
@@ -116,7 +116,7 @@ export const BackgroundTitle = styled.h3`
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: var(--main_text_color);
 
   @media screen and (min-width: 1440px) {
     margin-left: 24px;
@@ -162,7 +162,7 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #bedbb0;
+  background-color: var(--accent);
   color: #161616;
   font-size: 14px;
   font-weight: 500;
@@ -179,18 +179,18 @@ export const ContainerSvg = styled.div`
   width: 28px;
   height: 28px;
   border-radius: 6px;
-  background-color: #161616;
+  background-color: var(--button_svg_background);
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 8px;
 
   & + p {
-    color: #ffffff;
+    color: var(--button_svg_background);
     letter-spacing: -0.28px;
   }
 `;
 
 export const Svg = styled.svg`
-  stroke: #ffffff;
+  stroke: var(--main_text_color);
 `;
