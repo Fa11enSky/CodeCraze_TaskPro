@@ -12,7 +12,7 @@ const BoardItem = ({ isActive, title, icon }) => {
   return (
     <BoardWrapper $isActive={isActive}>
       <TitleWrapper $isActive={isActive}>
-        <BoardIcon>
+        <BoardIcon $isActive={isActive}>
           <use xlinkHref={`${iconsSprite}#${icon}`} />
         </BoardIcon>
         <p>{title}</p>

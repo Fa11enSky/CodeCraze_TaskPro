@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const HelpContainer = styled.div`
-  background: #f6f6f7;
+  background: var(--background_need_help);
   padding: 14px;
   margin-bottom: 24px;
   border-radius: 8px;
@@ -35,14 +35,15 @@ const ButtonHelpContainer = styled.div`
 `;
 
 const ButtonHelp = styled.button`
-  padding: 0;
   background-color: transparent;
+  padding: 0;
   border: none;
 `;
 
 const ButtonIcon = styled.svg`
   width: 20px;
   height: 20px;
+  stroke: var(--sidebar_text_color);
 `;
 
 const TextHelpButton = styled.span`
