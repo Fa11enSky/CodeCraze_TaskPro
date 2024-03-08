@@ -36,7 +36,7 @@ const boards = [
 ];
 
 const ListBoards = () => {
-  const [boardId, setBoardId] = useState(5);
+  const [boardId] = useState(5);
   return (
     <ListBoardStyle>
       <ul>

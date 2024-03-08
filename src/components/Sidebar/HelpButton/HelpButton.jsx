@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PlantMobile from '../../../assets/img/plant-mobile.png';
 import PlantMobileRetina from '../../../assets/img/plant-mobile@2x.png';
 
@@ -18,15 +18,15 @@ import {
 } from './HelpButton.styled';
 
 const CreateHelpButton = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModalHelp = () => {
-    setIsModalOpen(true);
-  };
+  // const openModalHelp = () => {
+  //   setIsModalOpen(true);
+  // };
 
-  const closeModalHelp = () => {
-    setIsModalOpen(false);
-  };
+  // const closeModalHelp = () => {
+  //   setIsModalOpen(false);
+  // };
   return (
     <HelpContainer>
       <picture>
@@ -50,7 +50,7 @@ const CreateHelpButton = () => {
       </TextHelp>
       <ButtonHelpContainer>
         <ButtonHelp
-          onClick={openModalHelp}
+          // onClick={openModalHelp}
           type="submit"
           aria-label="Need help"
         >

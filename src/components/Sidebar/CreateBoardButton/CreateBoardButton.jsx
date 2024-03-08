@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   ContainerBoards,
   TitleBoard,
@@ -10,22 +10,22 @@ import {
 import iconsSprite from '../../../assets/svgSprite/iconsSprite.svg';
 
 const CreateBoardButton = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModalBoard = () => {
-    setIsModalOpen(true);
-  };
+  // const openModalBoard = () => {
+  //   setIsModalOpen(true);
+  // };
 
-  const closeModalBoard = () => {
-    setIsModalOpen(false);
-  };
+  // const closeModalBoard = () => {
+  //   setIsModalOpen(false);
+  // };
   return (
     <ContainerBoards>
       <TitleBoard>My boards</TitleBoard>
       <ButtonBoardContainer>
         <CreateBoard>Create a new board</CreateBoard>
         <ButtonBoard
-          onClick={openModalBoard}
+          // onClick={openModalBoard}
           type="submit"
           aria-label="CreateBoard"
         >
