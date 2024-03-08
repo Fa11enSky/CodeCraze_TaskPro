@@ -8,8 +8,19 @@ const LogoContainer = styled.div`
 `;
 
 const LogoIcon = styled.svg`
+  fill: var(--logo_vector);
+  width: 12px;
+  height: 16px;
+`;
+
+const LogoIconContainer = styled.div`
+  background-color: var(--logo_background);
   width: 32px;
   height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const LogoTitle = styled.h1`
@@ -18,4 +29,4 @@ const LogoTitle = styled.h1`
   color: var(--sidebar_text_color);
 `;
 
-export { LogoContainer, LogoIcon, LogoTitle };
+export { LogoContainer, LogoIcon, LogoTitle, LogoIconContainer };

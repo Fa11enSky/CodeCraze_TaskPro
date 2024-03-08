@@ -34,8 +34,11 @@ body.light {
   --main_text_color: #161616;
   --sidebar_text_color: #161616;
   --accent: #bedbb0;
-  --accent_hover: rgba(190, 219, 176, 0.5);
+  --accent_hover: #9dc888;
   --light_text: rgba(22, 22, 22, 0.7);
+  --void_page_color: #f6f6f7;
+  --logo_bg: #1f1f1f;
+  --logo_symbol: #ffffff;
   --background_sidebar: #ffffff;
   --background_header: #ffffff;
   --background_taskList: #fdfdfd;
@@ -43,29 +46,65 @@ body.light {
   --background_task_item: #ffffff;
   --background_userdefault: #f6f6f7;
   --scroll_bar_color: rgba(255, 255, 255, 0.1);
+
+  --scroll_bar_color: #e8e8e8;
+  --scroll_bar_bg_color: #ffffff;
   --calendar_help: rgba(22, 22, 22, 0.2);
   --button_svg_background: #161616;
+  --add_card_btn_svg: #ffffff;
+  --add_card_btn_svg_bg: #161616;
+  --background_need_help: #f6f6f7;
+  --plus_button_sidebar: #121212;
+  --title_board: rgba(22, 22, 22, 0.5);
+  --button_border_container: rgba(22, 22, 22, 0.1);
+  --accent_button_board: #bedbb0;
+  --logo_background: #1f1f1f;
+  --logo_vector: #ffffff;
+  --tool_bar_button: rgba(22, 22, 22, 0.5);
+  --hover_logo: #9dc888;
 }
 body.dark {
   --main_text_color: #ffffff;
   --sidebar_text_color: #ffffff;
   --accent: #bedbb0;
+  --accent_hover: #9dc888;
+  --logo_bg: #1f1f1f;
+  --logo_symbol: #ffffff;
+  --void_page_color: #1f1f1f;
   --light_text: rgba(255, 255, 255, 0.5);
   --background_sidebar: #121212;
   --background_header: #161616;
   --background_taskList: #1f1f1f;
   --background_help: #1f1f1f;
   --background_task_item: #121212;
+
   --background_userdefault: #1f1f1f;
   --scroll_bar_color: #e8e8e8;
+  --scroll_bar_color: rgba(255, 255, 255, 0.1);
+  --scroll_bar_bg_color: #161616;
   --calendar_help: rgba(255, 255, 255, 0.2);
   --button_svg_background: #161616;
+  --add_card_btn_svg: #ffffff;
+  --add_card_btn_svg_bg: #161616;
+  --background_need_help: #1f1f1f;
+  --plus_button_sidebar: #121212;
+  --title_board: rgba(255, 255, 255, 0.5);
+  --button_border_container: rgba(255, 255, 255, 0.1);
+  --accent_button_board: #bedbb0;
+  --logo_background: #1f1f1f;
+  --logo_vector: #ffffff;
+  --tool_bar_button: rgba(255, 255, 255, 0.5);
+  --hover_logo: #9dc888;
 }
 body.violet {
   --main_text_color: #161616;
   --sidebar_text_color: #ffffff;
   --accent: #5255bc;
-  --accent_hover: rgba(82, 85, 188, 0.5);
+  --accent_hover: #7b7ede;
+  --light_text: rgba(22, 22, 22, 0.7);
+  --void_page_color: #ecedfd;
+  --logo_bg: #ecedfd;
+  --logo_symbol: #5255bc;
   --light_text: rgba(22, 22, 22, 0.7);
   --background_sidebar: #5255bc;
   --background_header: #ffffff;
@@ -74,8 +113,20 @@ body.violet {
   --background_task_item: #ffffff;
   --background_userdefault: #ECEDFD;
   --scroll_bar_color: #b8bcfd;
+  --scroll_bar_bg_color: #ffffff;
   --calendar_help: rgba(22, 22, 22, 0.2);
   --button_svg_background: #ffffff;
+  --add_card_btn_svg: #161616;
+  --add_card_btn_svg_bg: #ffffff;
+  --background_need_help: rgba(236, 237, 253, 0.4);
+  --plus_button_sidebar: #ffffff;
+  --title_board: rgba(255, 255, 255, 0.5);
+  --button_border_container: rgba(255, 255, 255, 0.1);
+  --accent_button_board: #b8bcfd;
+  --logo_background: #ecedfd;
+  --logo_vector: #5255bc;
+  --tool_bar_button: rgba(255, 255, 255, 0.5);
+  --hover_logo: #979cea;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -152,3 +203,48 @@ img {
     padding-left: 24px;
   }
 }
+/* body.light {
+  --main_text_color: #161616;
+  --sidebar_text_color: #161616;
+  --accent: #bedbb0;
+  --void_page_color: #f6f6f7;
+  --accent_hover: rgba(190, 219, 176, 0.5);
+  --light_text: rgba(22, 22, 22, 0.7);
+  --background_sidebar: #ffffff;
+  --background_header: #ffffff;
+  --background_taskList: #fdfdfd;
+  --background_help: #e5e5e5;
+  --background_task_item: #ffffff;
+  --scroll_bar_color: rgba(255, 255, 255, 0.1);
+  --calendar_help: rgba(22, 22, 22, 0.2);
+}
+body.dark {
+  --main_text_color: #ffffff;
+  --sidebar_text_color: #ffffff;
+  --accent: #bedbb0;
+  --void_page_color: #1f1f1f;
+
+  --light_text: #bedbb0;
+  --background_sidebar: #121212;
+  --background_header: #161616;
+  --background_taskList: #1f1f1f;
+  --background_help: #1f1f1f;
+  --background_task_item: #121212;
+  --scroll_bar_color: #e8e8e8;
+  --calendar_help: rgba(255, 255, 255, 0.2);
+}
+body.violet {
+  --main_text_color: #161616;
+  --sidebar_text_color: #ffffff;
+  --accent: #5255bc;
+
+  --accent_hover: rgba(82, 85, 188, 0.5);
+  --light_text: rgba(22, 22, 22, 0.7);
+  --background_sidebar: #5255bc;
+  --background_header: #ffffff;
+  --background_taskList: #d6d8ff;
+  --background_help: rgba(236, 237, 253, 0.4);
+  --background_task_item: #ffffff;
+  --scroll_bar_color: #b8bcfd;
+  --calendar_help: rgba(22, 22, 22, 0.2);
+} */
