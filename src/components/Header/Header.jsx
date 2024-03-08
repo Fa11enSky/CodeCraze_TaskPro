@@ -24,9 +24,7 @@ const options = [
   { value: 'violet', label: 'Violet' },
 ];
 
-const screenWidth = window.screen.width;
-
-const Header = ({ showSidebar }) => {
+const Header = ({ showSidebar, size }) => {
   const [, setTheme] = useContext(ThemeContext);
 
   // console.log(theme);
@@ -54,7 +52,7 @@ const Header = ({ showSidebar }) => {
   return (
     <Container>
       <Wrapper>
-        {screenWidth < 1440 && (
+        {size < 1440 && (
           <BtnBurger type="button" onClick={showSidebar}>
             <Burger width={24} height={24}>
               <use xlinkHref={`${sprite}#icon-menu`} />
@@ -119,7 +117,13 @@ const Header = ({ showSidebar }) => {
           <List>
             {user && <NameUser>{user.name ?? 'Name'}</NameUser>}
 
-            {user ? (
+            <Button type="button" onClick={handleClik}>
+              <Svg width={32} height={32}>
+                <use xlinkHref={`${sprite}#icon-user_default`} />
+              </Svg>
+            </Button>
+
+            {/* {user ? (
               <Button type="button" onClick={handleClik}>
                 <Svg width={32} height={32}>
                   <use xlinkHref={`${sprite}#icon-user_default`} />
@@ -127,7 +131,7 @@ const Header = ({ showSidebar }) => {
               </Button>
             ) : (
               <img src={user.avatarURL} alt="img" />
-            )}
+            )} */}
 
             {isShowModal && (
               <Modal width={400} onClose={() => setIsShowModal(false)}>
