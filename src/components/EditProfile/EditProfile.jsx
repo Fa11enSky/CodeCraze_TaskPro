@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import Modal from 'components/Modal/Modal';
+//import Modal from 'components/Modal/Modal';
 import {
   AvatarContainer,
   AvatarImageContainer,
