@@ -41,7 +41,7 @@ export const App = () => {
             }
             // element={<HomePage />}
           >
-            <Route path=":boadrId" element={<ColumnsList />} />
+            <Route path=":boardId" element={<ColumnsList />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

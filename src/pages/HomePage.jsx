@@ -4,14 +4,20 @@ import HomePageWrapper from 'components/HomePageWrapper/HomePageWrapper';
 import ScreensPageLayout from 'components/ScreensPageLayout/ScreensPageLayout';
 import BackDropToSidebar from 'components/BackDropToSidebar/BackDropToSidebar';
 import ColumnsList from 'components/ColumnList/ColumnList';
-// import ColumnListVoid from 'components/ColumnListVoid/ColumnListVoid';
+import { fetchAllBoard } from '../redux/boards/operationsBoards';
+import { useDispatch } from 'react-redux';
+
 const HomePage = () => {
+  const dispatch = useDispatch();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [size, setSize] = useState(window.innerWidth);
-
+  
   const sidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+  useEffect(() => {
+    dispatch(fetchAllBoard());
+  }, [dispatch]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -36,6 +42,7 @@ const HomePage = () => {
         </BackDropToSidebar>
       )}
       {size > 1440 && <Sidebar />}
+      {/* <Link to="65ec5049fbc1f59b3d95acb2">dfdasfdadfa</Link> */}
       <ScreensPageLayout windowSize={size} burgerClick={sidebarToggle}>
         <ColumnsList />
       </ScreensPageLayout>

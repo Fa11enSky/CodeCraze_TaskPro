@@ -1,6 +1,8 @@
 import React from 'react';
 import css from './styles.module.css';
 const ColumnListVoid = () => {
+  
+  
   return (
     <div className={css.void}>
       <div style={{ width: 64, height: 20 }}>btn</div>

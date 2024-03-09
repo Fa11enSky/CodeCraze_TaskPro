@@ -23,7 +23,7 @@ const ColumnItem = ({ column }) => {
       <ul className={css.task_list}>
         {cards.map(el => {
           return (
-            <li key={el.id}>
+            <li key={el._id}>
               <TaskCard cardData={el} />
             </li>
           );
