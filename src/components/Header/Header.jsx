@@ -118,20 +118,14 @@ const Header = ({ showSidebar, size }) => {
             {user && <NameUser>{user.name ?? 'Name'}</NameUser>}
 
             <Button type="button" onClick={handleClik}>
-              <Svg width={32} height={32}>
-                <use xlinkHref={`${sprite}#icon-user_default`} />
-              </Svg>
-            </Button>
-
-            {/* {user ? (
-              <Button type="button" onClick={handleClik}>
+              {user.avatar ? (
+                <img src="" alt="User avatar" />
+              ) : (
                 <Svg width={32} height={32}>
                   <use xlinkHref={`${sprite}#icon-user_default`} />
                 </Svg>
-              </Button>
-            ) : (
-              <img src={user.avatarURL} alt="img" />
-            )} */}
+              )}
+            </Button>
 
             {isShowModal && (
               <Modal width={400} onClose={() => setIsShowModal(false)}>
