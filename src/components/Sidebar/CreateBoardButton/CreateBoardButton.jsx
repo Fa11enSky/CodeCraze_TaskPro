@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ContainerBoards,
   TitleBoard,
@@ -9,36 +9,42 @@ import {
 } from './CreateBoardButton.styled';
 import iconsSprite from '../../../assets/svgSprite/iconsSprite.svg';
 
+// import CreateNewBoard from 'components/CreateNewBoard/CreateNewBoard';
+import Modal from 'components/Modal/Modal';
+
 const CreateBoardButton = () => {
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const openModalBoard = () => {
-  //   setIsModalOpen(true);
-  // };
+  const openModalBoard = () => {
+    setIsModalOpen(true);
+  };
 
-  // const closeModalBoard = () => {
-  //   setIsModalOpen(false);
-  // };
+  const closeModalBoard = () => {
+    setIsModalOpen(false);
+  };
   return (
-    <ContainerBoards>
-      <TitleBoard>My boards</TitleBoard>
-      <ButtonBoardContainer>
-        <CreateBoard>Create a new board</CreateBoard>
-        <ButtonBoard
-          // onClick={openModalBoard}
-          type="submit"
-          aria-label="CreateBoard"
-        >
-          <ButtonIcon>
-            <use xlinkHref={`${iconsSprite}#plus`} />
-          </ButtonIcon>
-        </ButtonBoard>
-      </ButtonBoardContainer>
-      {/* ///////////////////////// */}
-      {/* вставити модальне вікно */}
-      {/* {isModalOpen && <Modal onClose={closeModalBoard} />} */}
-      {/* ///////////////////////// */}
-    </ContainerBoards>
+    <>
+      <ContainerBoards>
+        <TitleBoard>My boards</TitleBoard>
+        <ButtonBoardContainer>
+          <CreateBoard>Create a new board</CreateBoard>
+          <ButtonBoard
+            onClick={openModalBoard}
+            type="submit"
+            aria-label="CreateBoard"
+          >
+            <ButtonIcon>
+              <use xlinkHref={`${iconsSprite}#plus`} />
+            </ButtonIcon>
+          </ButtonBoard>
+        </ButtonBoardContainer>
+      </ContainerBoards>
+      {isModalOpen && (
+        <Modal onClose={closeModalBoard}>
+          {/* <CreateNewBoard onClose={closeModalBoard} /> */}
+        </Modal>
+      )}
+    </>
   );
 };
 

@@ -20,12 +20,12 @@ export const ModalContent = styled.div`
   position: relative;
   padding: 24px;
 
-  @media screen and (min-width: 1440px) {
+  /* @media screen and (min-width: 1440px) {
     margin-left: 24px;
     width: 212px;
     height: 272px;
     padding: 20px;
-  }
+  } */
 `;
 
 export const CloseButton = styled.svg`
