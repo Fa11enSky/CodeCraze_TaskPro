@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/CodeCraze_TaskPro/static/css/main.16a90dc7.css",
-    "main.js": "/CodeCraze_TaskPro/static/js/main.376b0fdd.js",
+    "main.css": "/CodeCraze_TaskPro/static/css/main.180ea2b0.css",
+    "main.js": "/CodeCraze_TaskPro/static/js/main.8a105395.js",
     "static/media/Poppins-Regular.ttf": "/CodeCraze_TaskPro/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/Poppins-Medium.ttf": "/CodeCraze_TaskPro/static/media/Poppins-Medium.673ed42382ab264e0bf5.ttf",
     "static/media/Poppins-SemiBold.ttf": "/CodeCraze_TaskPro/static/media/Poppins-SemiBold.ac8d04b620e54be9b0f0.ttf",
@@ -12,11 +12,11 @@
     "static/media/iconsSprite.svg": "/CodeCraze_TaskPro/static/media/iconsSprite.9ee7c4b29e026c6f12ebc8cc5a32d39e.svg",
     "static/media/welcome_boy_mobile@2x.png": "/CodeCraze_TaskPro/static/media/welcome_boy_mobile@2x.a7b242e138250975ee73.png",
     "index.html": "/CodeCraze_TaskPro/index.html",
-    "main.16a90dc7.css.map": "/CodeCraze_TaskPro/static/css/main.16a90dc7.css.map",
-    "main.376b0fdd.js.map": "/CodeCraze_TaskPro/static/js/main.376b0fdd.js.map"
+    "main.180ea2b0.css.map": "/CodeCraze_TaskPro/static/css/main.180ea2b0.css.map",
+    "main.8a105395.js.map": "/CodeCraze_TaskPro/static/js/main.8a105395.js.map"
   },
   "entrypoints": [
-    "static/css/main.16a90dc7.css",
-    "static/js/main.376b0fdd.js"
+    "static/css/main.180ea2b0.css",
+    "static/js/main.8a105395.js"
   ]
 }
