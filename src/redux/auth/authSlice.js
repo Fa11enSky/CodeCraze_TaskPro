@@ -2,6 +2,8 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 import { createSlice } from '@reduxjs/toolkit';
 import { logIn, logOut, refreshUser, register } from './operations';
+import { changeTheme } from '../theme/operations';
+
 
 const handleFulfilled = (state, action) => {
   state.token = action.payload.token;
@@ -14,6 +16,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -42,7 +45,13 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
-      });
+      })
+      .addCase(changeTheme.fulfilled, (state, action)=>{
+        state.user.theme=action.payload.theme;
+      })
+      .addCase(changeTheme.rejected, (state, action)=>{
+state.error=action.payload
+      })
   },
 });
 

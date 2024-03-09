@@ -63,6 +63,8 @@ body.light {
   --tool_bar_button: rgba(22, 22, 22, 0.5);
   --hover_logo: #9dc888;
   --modal_content_bg: #fcfcfc;
+  --avatar-icon: #ffffff;
+  --avatar-bg: #f6f6f7;
 }
 body.dark {
   --main_text_color: #ffffff;
@@ -97,6 +99,8 @@ body.dark {
   --tool_bar_button: rgba(255, 255, 255, 0.5);
   --hover_logo: #9dc888;
   --modal_content_bg: #151515;
+  --avatar-icon: #151515;
+  --avatar-bg: #1f1f1f;
 }
 body.violet {
   --main_text_color: #161616;
@@ -130,6 +134,8 @@ body.violet {
   --tool_bar_button: rgba(255, 255, 255, 0.5);
   --hover_logo: #979cea;
   --modal_content_bg: #fcfcfc;
+  --avatar-icon: #ffffff;
+  --avatar-bg: #ecedfd;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

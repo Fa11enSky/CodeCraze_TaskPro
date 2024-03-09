@@ -104,5 +104,5 @@ export const Svg = styled.svg`
 
 export const Burger = styled.svg`
   padding: 0;
-  fill: var(--main_text_color);
+  stroke: var(--main_text_color);
 `;
