@@ -19,7 +19,7 @@ export const updateColumn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     const [id, column] = credentials;
     try {
-      const { data } = axios.patch(`/api/columns/${id}`, column);
+      const { data } = await axios.patch(`/api/columns/${id}`, column);
       return data;
     } catch (error) {
       thunkAPI.rejectWithValue(error.message);
