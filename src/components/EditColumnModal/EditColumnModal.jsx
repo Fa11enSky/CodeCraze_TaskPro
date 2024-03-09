@@ -7,9 +7,9 @@ import {
   AddButtonText,
   EditColumnTitle,
   Input,
-} from './EditColumnModal';
+} from './EditColumnModalstyles';
 
-const EditColumModal = ({ isOpen, onClose, onSubmit, children }) => {
+const EditColumModal = ({ isOpen, onClose, onSubmit }) => {
   const [inputValue, setInputValue] = useState('Text');
 
   // if (!isOpen) return null;
