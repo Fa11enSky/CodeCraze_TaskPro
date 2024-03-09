@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import data from '../../assets/backgroundIcons/data';
-import { addNewBoard } from '../../redux/boards/operations';
+import { addNewBoard } from '../../redux/boards/operationsCards';
 
 import {
   NewBoardTitle,
