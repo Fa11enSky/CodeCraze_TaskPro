@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import data from '../../assets/backgroundIcons/data';
-import { addNewBoard } from '../../redux/boards/operationsCards';
+import { createBoard } from '../../redux/boards/operationsBoards';
 
 import {
   NewBoardTitle,
@@ -60,7 +60,7 @@ const CreateNewBoard = ({ onClose }) => {
   };
 
   const handleCreateBoard = data => {
-    dispatch(addNewBoard(data)).then(() => {
+    dispatch(createBoard(data)).then(() => {
       setValue('title', '');
       setValue('icon', '');
       setValue('background', '');

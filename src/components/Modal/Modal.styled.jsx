@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ModalOverlay = styled.div`
-  z-index: 10;
+  z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  background-color: #151515;
+  /* background-color: #151515;
   border-radius: 8px;
   z-index: 20;
   position: relative;
@@ -25,7 +25,7 @@ export const ModalContent = styled.div`
     width: 212px;
     height: 272px;
     padding: 20px;
-  }
+  } */
 `;
 
 export const CloseButton = styled.svg`

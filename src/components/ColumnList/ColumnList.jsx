@@ -2,16 +2,21 @@ import ColumnItem from '../ColumnItem/ColumnItem';
 import css from './styles.module.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchSingleBoard } from '../../redux/boards/operationsBoards';
 import { selectedBoard } from '../../redux/boards/selectors';
+import AddColumnModal from 'components/AddColumnModal/AddColumnModal';
+import Modal from 'components/Modal/Modal';
 const ColumnsList = () => {
   const board = useSelector(selectedBoard);
   const params = useParams();
   const dispatch = useDispatch();
   const { title, columns, background } = board;
   const bgNumber = background || '1';
-
+  const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
+  const toggleAddColumn = () => {
+  setIsAddColumnOpen(!isAddColumnOpen)
+}
   useEffect(() => {
     dispatch(fetchSingleBoard(params.boardId));
   }, [dispatch, params.boardId]);
@@ -52,12 +57,23 @@ const ColumnsList = () => {
             {columns.map(el => {
               return <ColumnItem key={el._id} column={el} />;
             })}
-            <li><button style={{width:335,height:56}}>add column</button></li>
+            <li>
+              <button
+                onClick={toggleAddColumn}
+                style={{ width: 335, height: 56 }}
+              >
+                add column
+              </button>
+            </li>
           </ul>
-          
         </>
       ) : (
-        <button>addColumn</button>
+        <button onClick={toggleAddColumn}>addColumn</button>
+      )}
+      {isAddColumnOpen && (
+          <Modal onClose={toggleAddColumn}>
+            <AddColumnModal onClose={toggleAddColumn} />
+          </Modal>
       )}
     </div>
   );

@@ -12,7 +12,7 @@ const ScreensPageLayout = ({ windowSize, burgerClick }) => {
   const activeBoard = useSelector(state => state.auth.user.activeBoard)
   const navigate = useNavigate()
   useEffect(() => {
-    if (activeBoard.length) {
+    if (activeBoard) {
       navigate(activeBoard);
     }
   },[activeBoard, navigate])

@@ -21,6 +21,14 @@
   font-weight: 500;
   letter-spacing: -0.02em;
 }
+.culumn_title_btn{
+cursor: pointer;
+border: none;
+outline: none;
+background-color: transparent;
+padding: 0;
+
+}
 .title_icons_wrapper {
   display: flex;
   gap: 8px;
@@ -29,7 +37,6 @@
   stroke: var(--main_text_color);
   stroke-opacity: 0.5;
   fill: none;
-  cursor: pointer;
   transition: stroke 250ms linear;
 }
 .icon_el:hover {
