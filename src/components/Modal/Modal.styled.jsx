@@ -14,7 +14,7 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  background-color: #151515;
+  background-color: var(--modal_content_bg);
   border-radius: 8px;
   z-index: 20;
   position: relative;
@@ -34,6 +34,6 @@ export const CloseButton = styled.svg`
   right: 14px;
   width: 18px;
   height: 18px;
-  stroke: #ffffff;
+  stroke: var(--main_text_color);
   cursor: pointer;
 `;

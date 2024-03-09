@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import data from '../../assets/backgroundIcons/data';
-import { editBoardById } from '../../redux/boards/operationsCards';
+import { updateBoard } from '../../redux/boards/operationsBoards';
 import { selectAllBoards } from '../../redux/boards/selectors';
 
 import {
@@ -30,7 +32,7 @@ const EditBoard = ({ onClose }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const board = selectAllBoards();
+  const board = useSelector(selectAllBoards);
 
   useEffect(() => {
     setValue('title', board.title);
@@ -62,30 +64,31 @@ const EditBoard = ({ onClose }) => {
       },
     };
 
-    dispatch(editBoardById(boardData))
-      .then(() => {
-        setValue('title', data.title);
-        setValue('selectedIcon', data.selectedIcon);
-        setValue('selectedBackgroundId', data.selectedBackgroundId);
-        onClose();
-      })
-      .catch(error => {
-        console.error('Error:', error.message);
-      });
+    dispatch(updateBoard(boardData)).then(() => {
+      setValue('title', data.title);
+      setValue('selectedIcon', data.selectedIcon);
+      setValue('selectedBackgroundId', data.selectedBackgroundId);
+      onClose();
+    });
+
+    toast.success(`${data.title} has been successfully edited!`, {
+      theme: 'colored',
+      autoClose: 2500,
+    });
 
     navigate(`${data.title.toLowerCase()}`);
   };
 
   const renderIcons = () => {
     const icons = [
-      'project',
-      'star',
-      'loading',
-      'puzzle',
-      'container',
-      'lightning',
-      'colors',
-      'hexagon',
+      'icon-project',
+      'icon-star',
+      'icon-loading',
+      'icon-puzzle',
+      'icon-container',
+      'icon-lightning',
+      'icon-colors',
+      'icon-hexagon',
     ];
 
     return icons.map(icon => (

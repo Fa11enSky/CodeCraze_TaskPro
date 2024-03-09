@@ -192,5 +192,5 @@ export const ContainerSvg = styled.div`
 `;
 
 export const Svg = styled.svg`
-  stroke: var(--main_text_color);
+  stroke: var(--add_card_btn_svg);
 `;

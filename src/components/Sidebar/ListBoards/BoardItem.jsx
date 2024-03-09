@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import iconsSprite from '../../../assets/svgSprite/iconsSprite.svg';
 import {
   BoardIcon,
@@ -8,7 +9,20 @@ import {
   ToolBarIcon,
 } from './ListBoards.styled';
 
+import Modal from '../../Modal/Modal';
+import EditBoard from '../../EditBoard/EditBoard';
+
 const BoardItem = ({ isActive, title, icon }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModalBoard = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModalBoard = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <BoardWrapper $isActive={isActive}>
       <TitleWrapper $isActive={isActive}>
@@ -19,11 +33,18 @@ const BoardItem = ({ isActive, title, icon }) => {
       </TitleWrapper>
       {isActive && (
         <ToolBar>
-          <ToolBarButton>
+          <ToolBarButton onClick={openModalBoard}>
             <ToolBarIcon>
               <use xlinkHref={`${iconsSprite}#icon-pencil`} />
             </ToolBarIcon>
           </ToolBarButton>
+
+          {isModalOpen && (
+            <Modal isOpen={isModalOpen} onClose={closeModalBoard}>
+              <EditBoard onClose={closeModalBoard} />
+            </Modal>
+          )}
+
           <ToolBarButton>
             <ToolBarIcon>
               <use xlinkHref={`${iconsSprite}#icon-trash`} />

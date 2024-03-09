@@ -62,6 +62,7 @@ body.light {
   --logo_vector: #ffffff;
   --tool_bar_button: rgba(22, 22, 22, 0.5);
   --hover_logo: #9dc888;
+  --modal_content_bg: #fcfcfc;
 }
 body.dark {
   --main_text_color: #ffffff;
@@ -95,6 +96,7 @@ body.dark {
   --logo_vector: #ffffff;
   --tool_bar_button: rgba(255, 255, 255, 0.5);
   --hover_logo: #9dc888;
+  --modal_content_bg: #151515;
 }
 body.violet {
   --main_text_color: #161616;
@@ -111,7 +113,7 @@ body.violet {
   --background_taskList: #d6d8ff;
   --background_help: rgba(236, 237, 253, 0.4);
   --background_task_item: #ffffff;
-  --background_userdefault: #ECEDFD;
+  --background_userdefault: #ecedfd;
   --scroll_bar_color: #b8bcfd;
   --scroll_bar_bg_color: #ffffff;
   --calendar_help: rgba(22, 22, 22, 0.2);
@@ -127,6 +129,7 @@ body.violet {
   --logo_vector: #5255bc;
   --tool_bar_button: rgba(255, 255, 255, 0.5);
   --hover_logo: #979cea;
+  --modal_content_bg: #fcfcfc;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
