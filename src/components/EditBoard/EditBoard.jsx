@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import data from '../../assets/backgroundIcons/data';
-import { editBoardById } from '../../redux/boards/operations';
+import { editBoardById } from '../../redux/boards/operationsCards';
 import { selectAllBoards } from '../../redux/boards/selectors';
 
 import {
