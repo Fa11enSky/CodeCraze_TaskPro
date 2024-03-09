@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PlantMobile from '../../../assets/img/plant-mobile.png';
 import PlantMobileRetina from '../../../assets/img/plant-mobile@2x.png';
 
@@ -19,20 +19,17 @@ import {
 
 import NeedHelp from 'components/NeedHelp/NeedHelp';
 import Modal from 'components/Modal/Modal';
-import { createPortal } from 'react-dom';
-
-const portal = document.getElementById('portal');
 
 const CreateHelpButton = () => {
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const openModalHelp = () => {
-  //   setIsModalOpen(true);
-  // };
+  const openModalHelp = () => {
+    setIsModalOpen(true);
+  };
 
-  // const closeModalHelp = () => {
-  //   setIsModalOpen(false);
-  // };
+  const closeModalHelp = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
       <HelpContainer>
@@ -57,7 +54,7 @@ const CreateHelpButton = () => {
         </TextHelp>
         <ButtonHelpContainer>
           <ButtonHelp
-            // onClick={openModalHelp}
+            onClick={openModalHelp}
             type="submit"
             aria-label="Need help"
           >
@@ -67,16 +64,11 @@ const CreateHelpButton = () => {
           </ButtonHelp>
           <TextHelpButton>Need help?</TextHelpButton>
         </ButtonHelpContainer>
-        {/* ///////////////////////// */}
-        {/* вставити модальне вікно */}
-        {/* {isModalOpen && <Modal onClose={closeModalHelp} />} */}
-        {/* ///////////////////////// */}
       </HelpContainer>
-      {createPortal(
-        <Modal>
+      {isModalOpen && (
+        <Modal onClose={closeModalHelp}>
           <NeedHelp />
-        </Modal>,
-        portal
+        </Modal>
       )}
     </>
   );
