@@ -12,7 +12,13 @@ import {
 import Modal from '../../Modal/Modal';
 import EditBoard from '../../EditBoard/EditBoard';
 
-const BoardItem = ({ isActive, title, icon }) => {
+import { useDispatch } from 'react-redux';
+import { deleteBoard } from '../../../redux/boards/operationsBoards';
+import { Link } from 'react-router-dom';
+
+const BoardItem = ({ isActive, title, icon, id }) => {
+  const dispatch = useDispatch();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModalBoard = () => {
@@ -24,35 +30,37 @@ const BoardItem = ({ isActive, title, icon }) => {
   };
 
   return (
-    <BoardWrapper $isActive={isActive}>
-      <TitleWrapper $isActive={isActive}>
-        <BoardIcon $isActive={isActive}>
-          <use xlinkHref={`${iconsSprite}#${icon}`} />
-        </BoardIcon>
-        <p>{title}</p>
-      </TitleWrapper>
-      {isActive && (
-        <ToolBar>
-          <ToolBarButton onClick={openModalBoard}>
-            <ToolBarIcon>
-              <use xlinkHref={`${iconsSprite}#icon-pencil`} />
-            </ToolBarIcon>
-          </ToolBarButton>
-
-          {isModalOpen && (
+    <Link to={`/home/${id}`}>
+      <BoardWrapper $isActive={isActive}>
+        <TitleWrapper $isActive={isActive}>
+          <BoardIcon $isActive={isActive}>
+            <use xlinkHref={`${iconsSprite}#${icon}`} />
+          </BoardIcon>
+          <p>{title}</p>
+        </TitleWrapper>
+        {isActive && (
+          <ToolBar>
+            <ToolBarButton onClick={openModalEdit}>
+              <ToolBarIcon>
+                <use xlinkHref={`${iconsSprite}#icon-pencil`} />
+              </ToolBarIcon>
+            </ToolBarButton>
+            
+            {isModalOpen && (
             <Modal isOpen={isModalOpen} onClose={closeModalBoard}>
               <EditBoard onClose={closeModalBoard} />
             </Modal>
           )}
-
-          <ToolBarButton>
-            <ToolBarIcon>
-              <use xlinkHref={`${iconsSprite}#icon-trash`} />
-            </ToolBarIcon>
-          </ToolBarButton>
-        </ToolBar>
-      )}
-    </BoardWrapper>
+            
+            <ToolBarButton onClick={() => dispatch(deleteBoard(id))}>
+              <ToolBarIcon>
+                <use xlinkHref={`${iconsSprite}#icon-trash`} />
+              </ToolBarIcon>
+            </ToolBarButton>
+          </ToolBar>
+        )}
+      </BoardWrapper>
+    </Link>
   );
 };
 
