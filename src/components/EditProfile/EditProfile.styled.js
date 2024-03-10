@@ -21,7 +21,6 @@ export const EditProfileContent = styled.div`
 export const AvatarContainer = styled.div`
   align-self: center;
   position: relative;
-  /* margin: 0 0 25px 0; */
 `;
 
 export const AvatarImageContainer = styled.div`
@@ -60,6 +59,10 @@ export const UploadAvatarButton = styled.div`
   border-radius: 6px;
   background-color: var(--accent);
   cursor: pointer;
+
+  &:hover {
+    background-color: var(--accent_hover);
+  }
 
   & svg {
     display: block;
@@ -113,13 +116,18 @@ export const StyledErrorMessage = styled(ErrorMessage)`
   color: red;
   font-weight: 400;
   font-size: 12px;
+  line-height: 1.5;
   letter-spacing: -0.02em;
+`;
+
+export const StyledAvatarErrorMessage = styled(StyledErrorMessage)`
+  text-align: center;
+  margin: 14px 0 0 0;
 `;
 
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
 
   margin: 0 0 14px 0;
 
@@ -139,7 +147,7 @@ export const PasswordInputContainer = styled.div`
 export const ShowHideButton = styled.button`
   position: absolute;
   top: calc(50% - 9px);
-  right: 18px;
+  right: 19px;
   max-width: 18px;
   max-height: 18px;
   padding: 0;
@@ -163,4 +171,8 @@ export const SubmitButton = styled.button`
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.5;
+
+  &:hover {
+    background-color: var(--accent_hover);
+  }
 `;
