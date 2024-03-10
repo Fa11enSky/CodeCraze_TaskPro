@@ -9,9 +9,14 @@ import {
   ToolBarIcon,
 } from './ListBoards.styled';
 import Modal from 'components/Modal/Modal';
+import { useDispatch } from 'react-redux';
+import { deleteBoard } from '../../../redux/boards/operationsBoards';
+import { Link } from 'react-router-dom';
 // import EditBoard from 'components/EditBoard/EditBoard';
 
-const BoardItem = ({ isActive, title, icon }) => {
+const BoardItem = ({ isActive, title, icon, id }) => {
+  const dispatch = useDispatch();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModalEdit = () => {
@@ -22,7 +27,7 @@ const BoardItem = ({ isActive, title, icon }) => {
     setIsModalOpen(false);
   };
   return (
-    <>
+    <Link to={`/home/${id}`}>
       <BoardWrapper $isActive={isActive}>
         <TitleWrapper $isActive={isActive}>
           <BoardIcon $isActive={isActive}>
@@ -37,7 +42,7 @@ const BoardItem = ({ isActive, title, icon }) => {
                 <use xlinkHref={`${iconsSprite}#icon-pencil`} />
               </ToolBarIcon>
             </ToolBarButton>
-            <ToolBarButton>
+            <ToolBarButton onClick={() => dispatch(deleteBoard(id))}>
               <ToolBarIcon>
                 <use xlinkHref={`${iconsSprite}#icon-trash`} />
               </ToolBarIcon>
@@ -50,7 +55,7 @@ const BoardItem = ({ isActive, title, icon }) => {
           {/* <EditBoard onClose={closeModalEdit} /> */}
         </Modal>
       )}
-    </>
+    </Link>
   );
 };
 

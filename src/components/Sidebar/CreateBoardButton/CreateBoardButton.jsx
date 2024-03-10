@@ -9,7 +9,7 @@ import {
 } from './CreateBoardButton.styled';
 import iconsSprite from '../../../assets/svgSprite/iconsSprite.svg';
 
-// import CreateNewBoard from 'components/CreateNewBoard/CreateNewBoard';
+import CreateNewBoard from 'components/CreateNewBoard/CreateNewBoard';
 import Modal from 'components/Modal/Modal';
 
 const CreateBoardButton = () => {
@@ -41,7 +41,7 @@ const CreateBoardButton = () => {
       </ContainerBoards>
       {isModalOpen && (
         <Modal onClose={closeModalBoard}>
-          {/* <CreateNewBoard onClose={closeModalBoard} /> */}
+          <CreateNewBoard onClose={closeModalBoard} />
         </Modal>
       )}
     </>
