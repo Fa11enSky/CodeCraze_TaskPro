@@ -9,6 +9,7 @@ import {
   InputContainer,
   PasswordInputContainer,
   ShowHideButton,
+  StyledAvatarErrorMessage,
   StyledErrorMessage,
   SubmitButton,
   UploadAvatarButton,
@@ -76,7 +77,7 @@ const EditProfile = () => {
                 </UploadAvatarButton>
               </label>
             </AvatarContainer>
-            <StyledErrorMessage name="avatar" component="span" />
+            <StyledAvatarErrorMessage name="avatar" component="span" />
           </InputContainer>
 
           <InputContainer>
