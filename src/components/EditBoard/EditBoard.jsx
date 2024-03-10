@@ -23,6 +23,8 @@ import {
   Button,
   ContainerSvg,
   Svg,
+  ModalContent,
+  CloseButton,
 } from '../CreateNewBoard/CreateNewBoard.styled';
 
 const EditBoard = ({ onClose }) => {
@@ -55,16 +57,16 @@ const EditBoard = ({ onClose }) => {
   };
 
   const handleEditBoard = data => {
-    const boardData = {
-      boardId: board._id,
-      body: {
+    const updateData = {
+      id: board._id,
+      board: {
         title: data.title,
         icon: data.selectedIcon,
         background: data.selectedBackgroundId,
       },
     };
 
-    dispatch(updateBoard(boardData)).then(() => {
+    dispatch(updateBoard(updateData)).then(() => {
       setValue('title', data.title);
       setValue('selectedIcon', data.selectedIcon);
       setValue('selectedBackgroundId', data.selectedBackgroundId);
@@ -114,33 +116,43 @@ const EditBoard = ({ onClose }) => {
     ));
   };
 
+  const handleClose = () => {
+    onClose();
+  };
+
   return (
     <div>
-      <NewBoardTitle>Edit Board</NewBoardTitle>
-      <form onSubmit={handleSubmit(handleEditBoard)}>
-        <Input
-          id="newBoardInput"
-          type="text"
-          placeholder="Title"
-          {...register('title')}
-          onChange={handleTitleChange}
-        />
+      <ModalContent>
+        <NewBoardTitle>Edit Board</NewBoardTitle>
+        <form onSubmit={handleSubmit(handleEditBoard)}>
+          <Input
+            id="newBoardInput"
+            type="text"
+            placeholder="Title"
+            {...register('title')}
+            onChange={handleTitleChange}
+          />
 
-        <IconTitle>Icons</IconTitle>
-        <IconWrap>{renderIcons()}</IconWrap>
+          <IconTitle>Icons</IconTitle>
+          <IconWrap>{renderIcons()}</IconWrap>
 
-        <BackgroundTitle>Background</BackgroundTitle>
-        <BgIcon>{renderBackgrounds()}</BgIcon>
+          <BackgroundTitle>Background</BackgroundTitle>
+          <BgIcon>{renderBackgrounds()}</BgIcon>
 
-        <Button type="submit">
-          <ContainerSvg>
-            <Svg width="14px" height="14px">
-              <use href={`${sprite}#plus`} />
-            </Svg>
-          </ContainerSvg>
-          Edit
-        </Button>
-      </form>
+          <Button type="submit">
+            <ContainerSvg>
+              <Svg width="14px" height="14px">
+                <use href={`${sprite}#plus`} />
+              </Svg>
+            </ContainerSvg>
+            Edit
+          </Button>
+        </form>
+
+        <CloseButton onClick={handleClose}>
+          <use href={`${sprite}#close`} />
+        </CloseButton>
+      </ModalContent>
     </div>
   );
 };

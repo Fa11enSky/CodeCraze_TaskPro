@@ -27,6 +27,8 @@ import {
   Button,
   ContainerSvg,
   Svg,
+  ModalContent,
+  CloseButton,
 } from './CreateNewBoard.styled';
 
 const TitleSchema = Yup.object({
@@ -135,34 +137,44 @@ const CreateNewBoard = ({ onClose }) => {
     ));
   };
 
+  const handleClose = () => {
+    onClose();
+  };
+
   return (
     <div>
-      <NewBoardTitle>New Board</NewBoardTitle>
-      <form onSubmit={handleSubmit(handleCreateBoard)}>
-        <Input
-          id="newBoardInput"
-          type="text"
-          placeholder="Title"
-          {...register('title')}
-          onChange={handleTitleChange}
-        />
-        <ErrorMessage>{errors.title?.message}</ErrorMessage>
+      <ModalContent>
+        <NewBoardTitle>New Board</NewBoardTitle>
+        <form onSubmit={handleSubmit(handleCreateBoard)}>
+          <Input
+            id="newBoardInput"
+            type="text"
+            placeholder="Title"
+            {...register('title')}
+            onChange={handleTitleChange}
+          />
+          <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
-        <IconTitle>Icons</IconTitle>
-        <IconWrap>{renderIcons()}</IconWrap>
+          <IconTitle>Icons</IconTitle>
+          <IconWrap>{renderIcons()}</IconWrap>
 
-        <BackgroundTitle>Background</BackgroundTitle>
-        <BgIcon>{renderBackgrounds()}</BgIcon>
+          <BackgroundTitle>Background</BackgroundTitle>
+          <BgIcon>{renderBackgrounds()}</BgIcon>
 
-        <Button type="submit">
-          <ContainerSvg>
-            <Svg width="14px" height="14px">
-              <use href={`${sprite}#plus`} />
-            </Svg>
-          </ContainerSvg>
-          Create
-        </Button>
-      </form>
+          <Button type="submit">
+            <ContainerSvg>
+              <Svg width="14px" height="14px">
+                <use href={`${sprite}#plus`} />
+              </Svg>
+            </ContainerSvg>
+            Create
+          </Button>
+        </form>
+
+        <CloseButton onClick={handleClose}>
+          <use href={`${sprite}#close`} />
+        </CloseButton>
+      </ModalContent>
     </div>
   );
 };
