@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import { ModalOverlay, ModalContent, CloseButton } from './Modal.styled';
+import ModalPortal from 'components/ModalPortal/ModalPortal';
 
 const Modal = ({ onClose, children }) => {
   const handleClose = () => {
@@ -29,14 +30,16 @@ const Modal = ({ onClose, children }) => {
   }, [onClose]);
 
   return (
-    <ModalOverlay onClick={handleBackdropClick}>
-      <ModalContent>
-        <CloseButton onClick={handleClose}>
-          <use href={`${sprite}#close`} />
-        </CloseButton>
-        {children}
-      </ModalContent>
-    </ModalOverlay>
+    <ModalPortal>
+      <ModalOverlay onClick={handleBackdropClick}>
+        <ModalContent>
+          <CloseButton onClick={handleClose}>
+            <use href={`${sprite}#close`} />
+          </CloseButton>
+          {children}
+        </ModalContent>
+      </ModalOverlay>
+    </ModalPortal>
   );
 };
 

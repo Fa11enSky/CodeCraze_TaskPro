@@ -1,22 +1,44 @@
 import React, { useState } from 'react';
-import sprite from '../../assets/svgSprite/iconsSprite.svg';
-
 import { Tooltip } from 'react-tooltip';
+import { useDispatch } from 'react-redux';
+
 import './index.css';
-import Modal from 'components/Modal/Modal';
+
+import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import { CardModal } from 'components/CardModal/CardModal/index';
 import TooltipOption from './TooltipOption/TooltipOption';
+import { deleteCard } from '../../redux/boards/operationsCards';
+
+/* Компонент TaskCard отримує об'єкт картки який включає:
+
+title - string, назва картки.
+
+description - string, опис картки.
+
+label - string, пріорітетність. Можливі значення without | low | medium | high.
+
+deadline - string(date-time), дедлайн картки. По замовчанню +1 день від поточної дати. Не допустима минула дата
+
+id - string.
+*/
 
 const TaskCard = ({ cardData }) => {
   const { title, description, label, deadline, id } = cardData;
 
   const [showEditModal, setShowEditModal] = useState(false);
 
-  /* -------------------- TEST COLUMN NAMES --------------------*/
+  const dispatch = useDispatch();
 
-  const testColumnNames = ['Column1', 'Column2', 'Column3'];
+  /* -------------------- TEST COLUMNS DATA --------------------*/
+
+  const testColumnsData = [
+    { id: 'column1 id', title: 'Column1' },
+    { id: 'column2 id', title: 'Column2' },
+    { id: 'column3 id', title: 'Column3' },
+  ];
 
   /* -------------------- PICK A PRIORITY COLOR --------------------*/
+
   let cardColor = '';
 
   switch (label) {
@@ -36,21 +58,18 @@ const TaskCard = ({ cardData }) => {
   }
 
   /* -------------------- CARD CONTROLS FUNCTIONS --------------------*/
-  const replaceCard = () => {
-    return;
-  };
+
   const editCard = () => {
     return setShowEditModal(!showEditModal);
   };
-  const removeCard = () => {
-    return;
-  };
 
-  /* -------------------- IS SHOW NOTIFICATION ICON ? --------------------*/
+  const removeCard = () => dispatch(deleteCard(id));
+
+  /* -------------------- IS SHOW NOTIFICATION ICON (not ready yet) --------------------*/
   const isDeadlineToday = deadline;
 
   return (
-    <div data-id={id} className="card-full-wrapper">
+    <div className="card-full-wrapper">
       <div style={{ background: `${cardColor}` }} className="color-tag"></div>
       <div className="card-content-wrapper">
         <div className="card-top">
@@ -80,21 +99,26 @@ const TaskCard = ({ cardData }) => {
               </li>
             )}
             <li>
-              <button type="button" onClick={replaceCard} id="replace-card">
+              <button type="button" id="replace-tooltip">
                 <svg className="card-control">
                   <use xlinkHref={`${sprite}#icon-arrov_circle`} />
                 </svg>
               </button>
+
               {/* Tooltip */}
 
               <Tooltip
-                anchorSelect="#replace-card"
+                anchorSelect="#replace-tooltip"
                 place="bottom"
                 clickable="true"
                 className="replace-tooltip"
               >
-                {testColumnNames.map(name => (
-                  <TooltipOption key={name} optionName={name} />
+                {testColumnsData.map(column => (
+                  <TooltipOption
+                    key={column.id}
+                    cardId={id}
+                    columnData={column}
+                  />
                 ))}
               </Tooltip>
 
@@ -117,11 +141,7 @@ const TaskCard = ({ cardData }) => {
           </ul>
         </div>
       </div>
-      {showEditModal && (
-        <Modal onClose={editCard}>
-          <CardModal></CardModal>
-        </Modal>
-      )}
+      {showEditModal && <CardModal />}
     </div>
   );
 };
