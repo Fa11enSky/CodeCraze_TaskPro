@@ -1,18 +1,36 @@
 import styled from "styled-components"
 import { Field } from "formik"
 
+export const BackdropDiv = styled.div`
+position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4); 
+
+`
+
 export const ModalDiv = styled.div`
 font-family: Poppins;
 color: rgba(255, 255, 255, 1);
 
 width: 335px;
 max-height: 900px;
+margin: 10% auto;
 
 border-radius: 8px;
 border: 1px;
 background: var(--background_task_item);
 border: 1px solid var(--accent);
-padding: 24px
+padding: 24px;
+
+@media screen and (min-width: 768px) {
+  width: 350px;
+  }
 `
 
 export const StyledDiv = styled.div`
@@ -110,6 +128,13 @@ margin-bottom: 14px;
     opacity: 100%;
     outline: none;
 }
+
+@media screen and (min-width: 768px) {
+  width: 302px;
+  }
+@media screen and (min-width: 1440px) {
+ 
+}
 `
 
 export const DescriptionTextArea = styled(Field)`
@@ -135,6 +160,13 @@ resize: none;
 &:focus {
     opacity: 100%;
     outline: none;
+}
+
+@media screen and (min-width: 768px) {
+  width: 302px;
+  }
+@media screen and (min-width: 1440px) {
+ 
 }
 
 `
@@ -269,6 +301,11 @@ color: rgba(22, 22, 22, 1);
 
 }
 
+@media screen and (min-width: 768px) {
+  width: 302px;
+  }
+
+
 `
 
 export const SubmitSpan = styled.span`
@@ -303,4 +340,11 @@ background: rgba(22, 22, 22, 1);
     border: 1px solid rgba(255, 255, 255, 1);
     border-width: 1px 1px 0 0;
 }
+
+@media screen and (min-width: 768px) {
+  left: 120px;
+  &::before{
+    
+  }
+  }
 `
