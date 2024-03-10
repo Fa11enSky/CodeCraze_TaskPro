@@ -2,6 +2,8 @@ import { Formik, Form } from 'formik';
 import { useState } from 'react';
 import { ModifiedDatePicker } from '../DatePicker';
 import { CloseButton, DescriptionTextArea, H3, Layout, ModalDiv, RadioBtn, RadioButtonDiv, RadioLabel, StyledDiv, StyledP, SubmitButton, SubmitSpan, TitleInput } from './CardModal.styled.js'
+import { useDispatch } from 'react-redux';
+import { createCard, updateCard } from '../../../redux/boards/operationsCards';
 
 
 
@@ -14,30 +16,39 @@ import { CloseButton, DescriptionTextArea, H3, Layout, ModalDiv, RadioBtn, Radio
 // **   date - об'єкт дати (сьогодняшня дата за замовч)
 // **   newCard - булеве значення (true за замовч)
 
-export const CardModal = ({ initialValues = { title: '', description: '', radio: "4", date: new Date(), newCard: "true" } }) => {
-    const { title, description, date, radio, newCard } = initialValues
+
+
+export const CardModal = ({ initialValues = { title: '', description: '', radio: "4", date: new Date(), id: null }, newCard = true, onClose }) => {
+    const { title, description, date, radio, id } = initialValues
 
     const [selectedDate, setSelectedDate] = useState(date);
+    const dispatch = useDispatch()
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
 
+    const handleSubmit = (values) => {
+        const { title, description, radio } = values;
+        const newCardData = { title, description, radio, selectedDate }
 
-    return (
+        if (newCard) dispatch(createCard([id, newCardData]))
+
+        if (!newCard) dispatch(updateCard([id, newCardData]))
+    }
+
+    return (<>
         <ModalDiv>
-            {newCard && <StyledDiv><H3>Add card</H3>
-                <CloseButton
-                ><span></span></CloseButton></StyledDiv>}
+            {newCard && <StyledDiv>
+                <H3>Add card</H3>
+                <CloseButton onClick={onClose}>
+                    <span></span>
+                </CloseButton></StyledDiv>}
             {!newCard && <H3>Edit card</H3>}
+
             <Formik
                 initialValues={{ title, description, radio }}
-                onSubmit={async (values) => {
-                    console.log('values======>', values)
-                    console.log('selectedDate======>', selectedDate)
-                    await new Promise((r) => setTimeout(r, 1000));
-                    alert(JSON.stringify({ values, selectedDate }, null, 2));
-                }}
+                onSubmit={(values) => handleSubmit(values)}
             >
 
                 <Form>
@@ -84,6 +95,7 @@ export const CardModal = ({ initialValues = { title: '', description: '', radio:
                     </Layout>
                     <Layout>
                         <StyledP htmlFor="date_picker">Deadline</StyledP>
+                        <span></span>
                         <ModifiedDatePicker
                             onChange={handleDateChange}
                             date={selectedDate}
@@ -98,5 +110,6 @@ export const CardModal = ({ initialValues = { title: '', description: '', radio:
                 </Form>
             </Formik>
         </ModalDiv>
+    </>
     );
 };
