@@ -40,18 +40,18 @@ const BoardItem = ({ isActive, title, icon, id }) => {
         </TitleWrapper>
         {isActive && (
           <ToolBar>
-            <ToolBarButton onClick={openModalEdit}>
+            <ToolBarButton onClick={openModalBoard}>
               <ToolBarIcon>
                 <use xlinkHref={`${iconsSprite}#icon-pencil`} />
               </ToolBarIcon>
             </ToolBarButton>
-            
+
             {isModalOpen && (
-            <Modal isOpen={isModalOpen} onClose={closeModalBoard}>
-              <EditBoard onClose={closeModalBoard} />
-            </Modal>
-          )}
-            
+              <Modal isOpen={isModalOpen} onClose={closeModalBoard}>
+                <EditBoard onClose={closeModalBoard} />
+              </Modal>
+            )}
+
             <ToolBarButton onClick={() => dispatch(deleteBoard(id))}>
               <ToolBarIcon>
                 <use xlinkHref={`${iconsSprite}#icon-trash`} />
