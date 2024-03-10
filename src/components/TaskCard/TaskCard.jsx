@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Tooltip } from 'react-tooltip';
 import { useDispatch, useSelector } from 'react-redux';
 
-import './index.css';
-
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import { CardModal } from 'components/CardModal/CardModal/index';
 import TooltipOption from './TooltipOption/TooltipOption';
