@@ -48,7 +48,7 @@ const CreateNewBoard = ({ onClose }) => {
   });
 
   const [selectedIcon, setSelectedIcon] = useState('project');
-  const [selectedBackgroundId, setSelectedBackgroundId] = useState('bgIcon');
+  const [selectedBackgroundId, setSelectedBackgroundId] = useState('null');
 
   const existingBoardTitles = useSelector(state => state.boards.boards);
 
