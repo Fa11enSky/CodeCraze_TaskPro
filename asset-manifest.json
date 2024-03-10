@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/CodeCraze_TaskPro/static/css/main.6858a5ce.css",
-    "main.js": "/CodeCraze_TaskPro/static/js/main.b130f564.js",
+    "main.css": "/CodeCraze_TaskPro/static/css/main.ad976cb8.css",
+    "main.js": "/CodeCraze_TaskPro/static/js/main.bc1d53df.js",
     "static/media/desktop_background_9@2x.jpg": "/CodeCraze_TaskPro/static/media/desktop_background_9@2x.ace7bb0943d2df122897.jpg",
     "static/media/tablet_background_9@2x.jpg": "/CodeCraze_TaskPro/static/media/tablet_background_9@2x.0e3a99728577b53ef478.jpg",
     "static/media/desktop_background_13@2x.jpg": "/CodeCraze_TaskPro/static/media/desktop_background_13@2x.e09f81e177cde4dc076c.jpg",
@@ -97,16 +97,16 @@
     "static/media/plant-tab-des@2x.png": "/CodeCraze_TaskPro/static/media/plant-tab-des@2x.fe76cd8da1c909110bac.png",
     "static/media/welcome_boy_tab-desk.png": "/CodeCraze_TaskPro/static/media/welcome_boy_tab-desk.ed0d2e2b8eaf51594184.png",
     "static/media/moblie_background_5.jpg": "/CodeCraze_TaskPro/static/media/moblie_background_5.129262d26735fe4b18ab.jpg",
-    "static/media/iconsSprite.svg": "/CodeCraze_TaskPro/static/media/iconsSprite.8378f5c570c25f5fda468c4e62d1f7dc.svg",
+    "static/media/iconsSprite.svg": "/CodeCraze_TaskPro/static/media/iconsSprite.3d1e8d9efafaaa16c381376cff0ad9c6.svg",
     "static/media/welcome_boy_mobile@2x.png": "/CodeCraze_TaskPro/static/media/welcome_boy_mobile@2x.a7b242e138250975ee73.png",
     "static/media/moblie_background_3.jpg": "/CodeCraze_TaskPro/static/media/moblie_background_3.da514c89cc1f239d5747.jpg",
     "static/media/moblie_background_7.jpg": "/CodeCraze_TaskPro/static/media/moblie_background_7.8d2ee85ac2825da63fe0.jpg",
     "index.html": "/CodeCraze_TaskPro/index.html",
-    "main.6858a5ce.css.map": "/CodeCraze_TaskPro/static/css/main.6858a5ce.css.map",
-    "main.b130f564.js.map": "/CodeCraze_TaskPro/static/js/main.b130f564.js.map"
+    "main.ad976cb8.css.map": "/CodeCraze_TaskPro/static/css/main.ad976cb8.css.map",
+    "main.bc1d53df.js.map": "/CodeCraze_TaskPro/static/js/main.bc1d53df.js.map"
   },
   "entrypoints": [
-    "static/css/main.6858a5ce.css",
-    "static/js/main.b130f564.js"
+    "static/css/main.ad976cb8.css",
+    "static/js/main.bc1d53df.js"
   ]
 }
