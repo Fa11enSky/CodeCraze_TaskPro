@@ -9,8 +9,8 @@ import {
 } from './CreateBoardButton.styled';
 import iconsSprite from '../../../assets/svgSprite/iconsSprite.svg';
 
-import CreateNewBoard from 'components/CreateNewBoard/CreateNewBoard';
-import Modal from 'components/Modal/Modal';
+import Modal from '../../Modal/Modal';
+import CreateNewBoard from '../../CreateNewBoard/CreateNewBoard';
 
 const CreateBoardButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,29 +22,29 @@ const CreateBoardButton = () => {
   const closeModalBoard = () => {
     setIsModalOpen(false);
   };
+
   return (
-    <>
-      <ContainerBoards>
-        <TitleBoard>My boards</TitleBoard>
-        <ButtonBoardContainer>
-          <CreateBoard>Create a new board</CreateBoard>
-          <ButtonBoard
-            onClick={openModalBoard}
-            type="submit"
-            aria-label="CreateBoard"
-          >
-            <ButtonIcon>
-              <use xlinkHref={`${iconsSprite}#plus`} />
-            </ButtonIcon>
-          </ButtonBoard>
-        </ButtonBoardContainer>
-      </ContainerBoards>
+    <ContainerBoards>
+      <TitleBoard>My boards</TitleBoard>
+      <ButtonBoardContainer>
+        <CreateBoard>Create a new board</CreateBoard>
+        <ButtonBoard
+          onClick={openModalBoard}
+          type="submit"
+          aria-label="CreateBoard"
+        >
+          <ButtonIcon>
+            <use xlinkHref={`${iconsSprite}#plus`} />
+          </ButtonIcon>
+        </ButtonBoard>
+      </ButtonBoardContainer>
+
       {isModalOpen && (
-        <Modal onClose={closeModalBoard}>
+        <Modal isOpen={isModalOpen} onClose={closeModalBoard}>
           <CreateNewBoard onClose={closeModalBoard} />
         </Modal>
       )}
-    </>
+    </ContainerBoards>
   );
 };
 
