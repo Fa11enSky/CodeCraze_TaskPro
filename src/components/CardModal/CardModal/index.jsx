@@ -16,8 +16,8 @@ import { BackdropDiv, CloseButton, DescriptionTextArea, H3, Layout, ModalDiv, Ra
 
 
 
-export const CardModal = ({ initialValues = { title: '', description: '', radio: "4", date: new Date(), newCard: "true" }, onClose, onSubmit }) => {
-    const { title, description, date, radio, newCard } = initialValues
+export const CardModal = ({ initialValues = { title: '', description: '', radio: "4", date: new Date() }, newCard = true, onClose, onSubmit, isOpen }) => {
+    const { title, description, date, radio } = initialValues
 
     const [selectedDate, setSelectedDate] = useState(date);
 
@@ -28,79 +28,81 @@ export const CardModal = ({ initialValues = { title: '', description: '', radio:
         onSubmit(values, selectedDate)
     }
 
-    return (
-        <BackdropDiv onClick={onClose}>
-            <ModalDiv>
-                {newCard && <StyledDiv>
-                    <H3>Add card</H3>
-                    <CloseButton onClick={onClose}>
-                        <span></span>
-                    </CloseButton></StyledDiv>}
-                {!newCard && <H3>Edit card</H3>}
+    return (<>
+        {isOpen &&
+            <BackdropDiv onClick={onClose}>
+                <ModalDiv>
+                    {newCard && <StyledDiv>
+                        <H3>Add card</H3>
+                        <CloseButton onClick={onClose}>
+                            <span></span>
+                        </CloseButton></StyledDiv>}
+                    {!newCard && <H3>Edit card</H3>}
 
-                <Formik
-                    initialValues={{ title, description, radio }}
-                    onSubmit={(values) => handleSubmit(values)}
-                >
+                    <Formik
+                        initialValues={{ title, description, radio }}
+                        onSubmit={(values) => handleSubmit(values)}
+                    >
 
-                    <Form>
-                        <TitleInput id="title" name="title" placeholder="Title" />
-                        <DescriptionTextArea id="description" name="description" placeholder="Description" component="textarea" />
+                        <Form>
+                            <TitleInput id="title" name="title" placeholder="Title" />
+                            <DescriptionTextArea id="description" name="description" placeholder="Description" component="textarea" />
 
-                        <Layout>
-                            <StyledP >Label color</StyledP>
-                            <RadioButtonDiv>
+                            <Layout>
+                                <StyledP >Label color</StyledP>
+                                <RadioButtonDiv>
 
-                                <RadioLabel className="blue">
-                                    <RadioBtn
-                                        type="radio"
-                                        name="radio"
-                                        value="1"
-                                    /><span></span>
-                                </RadioLabel>
+                                    <RadioLabel className="blue">
+                                        <RadioBtn
+                                            type="radio"
+                                            name="radio"
+                                            value="1"
+                                        /><span></span>
+                                    </RadioLabel>
 
-                                <RadioLabel className="red">
-                                    <RadioBtn
-                                        type="radio"
-                                        name="radio"
-                                        value="2"
-                                    /><span></span>
-                                </RadioLabel>
+                                    <RadioLabel className="red">
+                                        <RadioBtn
+                                            type="radio"
+                                            name="radio"
+                                            value="2"
+                                        /><span></span>
+                                    </RadioLabel>
 
-                                <RadioLabel className="green">
-                                    <RadioBtn
-                                        type="radio"
-                                        name="radio"
-                                        value="3"
-                                    /><span></span>
-                                </RadioLabel>
+                                    <RadioLabel className="green">
+                                        <RadioBtn
+                                            type="radio"
+                                            name="radio"
+                                            value="3"
+                                        /><span></span>
+                                    </RadioLabel>
 
-                                <RadioLabel className="grey">
-                                    <RadioBtn
-                                        type="radio"
-                                        name="radio"
-                                        value="4"
-                                    /><span></span>
-                                </RadioLabel>
-                            </RadioButtonDiv>
+                                    <RadioLabel className="grey">
+                                        <RadioBtn
+                                            type="radio"
+                                            name="radio"
+                                            value="4"
+                                        /><span></span>
+                                    </RadioLabel>
+                                </RadioButtonDiv>
 
-                        </Layout>
-                        <Layout>
-                            <StyledP htmlFor="date_picker">Deadline</StyledP>
-                            <ModifiedDatePicker
-                                onChange={handleDateChange}
-                                date={selectedDate}
-                                newCard={newCard}
-                            />
-                        </Layout>
-                        <SubmitButton type="submit">
-                            <SubmitSpan className='btn_layout'></SubmitSpan>
-                            {newCard && <p>Add</p>}
-                            {!newCard && <p>Edit</p>}
-                        </SubmitButton>
-                    </Form>
-                </Formik>
-            </ModalDiv>
-        </BackdropDiv>
+                            </Layout>
+                            <Layout>
+                                <StyledP htmlFor="date_picker">Deadline</StyledP>
+                                <ModifiedDatePicker
+                                    onChange={handleDateChange}
+                                    date={selectedDate}
+                                    newCard={newCard}
+                                />
+                            </Layout>
+                            <SubmitButton type="submit">
+                                <SubmitSpan className='btn_layout'></SubmitSpan>
+                                {newCard && <p>Add</p>}
+                                {!newCard && <p>Edit</p>}
+                            </SubmitButton>
+                        </Form>
+                    </Formik>
+                </ModalDiv>
+            </BackdropDiv>}
+    </>
     );
 };
