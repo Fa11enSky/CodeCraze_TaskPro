@@ -1,19 +1,6 @@
 import styled from "styled-components"
 import { Field } from "formik"
 
-export const BackdropDiv = styled.div`
-position: fixed; 
-  z-index: 1; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4); 
-
-`
-
 export const ModalDiv = styled.div`
 font-family: Poppins;
 color: rgba(255, 255, 255, 1);
@@ -176,6 +163,10 @@ display: flex;
 flex-direction: column;
 gap: 4px;
 margin-bottom: 14px;
+
+span {
+  
+}
 `
 
 export const RadioButtonDiv = styled.div`
@@ -264,6 +255,7 @@ line-height: 18px;
 letter-spacing: -0.32px;
 text-align: left;
 opacity: 40%;
+color: var(--title_board);
 
 `
 
