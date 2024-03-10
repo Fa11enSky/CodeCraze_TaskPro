@@ -14,18 +14,18 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  background-color: var(--modal_content_bg);
-  border-radius: 8px;
-  z-index: 20;
-  position: relative;
-  padding: 24px;
+  // background-color: var(--modal_content_bg);
+  // border-radius: 8px;
+  // z-index: 20;
+  // position: relative;
+  // padding: 24px;
 
-  @media screen and (min-width: 1440px) {
-    margin-left: 24px;
-    width: 212px;
-    height: 272px;
-    padding: 20px;
-  }
+  // @media screen and (min-width: 1440px) {
+  //   margin-left: 24px;
+  //   width: 212px;
+  //   height: 272px;
+  //   padding: 20px;
+  // }
 `;
 
 export const CloseButton = styled.svg`
