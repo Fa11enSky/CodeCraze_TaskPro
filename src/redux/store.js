@@ -12,14 +12,12 @@ import {
 import { persistReducerAuth } from './auth/authSlice';
 import { supportReducer } from './support/supportSlice';
 import { boardsReducer } from './boards/boardsSlice';
-import { filterReducer } from './boards/filterSlice';
 
 export const store = configureStore({
   reducer: {
     auth: persistReducerAuth,
     boards: boardsReducer,
     support: supportReducer,
-    filter: filterReducer
   },
 
   middleware: getDefaultMiddleware =>
