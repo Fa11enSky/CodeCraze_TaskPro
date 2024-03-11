@@ -24,11 +24,9 @@ const ColumnsList = () => {
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
   };
-  
   useEffect(() => {
     dispatch(fetchSingleBoard(params.boardId));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, params.boardId]);
 
   const isRetina = () => {
     if (window.devicePixelRatio > 1) {
@@ -47,7 +45,7 @@ const ColumnsList = () => {
     }
     return 'desktop';
   };
-
+console.log('board.columns', board.columns)
   const device = setDevice();
   const ratio = isRetina();
   const bgurl = require(`../../assets/backgrounds/allBg/${device}_background_${
@@ -67,6 +65,7 @@ const ColumnsList = () => {
         <>
           <ul className={css.column_list}>
             {columns.map(el => {
+              console.log('el', el)
               return <ColumnItem key={el._id} column={el} />;
             })}
             <li>

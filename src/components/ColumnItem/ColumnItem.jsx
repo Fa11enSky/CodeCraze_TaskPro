@@ -17,7 +17,6 @@ const ColumnItem = ({ column }) => {
   const toggleAddCard = () => {
     setIsAddCardOpen(!isAddCardOpen);
   };
-
   return (
     <>
       <li className={css.column_item}>
@@ -37,7 +36,7 @@ const ColumnItem = ({ column }) => {
           </div>
         </div>
         <ul className={css.task_list}>
-          {cards.map(el => {
+          {cards&&cards.map(el => {
             return (
               <li key={el._id}>
                 <TaskCard cardOwner={column._id} cardData={el} />
