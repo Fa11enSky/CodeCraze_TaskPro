@@ -25,6 +25,10 @@ import {
   FullCardWrapper,
 } from './TaskCard.styled';
 import Modal from 'components/Modal/Modal';
+import { getCurrentDate } from './services/getCurrentDate';
+import { parseDateToObject } from './services/parseDateToObject';
+import { formatDate } from './services/formatDate';
+
 /* Компонент TaskCard отримує об'єкт картки який включає:
 
 title - string, назва картки.
@@ -33,17 +37,21 @@ description - string, опис картки.
 
 label - string, пріорітетність. Можливі значення without | low | medium | high.
 
-deadline - string(date-time), дедлайн картки. По замовчанню +1 день від поточної дати. Не допустима минула дата
+deadline - string(d/m/yyyy), дедлайн картки. По замовчанню +1 день від поточної дати. Не допустима минула дата
 
-id - string.
+_id - string.
 */
 
 const TaskCard = ({ cardData }) => {
-  const { title, description, label, deadline, _id } = cardData;
+  let { title, description, label, deadline, _id } = cardData;
 
   const [showEditModal, setShowEditModal] = useState(false);
 
   const dispatch = useDispatch();
+
+  /* -------------------- FORMATTING DEADLINE --------------------*/
+
+  deadline = formatDate(deadline.split(',')[0]);
 
   /* -------------------- SELECT COLUMNS DATA --------------------*/
 
@@ -82,8 +90,9 @@ const TaskCard = ({ cardData }) => {
 
   const removeCard = () => dispatch(deleteCard(_id));
 
-  /* -------------------- IS SHOW NOTIFICATION ICON (not ready yet) --------------------*/
-  const isDeadlineToday = deadline;
+  /* -------------------- IS SHOW NOTIFICATION ICON --------------------*/
+
+  const isDeadlineToday = deadline === getCurrentDate();
 
   /* -------------------- CREATE INITIAL VALUES OBJ --------------------*/
 
@@ -91,7 +100,7 @@ const TaskCard = ({ cardData }) => {
     title,
     description,
     radio,
-    //? date: deadline
+    date: parseDateToObject(deadline),
     id: _id,
   };
 
