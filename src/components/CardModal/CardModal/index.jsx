@@ -32,7 +32,7 @@ export const CardModal = ({
   initialValues = {
     title: '',
     description: '',
-    radio: '4',
+    radio: 'without',
     date: new Date(),
     id: null,
   },
@@ -83,22 +83,22 @@ export const CardModal = ({
             <StyledP>Label color</StyledP>
             <RadioButtonDiv>
               <RadioLabel className="blue">
-                <RadioBtn type="radio" name="radio" value="1" />
+                <RadioBtn type="radio" name="radio" value="low" />
                 <span></span>
               </RadioLabel>
 
               <RadioLabel className="red">
-                <RadioBtn type="radio" name="radio" value="2" />
+                <RadioBtn type="radio" name="radio" value="medium" />
                 <span></span>
               </RadioLabel>
 
               <RadioLabel className="green">
-                <RadioBtn type="radio" name="radio" value="3" />
+                <RadioBtn type="radio" name="radio" value="high" />
                 <span></span>
               </RadioLabel>
 
               <RadioLabel className="grey">
-                <RadioBtn type="radio" name="radio" value="4" />
+                <RadioBtn type="radio" name="radio" value="without" />
                 <span></span>
               </RadioLabel>
             </RadioButtonDiv>
