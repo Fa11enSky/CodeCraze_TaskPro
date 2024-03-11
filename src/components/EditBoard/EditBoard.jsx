@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import data from '../../assets/backgroundIcons/data';
-import { editBoardById } from '../../redux/boards/operationsCards';
+import { updateBoard } from '../../redux/boards/operationsBoards';
 import { selectAllBoards } from '../../redux/boards/selectors';
 
 import {
@@ -21,6 +23,8 @@ import {
   Button,
   ContainerSvg,
   Svg,
+  ModalContent,
+  CloseButton,
 } from '../CreateNewBoard/CreateNewBoard.styled';
 
 const EditBoard = ({ onClose }) => {
@@ -30,7 +34,7 @@ const EditBoard = ({ onClose }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const board = selectAllBoards();
+  const board = useSelector(selectAllBoards);
 
   useEffect(() => {
     setValue('title', board.title);
@@ -53,39 +57,40 @@ const EditBoard = ({ onClose }) => {
   };
 
   const handleEditBoard = data => {
-    const boardData = {
-      boardId: board._id,
-      body: {
+    const updateData = {
+      id: board._id,
+      board: {
         title: data.title,
         icon: data.selectedIcon,
         background: data.selectedBackgroundId,
       },
     };
 
-    dispatch(editBoardById(boardData))
-      .then(() => {
-        setValue('title', data.title);
-        setValue('selectedIcon', data.selectedIcon);
-        setValue('selectedBackgroundId', data.selectedBackgroundId);
-        onClose();
-      })
-      .catch(error => {
-        console.error('Error:', error.message);
-      });
+    dispatch(updateBoard(updateData)).then(() => {
+      setValue('title', data.title);
+      setValue('selectedIcon', data.selectedIcon);
+      setValue('selectedBackgroundId', data.selectedBackgroundId);
+      onClose();
+    });
+
+    toast.success(`${data.title} has been successfully edited!`, {
+      theme: 'colored',
+      autoClose: 2500,
+    });
 
     navigate(`${data.title.toLowerCase()}`);
   };
 
   const renderIcons = () => {
     const icons = [
-      'project',
-      'star',
-      'loading',
-      'puzzle',
-      'container',
-      'lightning',
-      'colors',
-      'hexagon',
+      'icon-project',
+      'icon-star',
+      'icon-loading',
+      'icon-puzzle',
+      'icon-container',
+      'icon-lightning',
+      'icon-colors',
+      'icon-hexagon',
     ];
 
     return icons.map(icon => (
@@ -111,33 +116,43 @@ const EditBoard = ({ onClose }) => {
     ));
   };
 
+  const handleClose = () => {
+    onClose();
+  };
+
   return (
     <div>
-      <NewBoardTitle>Edit Board</NewBoardTitle>
-      <form onSubmit={handleSubmit(handleEditBoard)}>
-        <Input
-          id="newBoardInput"
-          type="text"
-          placeholder="Title"
-          {...register('title')}
-          onChange={handleTitleChange}
-        />
+      <ModalContent>
+        <NewBoardTitle>Edit Board</NewBoardTitle>
+        <form onSubmit={handleSubmit(handleEditBoard)}>
+          <Input
+            id="newBoardInput"
+            type="text"
+            placeholder="Title"
+            {...register('title')}
+            onChange={handleTitleChange}
+          />
 
-        <IconTitle>Icons</IconTitle>
-        <IconWrap>{renderIcons()}</IconWrap>
+          <IconTitle>Icons</IconTitle>
+          <IconWrap>{renderIcons()}</IconWrap>
 
-        <BackgroundTitle>Background</BackgroundTitle>
-        <BgIcon>{renderBackgrounds()}</BgIcon>
+          <BackgroundTitle>Background</BackgroundTitle>
+          <BgIcon>{renderBackgrounds()}</BgIcon>
 
-        <Button type="submit">
-          <ContainerSvg>
-            <Svg width="14px" height="14px">
-              <use href={`${sprite}#plus`} />
-            </Svg>
-          </ContainerSvg>
-          Edit
-        </Button>
-      </form>
+          <Button type="submit">
+            <ContainerSvg>
+              <Svg width="14px" height="14px">
+                <use href={`${sprite}#plus`} />
+              </Svg>
+            </ContainerSvg>
+            Edit
+          </Button>
+        </form>
+
+        <CloseButton onClick={handleClose}>
+          <use href={`${sprite}#close`} />
+        </CloseButton>
+      </ModalContent>
     </div>
   );
 };

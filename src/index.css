@@ -62,9 +62,12 @@ body.light {
   --logo_vector: #ffffff;
   --tool_bar_button: rgba(22, 22, 22, 0.5);
   --hover_logo: #9dc888;
-
+  --modal_content_bg: #fcfcfc;
   --avatar-icon: #ffffff;
   --avatar-bg: #f6f6f7;
+  --add_column_svg_bg:#161616;
+  --add_column_svg:#FFFFFF;
+  --add_column_modal_bg:#fcfcfc
 }
 body.dark {
   --main_text_color: #ffffff;
@@ -98,9 +101,13 @@ body.dark {
   --logo_vector: #ffffff;
   --tool_bar_button: rgba(255, 255, 255, 0.5);
   --hover_logo: #9dc888;
-
+  --modal_content_bg: #151515;
   --avatar-icon: #151515;
   --avatar-bg: #1f1f1f;
+  --add_column_svg_bg:#FFFFFF;
+  --add_column_svg:#121212;
+    --add_column_modal_bg:#151515
+
 }
 body.violet {
   --main_text_color: #161616;
@@ -133,9 +140,13 @@ body.violet {
   --logo_vector: #5255bc;
   --tool_bar_button: rgba(255, 255, 255, 0.5);
   --hover_logo: #979cea;
-
+  --modal_content_bg: #fcfcfc;
   --avatar-icon: #ffffff;
   --avatar-bg: #ecedfd;
+  --add_column_svg_bg:#5255BC;
+  --add_column_svg:#FFFFFF;
+    --add_column_modal_bg:#fcfcfc
+
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -169,6 +180,7 @@ a {
 
 button {
   cursor: pointer;
+  font-family: inherit;
 }
 
 img {

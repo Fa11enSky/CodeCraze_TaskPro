@@ -7,12 +7,17 @@ color: rgba(255, 255, 255, 1);
 
 width: 335px;
 max-height: 900px;
+margin: 10% auto;
 
 border-radius: 8px;
 border: 1px;
 background: var(--background_task_item);
 border: 1px solid var(--accent);
-padding: 24px
+padding: 24px;
+
+@media screen and (min-width: 768px) {
+  width: 350px;
+  }
 `
 
 export const StyledDiv = styled.div`
@@ -110,6 +115,13 @@ margin-bottom: 14px;
     opacity: 100%;
     outline: none;
 }
+
+@media screen and (min-width: 768px) {
+  width: 302px;
+  }
+@media screen and (min-width: 1440px) {
+ 
+}
 `
 
 export const DescriptionTextArea = styled(Field)`
@@ -137,6 +149,13 @@ resize: none;
     outline: none;
 }
 
+@media screen and (min-width: 768px) {
+  width: 302px;
+  }
+@media screen and (min-width: 1440px) {
+ 
+}
+
 `
 
 export const Layout = styled.div`
@@ -144,6 +163,10 @@ display: flex;
 flex-direction: column;
 gap: 4px;
 margin-bottom: 14px;
+
+span {
+  
+}
 `
 
 export const RadioButtonDiv = styled.div`
@@ -232,6 +255,7 @@ line-height: 18px;
 letter-spacing: -0.32px;
 text-align: left;
 opacity: 40%;
+color: var(--title_board);
 
 `
 
@@ -269,6 +293,11 @@ color: rgba(22, 22, 22, 1);
 
 }
 
+@media screen and (min-width: 768px) {
+  width: 302px;
+  }
+
+
 `
 
 export const SubmitSpan = styled.span`
@@ -303,4 +332,11 @@ background: rgba(22, 22, 22, 1);
     border: 1px solid rgba(255, 255, 255, 1);
     border-width: 1px 1px 0 0;
 }
+
+@media screen and (min-width: 768px) {
+  left: 120px;
+  &::before{
+    
+  }
+  }
 `

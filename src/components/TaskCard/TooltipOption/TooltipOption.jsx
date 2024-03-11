@@ -2,6 +2,11 @@ import { useDispatch } from 'react-redux';
 
 import sprite from '../../../assets/svgSprite/iconsSprite.svg';
 import { replaceCard } from '../../../redux/boards/operationsCards';
+import {
+  TooltipButton,
+  TooltipIcon,
+  TooltipText,
+} from './TooltipOption.styled';
 
 /* Компонент TooltipOption отримує айді картки (cardId - string) і
 
@@ -13,7 +18,7 @@ id - string, айді колонки.
 */
 
 const TooltipOption = ({ cardId, columnData }) => {
-  const { id, title } = columnData;
+  const { _id, title } = columnData;
 
   const dispatch = useDispatch();
 
@@ -21,15 +26,12 @@ const TooltipOption = ({ cardId, columnData }) => {
     dispatch(replaceCard([cardId, { newColumnId }]));
 
   return (
-    <button
-      className="replace-tooltip-btn"
-      onClick={() => moveCard(cardId, id)}
-    >
-      <p className="replace-tooltip-option-text">{title}</p>
-      <svg className="card-control">
+    <TooltipButton onClick={() => moveCard(cardId, _id)}>
+      <TooltipText>{title}</TooltipText>
+      <TooltipIcon width={16} height={16}>
         <use xlinkHref={`${sprite}#icon-arrov_circle`} />
-      </svg>
-    </button>
+      </TooltipIcon>
+    </TooltipButton>
   );
 };
 

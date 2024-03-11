@@ -16,22 +16,22 @@ import starrySky from './starry-sky.png';
 import yacht from './yacht.png';
 
 const data = [
-  { id: 'bgIcon', image: bgIcon },
-  { id: 'abstraction', image: abstraction },
-  { id: 'balloon', image: balloon },
-  { id: 'kapadokya', image: kapadokya },
-  { id: 'ocean', image: ocean },
-  { id: 'canyon', image: canyon },
-  { id: 'clouds', image: clouds },
-  { id: 'plant', image: plant },
-  { id: 'half-moon', image: halfMoon },
-  { id: 'moon', image: moon },
-  { id: 'rocks', image: rocks },
-  { id: 'flowers', image: flowers },
-  { id: 'night', image: night },
-  { id: 'pink-tree', image: pinkTree },
-  { id: 'starry-sky', image: starrySky },
-  { id: 'yacht', image: yacht },
+  { id: 'null', image: bgIcon },
+  { id: '1', image: flowers },
+  { id: '2', image: night },
+  { id: '3', image: pinkTree },
+  { id: '4', image: halfMoon },
+  { id: '5', image: plant },
+  { id: '6', image: clouds },
+  { id: '7', image: rocks },
+  { id: '8', image: abstraction },
+  { id: '9', image: moon },
+  { id: '10', image: yacht },
+  { id: '11', image: balloon },
+  { id: '12', image: canyon },
+  { id: '13', image: ocean },
+  { id: '14', image: kapadokya },
+  { id: '15', image: starrySky },
 ];
 
 export default data;

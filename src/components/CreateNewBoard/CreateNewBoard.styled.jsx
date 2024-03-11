@@ -192,5 +192,30 @@ export const ContainerSvg = styled.div`
 `;
 
 export const Svg = styled.svg`
+  stroke: var(--add_card_btn_svg);
+`;
+
+export const ModalContent = styled.div`
+  background-color: var(--modal_content_bg);
+  border-radius: 8px;
+  z-index: 20;
+  position: relative;
+  padding: 24px;
+
+  @media screen and (min-width: 1440px) {
+    margin-left: 24px;
+    width: 212px;
+    height: 272px;
+    padding: 20px;
+  }
+`;
+
+export const CloseButton = styled.svg`
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
   stroke: var(--main_text_color);
+  cursor: pointer;
 `;

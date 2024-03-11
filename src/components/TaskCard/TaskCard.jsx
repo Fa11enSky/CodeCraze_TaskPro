@@ -1,13 +1,33 @@
 import React, { useState } from 'react';
 import { Tooltip } from 'react-tooltip';
-import { useDispatch } from 'react-redux';
-
-import './index.css';
+import { useDispatch, useSelector } from 'react-redux';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import { CardModal } from 'components/CardModal/CardModal/index';
 import TooltipOption from './TooltipOption/TooltipOption';
 import { deleteCard } from '../../redux/boards/operationsCards';
+import { selectedBoard } from '../../redux/boards/selectors';
+import {
+  CardBottom,
+  CardContentWrapper,
+  CardControlsButton,
+  CardControlsIcon,
+  CardControlsList,
+  CardDescription,
+  CardHR,
+  CardInfoHeader,
+  CardInfoItem,
+  CardInfoList,
+  CardInfoValue,
+  CardNotificationIcon,
+  CardTitle,
+  ColorTag,
+  FullCardWrapper,
+} from './TaskCard.styled';
+import Modal from 'components/Modal/Modal';
+import { getCurrentDate } from './services/getCurrentDate';
+import { parseDateToObject } from './services/parseDateToObject';
+import { formatDate } from './services/formatDate';
 
 /* Компонент TaskCard отримує об'єкт картки який включає:
 
@@ -17,43 +37,48 @@ description - string, опис картки.
 
 label - string, пріорітетність. Можливі значення without | low | medium | high.
 
-deadline - string(date-time), дедлайн картки. По замовчанню +1 день від поточної дати. Не допустима минула дата
+deadline - string(d/m/yyyy), дедлайн картки. По замовчанню +1 день від поточної дати. Не допустима минула дата
 
-id - string.
+_id - string.
 */
 
 const TaskCard = ({ cardData }) => {
-  const { title, description, label, deadline, id } = cardData;
+  let { title, description, label, deadline, _id } = cardData;
 
   const [showEditModal, setShowEditModal] = useState(false);
 
   const dispatch = useDispatch();
 
-  /* -------------------- TEST COLUMNS DATA --------------------*/
+  /* -------------------- FORMATTING DEADLINE --------------------*/
 
-  const testColumnsData = [
-    { id: 'column1 id', title: 'Column1' },
-    { id: 'column2 id', title: 'Column2' },
-    { id: 'column3 id', title: 'Column3' },
-  ];
+  deadline = formatDate(deadline.split(',')[0]);
 
-  /* -------------------- PICK A PRIORITY COLOR --------------------*/
+  /* -------------------- SELECT COLUMNS DATA --------------------*/
+
+  const { columns } = useSelector(selectedBoard);
+
+  /* -------------------- PICK A PRIORITY COLOR + RADIO NUMBER --------------------*/
 
   let cardColor = '';
+  let radio = '';
 
   switch (label) {
-    case 'Low':
+    case 'low':
       cardColor = '#8fa1d0';
+      radio = '1';
       break;
-    case 'Medium':
+    case 'medium':
       cardColor = '#e09cb5';
+      radio = '2';
       break;
-    case 'High':
+    case 'high':
       cardColor = '#bedbb0';
+      radio = '3';
       break;
 
     default:
       cardColor = 'gray';
+      radio = '4';
       break;
   }
 
@@ -63,86 +88,110 @@ const TaskCard = ({ cardData }) => {
     return setShowEditModal(!showEditModal);
   };
 
-  const removeCard = () => dispatch(deleteCard(id));
+  const removeCard = () => dispatch(deleteCard(_id));
 
-  /* -------------------- IS SHOW NOTIFICATION ICON (not ready yet) --------------------*/
-  const isDeadlineToday = deadline;
+  /* -------------------- IS SHOW NOTIFICATION ICON --------------------*/
+
+  const isDeadlineToday = deadline === getCurrentDate();
+
+  /* -------------------- CREATE INITIAL VALUES OBJ --------------------*/
+
+  const initValues = {
+    title,
+    description,
+    radio,
+    date: parseDateToObject(deadline),
+    id: _id,
+  };
 
   return (
-    <div className="card-full-wrapper">
-      <div style={{ background: `${cardColor}` }} className="color-tag"></div>
-      <div className="card-content-wrapper">
-        <div className="card-top">
-          <h3 className="card-title">{title}</h3>
-          <p className="card-description">{description}</p>
+    <FullCardWrapper>
+      <ColorTag style={{ background: `${cardColor}` }} />
+      <CardContentWrapper>
+        <div>
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
         </div>
-        <hr className="card-hr"></hr>
-        <div className="card-bottom">
-          <ul className="card-info-list">
-            <li className="card-info-item">
-              <h5 className="card-info-header">Prority</h5>
-              <p className="card-info-value">{label}</p>
-            </li>
-            <li className="card-info-item">
-              <h5 className="card-info-header">Deadline</h5>
-              <p className="card-info-value">{deadline}</p>
-            </li>
-          </ul>
-          <ul className="card-controls-list">
+        <CardHR />
+        <CardBottom>
+          <CardInfoList>
+            <CardInfoItem>
+              <CardInfoHeader>Priority</CardInfoHeader>
+              <CardInfoValue>{label}</CardInfoValue>
+            </CardInfoItem>
+            <CardInfoItem>
+              <CardInfoHeader>Deadline</CardInfoHeader>
+              <CardInfoValue>{deadline}</CardInfoValue>
+            </CardInfoItem>
+          </CardInfoList>
+          <CardControlsList>
             {isDeadlineToday && (
               <li>
-                <button type="button">
-                  <svg className="card-notification-icon">
+                <CardControlsButton>
+                  <CardNotificationIcon width={16} height={16}>
                     <use xlinkHref={`${sprite}#icon-bell`} />
-                  </svg>
-                </button>
+                  </CardNotificationIcon>
+                </CardControlsButton>
               </li>
             )}
             <li>
-              <button type="button" id="replace-tooltip">
-                <svg className="card-control">
+              <CardControlsButton id="replace-tooltip">
+                <CardControlsIcon width={16} height={16}>
                   <use xlinkHref={`${sprite}#icon-arrov_circle`} />
-                </svg>
-              </button>
+                </CardControlsIcon>
+              </CardControlsButton>
 
               {/* Tooltip */}
-
               <Tooltip
                 anchorSelect="#replace-tooltip"
                 place="bottom"
                 clickable="true"
-                className="replace-tooltip"
+                style={{
+                  backgroundColor: 'var(--background_task_item)',
+                  boxShadow: '0 0 10px 0 var(--calendar_help)',
+                  padding: 18,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 8,
+                }}
               >
-                {testColumnsData.map(column => (
+                {columns.map(column => (
                   <TooltipOption
-                    key={column.id}
-                    cardId={id}
+                    key={column._id}
+                    cardId={_id}
                     columnData={column}
                   />
                 ))}
               </Tooltip>
-
               {/* Tooltip */}
             </li>
             <li>
-              <button type="button" onClick={editCard}>
-                <svg className="card-control">
+              <CardControlsButton onClick={editCard}>
+                <CardControlsIcon width={16} height={16}>
                   <use xlinkHref={`${sprite}#icon-pencil`} />
-                </svg>
-              </button>
+                </CardControlsIcon>
+              </CardControlsButton>
             </li>
             <li>
-              <button type="button" onClick={removeCard}>
-                <svg className="card-control">
+              <CardControlsButton onClick={removeCard}>
+                <CardControlsIcon width={16} height={16}>
                   <use xlinkHref={`${sprite}#icon-trash`} />
-                </svg>
-              </button>
+                </CardControlsIcon>
+              </CardControlsButton>
             </li>
-          </ul>
-        </div>
-      </div>
-      {showEditModal && <CardModal />}
-    </div>
+          </CardControlsList>
+        </CardBottom>
+      </CardContentWrapper>
+      {showEditModal && (
+        <Modal onClose={editCard}>
+          <CardModal
+            initialValues={initValues}
+            newCard={false}
+            onClose={editCard}
+          />
+        </Modal>
+      )}
+    </FullCardWrapper>
   );
 };
 

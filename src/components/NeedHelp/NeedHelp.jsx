@@ -5,21 +5,29 @@ import * as Yup from 'yup';
 
 import { support } from '../../redux/support/operations';
 
+import sprite from '../../assets/svgSprite/iconsSprite.svg';
+
 import {
+  NeedHelpInner,
   NeedHelpInnerText,
   NeedHelpInnerForm,
   NeedHelpInnerEmail,
   NeedHelpInnerComment,
   NeedHelpInnerBtn,
+  CloseButton,
 } from './NeedHelp.styled';
 
-const NeedHelp = () => {
+const NeedHelp = ({ onClose }) => {
   const supportSchema = Yup.object().shape({
     email: Yup.string()
       .email('Please enter valid email')
       .required('Email is required!'),
     text: Yup.string().required('Comment is required!'),
   });
+
+  const handleClose = () => {
+    onClose();
+  };
 
   const dispatch = useDispatch();
 
@@ -48,7 +56,7 @@ const NeedHelp = () => {
       validationSchema={supportSchema}
       onSubmit={handleSubmit}
     >
-      <>
+      <NeedHelpInner>
         <NeedHelpInnerText className="NeedHelpInner__text">
           Need help
         </NeedHelpInnerText>
@@ -70,7 +78,10 @@ const NeedHelp = () => {
             Send
           </NeedHelpInnerBtn>
         </NeedHelpInnerForm>
-      </>
+        <CloseButton onClick={handleClose}>
+          <use href={`${sprite}#close`} />
+        </CloseButton>
+      </NeedHelpInner>
     </Formik>
   );
 };

@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ThemeContext } from '../../providers/themeProvider';
 import {
   Container,
@@ -17,6 +17,8 @@ import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import EditProfile from '../EditProfile/EditProfile';
 import { selectUser } from '../../redux/auth/selectors.js';
 import Modal from 'components/Modal/Modal';
+import { selectTheme } from '../../redux/theme/selectors';
+import { changeTheme } from '../../redux/theme/operations';
 
 const options = [
   { value: 'light', label: 'Light' },
@@ -27,19 +29,16 @@ const options = [
 const Header = ({ showSidebar, size }) => {
   const [, setTheme] = useContext(ThemeContext);
 
-  // console.log(theme);
-  // useEffect(() => {
-  //   window.localStorage.setItem('theme', JSON.stringify(theme.value));
-  // }, [theme]);
+  const dispatch = useDispatch();
+  const theme = useSelector(selectTheme);
 
-  // const currentTheme = JSON.parse(window.localStorage.getItem('theme'));
-  // console.log(currentTheme);
+  useEffect(() => {
+    setTheme({ value: theme });
+  }, [setTheme, theme]);
 
-  // setTheme(currentTheme);
-
-  // const [theme, setTheme] = useState(
-  //   return JSON.parse(window.localStorage.getItem('theme')) ?? 'Light'
-  // );
+  const dispatchTheme = ({ value }) => {
+    dispatch(changeTheme({ theme: value }));
+  };
 
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -109,7 +108,7 @@ const Header = ({ showSidebar, size }) => {
                   },
                 }),
               }}
-              onChange={setTheme}
+              onChange={dispatchTheme}
               options={options}
               placeholder="Theme"
             />

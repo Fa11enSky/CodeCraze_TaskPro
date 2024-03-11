@@ -1,78 +1,50 @@
 import React, { useState } from 'react';
-import {
-  ModalOverlay,
-  ModalContent,
-  CloseButton,
-  AddButton,
-  AddButtonText,
-  EditColumnTitle,
-  Input,
-} from './EditColumnModalstyles';
-
-const EditColumModal = ({ isOpen, onClose, onSubmit }) => {
-  const [inputValue, setInputValue] = useState('Text');
-
-  // if (!isOpen) return null;
-
-  const handleInputChange = e => {
-    setInputValue(e.target.value);
+import svg from '../../assets/svgSprite/iconsSprite.svg';
+import css from './styles.module.css';
+import { useDispatch } from 'react-redux';
+import { updateColumn } from '../../redux/boards/operationsColumns';
+const EditColumnModal = ({ columnId, onClose }) => {
+  const dispatch = useDispatch();
+  const [valueInput, setValueInput] = useState('');
+  const handleChange = ev => {
+    setValueInput(ev.target.value);
   };
-
-  const handleInputFocus = () => {
-    if (inputValue === 'Text') {
-      setInputValue('');
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!valueInput.length) {
+      return;
     }
+    dispatch(updateColumn([columnId, { title: valueInput }]));
+    setValueInput('');
+    e.target.reset();
+    onClose();
   };
-
-  const handleInputBlur = () => {
-    if (inputValue.trim() === '') {
-      setInputValue('Text');
-    }
-  };
-
   return (
-    <ModalOverlay onClick={onClose}>
-      <ModalContent onClick={e => e.stopPropagation()}>
-        <CloseButton onClick={onClose}>✕</CloseButton>
-        <EditColumnTitle>Edit column</EditColumnTitle>
-        <Input
+    <div className={css.modal}>
+      <button className={css.close_btn} onClick={onClose}>
+        <svg className={css.close_svg} width={18} height={18}>
+          <use xlinkHref={`${svg}#close`} />
+        </svg>
+      </button>
+      <p className={css.title}>Edit column</p>
+      <form onSubmit={handleSubmit}>
+        <input
+          onChange={handleChange}
+          name="title"
+          className={css.input}
           type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
+          placeholder="Title"
         />
-        <AddButton onClick={onSubmit}>
-          <div
-            style={{
-              border: '2px solid #161616',
-              borderRadius: '6px',
-              width: '28px',
-              height: '28px',
-              background: '#151515',
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="24"
-              height="24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-plus"
-            >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
+        <button type="submit" className={css.submBtn}>
+          <span className={css.svg_wrapper}>
+            <svg className={css.btn_plus_icon} width={14} height={14}>
+              <use xlinkHref={`${svg}#icon-plus`}></use>
             </svg>
-          </div>
-          <AddButtonText>Add</AddButtonText>
-        </AddButton>
-      </ModalContent>
-    </ModalOverlay>
+          </span>
+          Add
+        </button>
+      </form>
+    </div>
   );
 };
-
-export default EditColumModal;
+export default EditColumnModal;

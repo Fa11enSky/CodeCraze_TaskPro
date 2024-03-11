@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import data from '../../assets/backgroundIcons/data';
-import { createBoard } from '../../redux/boards/operationsBoards';
+import {
+  createBoard,
+  fetchAllBoard,
+} from '../../redux/boards/operationsBoards';
 
 import {
   NewBoardTitle,
@@ -22,6 +27,8 @@ import {
   Button,
   ContainerSvg,
   Svg,
+  ModalContent,
+  CloseButton,
 } from './CreateNewBoard.styled';
 
 const TitleSchema = Yup.object({
@@ -41,9 +48,17 @@ const CreateNewBoard = ({ onClose }) => {
     resolver: yupResolver(TitleSchema),
     mode: 'onChange',
   });
+
   const [selectedIcon, setSelectedIcon] = useState('project');
-  const [selectedBackgroundId, setSelectedBackgroundId] = useState('bgIcon');
+  const [selectedBackgroundId, setSelectedBackgroundId] = useState('null');
+
+  const existingBoardTitles = useSelector(state => state.boards.boards);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllBoard());
+  }, [dispatch]);
 
   const handleTitleChange = event => {
     setValue('title', event.target.value.toString());
@@ -60,24 +75,43 @@ const CreateNewBoard = ({ onClose }) => {
   };
 
   const handleCreateBoard = data => {
+    const { title } = data;
+
+    const isExist = existingBoardTitles.some(
+      item => item.title.trim() === title.trim()
+    );
+
+    if (isExist) {
+      toast.error(`${data.title} already exists!`, {
+        theme: 'colored',
+        autoClose: 2500,
+      });
+      return;
+    }
+
     dispatch(createBoard(data)).then(() => {
       setValue('title', '');
       setValue('icon', '');
       setValue('background', '');
       onClose();
     });
+
+    toast.success(`${data.title} has been successfully added to your boards!`, {
+      theme: 'colored',
+      autoClose: 2500,
+    });
   };
 
   const renderIcons = () => {
     const icons = [
-      'project',
-      'star',
-      'loading',
-      'puzzle',
-      'container',
-      'lightning',
-      'colors',
-      'hexagon',
+      'icon-project',
+      'icon-star',
+      'icon-loading',
+      'icon-puzzle',
+      'icon-container',
+      'icon-lightning',
+      'icon-colors',
+      'icon-hexagon',
     ];
 
     return icons.map(icon => (
@@ -103,34 +137,44 @@ const CreateNewBoard = ({ onClose }) => {
     ));
   };
 
+  const handleClose = () => {
+    onClose();
+  };
+
   return (
     <div>
-      <NewBoardTitle>New Board</NewBoardTitle>
-      <form onSubmit={handleSubmit(handleCreateBoard)}>
-        <Input
-          id="newBoardInput"
-          type="text"
-          placeholder="Title"
-          {...register('title')}
-          onChange={handleTitleChange}
-        />
-        <ErrorMessage>{errors.title?.message}</ErrorMessage>
+      <ModalContent>
+        <NewBoardTitle>New Board</NewBoardTitle>
+        <form onSubmit={handleSubmit(handleCreateBoard)}>
+          <Input
+            id="newBoardInput"
+            type="text"
+            placeholder="Title"
+            {...register('title')}
+            onChange={handleTitleChange}
+          />
+          <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
-        <IconTitle>Icons</IconTitle>
-        <IconWrap>{renderIcons()}</IconWrap>
+          <IconTitle>Icons</IconTitle>
+          <IconWrap>{renderIcons()}</IconWrap>
 
-        <BackgroundTitle>Background</BackgroundTitle>
-        <BgIcon>{renderBackgrounds()}</BgIcon>
+          <BackgroundTitle>Background</BackgroundTitle>
+          <BgIcon>{renderBackgrounds()}</BgIcon>
 
-        <Button type="submit">
-          <ContainerSvg>
-            <Svg width="14px" height="14px">
-              <use href={`${sprite}#plus`} />
-            </Svg>
-          </ContainerSvg>
-          Create
-        </Button>
-      </form>
+          <Button type="submit">
+            <ContainerSvg>
+              <Svg width="14px" height="14px">
+                <use href={`${sprite}#plus`} />
+              </Svg>
+            </ContainerSvg>
+            Create
+          </Button>
+        </form>
+
+        <CloseButton onClick={handleClose}>
+          <use href={`${sprite}#close`} />
+        </CloseButton>
+      </ModalContent>
     </div>
   );
 };

@@ -110,6 +110,7 @@
 }
 
 .custom-input {
+  position: relative;
   display: block;
   font-family: Poppins;
   font-size: 14px;
@@ -122,9 +123,49 @@
   border: none;
   padding: 0;
 
-  transition: color, 0.3s;
+  transition: opacity 0.3s;
   &:hover {
     opacity: 0.5;
-    color: var(--accent);
+  }
+  &:hover {
+    span {
+      &::before,
+      &::after {
+        transform: rotate(360deg);
+        transition: border-color, rotate, 0.3s ease-in-out;
+      }
+    }
+  }
+
+  span {
+    position: absolute;
+    top: -3px;
+    left: 115px;
+    width: 15px;
+    height: 16px;
+    border-radius: 50%;
+
+    background-color: inherit;
+    rotate: 225deg;
+
+    &::before {
+      content: ' ';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--accent);
+      border-width: 0 0 0 2px;
+      border-radius: 1px;
+    }
+
+    &::after {
+      content: ' ';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--accent);
+      border-width: 2px 0 0 0;
+      border-radius: 1px;
+    }
   }
 }

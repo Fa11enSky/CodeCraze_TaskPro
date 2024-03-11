@@ -3,6 +3,7 @@ import { useState } from "react";
 import DatePicker from "react-datepicker"
 import { format } from 'date-fns';
 import "./styles.css"
+import Modal from 'components/Modal/Modal';
 
 
 const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -28,21 +29,20 @@ export const ModifiedDatePicker = ({ onChange, date = new Date() }) => {
         e.preventDefault();
         setIsOpen(!isOpen);
     };
-    const utcDate = new Date(startDate.getTime() + 60000);
 
-    console.log('UTC', utcDate);
     return (
         <>
             <button className="custom-input" onClick={handleClick}>
-                {startDate.getDate() === new Date().getDate() && <p>Today, {format(startDate, "MMMM d")}</p>}
-                {startDate.getDate() !== new Date().getDate() && <p>{dayOfWeek[startDate.getDay()]}, {format(startDate, "MMMM d")}</p>}
+                {startDate.getDate() === new Date().getDate() && <><p>Today, {format(startDate, "MMMM d")}</p><span></span> </>}
+                {startDate.getDate() !== new Date().getDate() && <><p>{dayOfWeek[startDate.getDay()]}, {format(startDate, "MMMM d")}</p><span></span> </>}
             </button>
             {isOpen && (
-                <DatePicker id='date_picker'
-                    minDate={new Date()}
-                    calendarStartDay={1}
-                    selected={startDate}
-                    onChange={handleChange} inline />
+                <Modal onClose={() => setIsOpen(!isOpen)}>
+                    <DatePicker id='date_picker'
+                        minDate={new Date()}
+                        calendarStartDay={1}
+                        selected={startDate}
+                        onChange={handleChange} inline /></Modal>
             )}
         </>
     );
