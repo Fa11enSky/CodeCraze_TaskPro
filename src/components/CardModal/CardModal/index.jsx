@@ -1,11 +1,23 @@
 import { Formik, Form } from 'formik';
 import { useState } from 'react';
 import { ModifiedDatePicker } from '../DatePicker';
-import { CloseButton, DescriptionTextArea, H3, Layout, ModalDiv, RadioBtn, RadioButtonDiv, RadioLabel, StyledDiv, StyledP, SubmitButton, SubmitSpan, TitleInput } from './CardModal.styled.js'
+import {
+  CloseButton,
+  DescriptionTextArea,
+  H3,
+  Layout,
+  ModalDiv,
+  RadioBtn,
+  RadioButtonDiv,
+  RadioLabel,
+  StyledDiv,
+  StyledP,
+  SubmitButton,
+  SubmitSpan,
+  TitleInput,
+} from './CardModal.styled.js';
 import { useDispatch } from 'react-redux';
 import { createCard, updateCard } from '../../../redux/boards/operationsCards';
-
-
 
 // ** Card modal component
 // ** Компонент створює динамічну розмітку модального вікна в залежності від пропсів.
@@ -16,100 +28,97 @@ import { createCard, updateCard } from '../../../redux/boards/operationsCards';
 // **   date - об'єкт дати (сьогодняшня дата за замовч)
 // **   newCard - булеве значення (true за замовч)
 
+export const CardModal = ({
+  initialValues = {
+    title: '',
+    description: '',
+    radio: '4',
+    date: new Date(),
+    id: null,
+  },
+  newCard = true,
+  onClose,
+}) => {
+  const { title, description, date, radio, id } = initialValues;
 
+  const [selectedDate, setSelectedDate] = useState(date);
+  const dispatch = useDispatch();
 
-export const CardModal = ({ initialValues = { title: '', description: '', radio: "4", date: new Date(), id: null }, newCard = true, onClose }) => {
-    const { title, description, date, radio, id } = initialValues
+  const handleDateChange = date => {
+    setSelectedDate(date);
+  };
 
-    const [selectedDate, setSelectedDate] = useState(date);
-    const dispatch = useDispatch()
+  const handleSubmit = values => {
+    const { title, description, radio } = values;
+    const newCardData = { title, description, radio, selectedDate };
 
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-    };
+    if (newCard) dispatch(createCard([id, newCardData]));
 
-    const handleSubmit = (values) => {
-        const { title, description, radio } = values;
-        const newCardData = { title, description, radio, selectedDate }
+    if (!newCard) dispatch(updateCard([id, newCardData]));
+  };
 
-        if (newCard) dispatch(createCard([id, newCardData]))
+  return (
+    <ModalDiv>
+      <StyledDiv>
+        {newCard ? <H3>Add card</H3> : <H3>Edit card</H3>}
+        <CloseButton onClick={onClose}>
+          <span></span>
+        </CloseButton>
+      </StyledDiv>
 
-        if (!newCard) dispatch(updateCard([id, newCardData]))
-    }
+      <Formik
+        initialValues={{ title, description, radio }}
+        onSubmit={values => handleSubmit(values)}
+      >
+        <Form>
+          <TitleInput id="title" name="title" placeholder="Title" />
+          <DescriptionTextArea
+            id="description"
+            name="description"
+            placeholder="Description"
+            component="textarea"
+          />
 
-    return (<>
-        <ModalDiv>
-            {newCard && <StyledDiv>
-                <H3>Add card</H3>
-                <CloseButton onClick={onClose}>
-                    <span></span>
-                </CloseButton></StyledDiv>}
-            {!newCard && <H3>Edit card</H3>}
+          <Layout>
+            <StyledP>Label color</StyledP>
+            <RadioButtonDiv>
+              <RadioLabel className="blue">
+                <RadioBtn type="radio" name="radio" value="1" />
+                <span></span>
+              </RadioLabel>
 
-            <Formik
-                initialValues={{ title, description, radio }}
-                onSubmit={(values) => handleSubmit(values)}
-            >
+              <RadioLabel className="red">
+                <RadioBtn type="radio" name="radio" value="2" />
+                <span></span>
+              </RadioLabel>
 
-                <Form>
-                    <TitleInput id="title" name="title" placeholder="Title" />
-                    <DescriptionTextArea id="description" name="description" placeholder="Description" component="textarea" />
+              <RadioLabel className="green">
+                <RadioBtn type="radio" name="radio" value="3" />
+                <span></span>
+              </RadioLabel>
 
-                    <Layout>
-                        <StyledP >Label color</StyledP>
-                        <RadioButtonDiv>
-
-                            <RadioLabel className="blue">
-                                <RadioBtn
-                                    type="radio"
-                                    name="radio"
-                                    value="1"
-                                /><span></span>
-                            </RadioLabel>
-
-                            <RadioLabel className="red">
-                                <RadioBtn
-                                    type="radio"
-                                    name="radio"
-                                    value="2"
-                                /><span></span>
-                            </RadioLabel>
-
-                            <RadioLabel className="green">
-                                <RadioBtn
-                                    type="radio"
-                                    name="radio"
-                                    value="3"
-                                /><span></span>
-                            </RadioLabel>
-
-                            <RadioLabel className="grey">
-                                <RadioBtn
-                                    type="radio"
-                                    name="radio"
-                                    value="4"
-                                /><span></span>
-                            </RadioLabel>
-                        </RadioButtonDiv>
-
-                    </Layout>
-                    <Layout>
-                        <StyledP htmlFor="date_picker">Deadline</StyledP>
-                        <span></span>
-                        <ModifiedDatePicker
-                            onChange={handleDateChange}
-                            date={selectedDate}
-                            newCard={newCard}
-                        />
-                    </Layout>
-                    <SubmitButton type="submit">
-                        <SubmitSpan className='btn_layout'></SubmitSpan>
-                        {newCard && <p>Add</p>}
-                        {!newCard && <p>Edit</p>}
-                    </SubmitButton>
-                </Form>
-            </Formik>
-        </ModalDiv>
-    </>
-    );
+              <RadioLabel className="grey">
+                <RadioBtn type="radio" name="radio" value="4" />
+                <span></span>
+              </RadioLabel>
+            </RadioButtonDiv>
+          </Layout>
+          <Layout>
+            <StyledP htmlFor="date_picker">Deadline</StyledP>
+            <span></span>
+            <ModifiedDatePicker
+              onChange={handleDateChange}
+              date={selectedDate}
+              newCard={newCard}
+            />
+          </Layout>
+          <SubmitButton type="submit">
+            <SubmitSpan className="btn_layout"></SubmitSpan>
+            {newCard && <p>Add</p>}
+            {!newCard && <p>Edit</p>}
+          </SubmitButton>
+        </Form>
+      </Formik>
+    </ModalDiv>
+  );
 };
