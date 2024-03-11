@@ -11,13 +11,27 @@
 }
 .board_title {
   padding-top: 14px;
-  margin-bottom: 39px;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
   color: var(--main_text_color);
 }
-
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 39px;
+}
+@media screen and (min-width: 768px) {
+  .headerWrapper {
+    margin-bottom: 26px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .headerWrapper {
+    margin-bottom: 10px;
+  }
+}
 .column_list {
   display: flex;
   gap: 18px;
@@ -32,7 +46,9 @@
   .task_list_container {
     padding-bottom: 32px;
   }
-  .board_title{font-size: 18px;}
+  .board_title {
+    font-size: 18px;
+  }
 }
 @media screen and (min-width: 1440px) {
   .task_list_container {
