@@ -1,6 +1,7 @@
 import { Field, Formik } from 'formik';
-import { useSelector } from 'react-redux';
-//import Modal from 'components/Modal/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { useMemo, useState } from 'react';
+
 import {
   AvatarContainer,
   AvatarImageContainer,
@@ -9,6 +10,7 @@ import {
   InputContainer,
   PasswordInputContainer,
   ShowHideButton,
+  StyledAvatarErrorMessage,
   StyledErrorMessage,
   SubmitButton,
   UploadAvatarButton,
@@ -16,26 +18,43 @@ import {
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import { selectUser } from '../../redux/auth/selectors';
 import EditProfileSchema from './EditProfileSchema';
-import { useState } from 'react';
+import { updateUser } from '../../redux/auth/operations';
+
+const getInitialValues = user => {
+  console.log('initial values');
+
+  return {
+    name: user?.name || '',
+    email: '',
+    avatar: '',
+    password: '',
+
+    emailPlaceholder: user?.email || 'Email',
+    avatarPreview: '',
+  };
+};
 
 const EditProfile = () => {
+  const dispatch = useDispatch();
+
   const user = useSelector(selectUser);
 
+  const initialValues = useMemo(() => getInitialValues(user), [user]);
+
   const [showPassword, setShowPassword] = useState(false);
+
   const togglePasswordVisibility = () => {
     setShowPassword(prev => !prev);
   };
 
-  const initialValues = {
-    avatar: null,
-    name: '',
-    email: '',
-    password: '',
-  };
+  const handleSubmit = ({ avatar, name, email, password }, { resetForm }) => {
+    const formData = new FormData();
+    avatar && formData.append('avatar', avatar);
+    name && formData.append('name', name);
+    email && formData.append('email', email);
+    password && formData.append('password', password);
 
-  const handleSubmit = (values, { resetForm }) => {
-    alert(JSON.stringify(values));
-    resetForm();
+    dispatch(updateUser({ body: formData, cb: resetForm }));
   };
 
   return (
@@ -47,73 +66,108 @@ const EditProfile = () => {
         initialValues={initialValues}
         validationSchema={EditProfileSchema}
         onSubmit={handleSubmit}
+        enableReinitialize
       >
-        <EditProfileForm autoComplete="off" noValidate>
-          <InputContainer data-avatar>
-            <AvatarContainer>
-              <AvatarImageContainer>
-                {user.avatar ? (
-                  <img src="" alt="User avatar" />
-                ) : (
-                  <svg>
-                    <use href={`${sprite}#icon-user_default`} />
-                  </svg>
-                )}
-              </AvatarImageContainer>
+        {({ values, setValues, dirty }) => {
+          return (
+            <EditProfileForm
+              autoComplete="off"
+              noValidate
+              encType="multipart/form-data"
+            >
+              <InputContainer data-avatar>
+                <AvatarContainer>
+                  <AvatarImageContainer>
+                    {values.avatarPreview || user.avatarUrl ? (
+                      <img
+                        src={values.avatarPreview || user.avatarUrl}
+                        alt="User avatar"
+                      />
+                    ) : (
+                      <svg>
+                        <use href={`${sprite}#icon-user_default`} />
+                      </svg>
+                    )}
+                  </AvatarImageContainer>
 
-              <Field
-                id="avatar"
-                name="avatar"
-                type="file"
-                accept="image/*"
-                hidden
-              />
-              <label htmlFor="avatar">
-                <UploadAvatarButton>
-                  <svg>
-                    <use href={`${sprite}#plus`} />
-                  </svg>
-                </UploadAvatarButton>
-              </label>
-            </AvatarContainer>
-            <StyledErrorMessage name="avatar" component="span" />
-          </InputContainer>
+                  <Field
+                    id="file"
+                    name="file"
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    onChange={event => {
+                      setValues({
+                        ...values,
+                        avatar: event.currentTarget.files[0],
+                        avatarPreview: URL.createObjectURL(
+                          event.currentTarget.files[0]
+                        ),
+                      });
+                    }}
+                  />
+                  <label htmlFor="file">
+                    <UploadAvatarButton>
+                      <svg>
+                        <use href={`${sprite}#plus`} />
+                      </svg>
+                    </UploadAvatarButton>
+                  </label>
+                </AvatarContainer>
 
-          <InputContainer>
-            <Field id="name" name="name" type="text" placeholder="Name" />
-            <StyledErrorMessage name="name" component="span" />
-          </InputContainer>
+                <StyledAvatarErrorMessage name="avatar" component="span" />
+              </InputContainer>
 
-          <InputContainer>
-            <Field id="email" name="email" type="email" placeholder="Email" />
-            <StyledErrorMessage name="email" component="span" />
-          </InputContainer>
+              <InputContainer>
+                <Field id="name" name="name" type="text" placeholder="Name" />
 
-          <InputContainer data-last-child>
-            <PasswordInputContainer>
-              <Field
-                id="password"
-                name="password"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Password"
-              />
-              <ShowHideButton type="button" onClick={togglePasswordVisibility}>
-                {showPassword ? (
-                  <svg width="18" height="18" fill="none">
-                    <use href={`${sprite}#icon-vector`} />
-                  </svg>
-                ) : (
-                  <svg width="18" height="18" fill="none">
-                    <use href={`${sprite}#icon-eye`} />
-                  </svg>
-                )}
-              </ShowHideButton>
-            </PasswordInputContainer>
-            <StyledErrorMessage name="password" component="span" />
-          </InputContainer>
+                <StyledErrorMessage name="name" component="span" />
+              </InputContainer>
 
-          <SubmitButton type="submit">Send</SubmitButton>
-        </EditProfileForm>
+              <InputContainer>
+                <Field
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder={values.emailPlaceholder}
+                />
+
+                <StyledErrorMessage name="email" component="span" />
+              </InputContainer>
+
+              <InputContainer data-last-child>
+                <PasswordInputContainer>
+                  <Field
+                    id="password"
+                    name="password"
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="Password"
+                  />
+                  <ShowHideButton
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? (
+                      <svg width="18" height="18" fill="none">
+                        <use href={`${sprite}#icon-vector`} />
+                      </svg>
+                    ) : (
+                      <svg width="18" height="18" fill="none">
+                        <use href={`${sprite}#icon-eye`} />
+                      </svg>
+                    )}
+                  </ShowHideButton>
+                </PasswordInputContainer>
+
+                <StyledErrorMessage name="password" component="span" />
+              </InputContainer>
+
+              <SubmitButton type="submit" disabled={!dirty}>
+                Send
+              </SubmitButton>
+            </EditProfileForm>
+          );
+        }}
       </Formik>
     </EditProfileContent>
     // </Modal>
