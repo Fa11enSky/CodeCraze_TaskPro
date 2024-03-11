@@ -15,7 +15,7 @@ const ScreensPageLayout = ({ windowSize, burgerClick }) => {
     if (activeBoard) {
       navigate(activeBoard);
     }
-  },[])
+  },[activeBoard, navigate])
 
   return (
     <div className={css.screens_page_layout}>
