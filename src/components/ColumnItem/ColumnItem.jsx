@@ -6,10 +6,12 @@ import AddCardBtn from 'components/AddCardBtn/AddCardBtn';
 import Modal from 'components/Modal/Modal';
 import EditColumModal from 'components/EditColumnModal/EditColumnModal';
 import { CardModal } from 'components/CardModal/CardModal';
+import { useDispatch } from 'react-redux';
+import { deleteColumn } from '../../redux/boards/operationsColumns';
 
 const ColumnItem = ({ column }) => {
-
-  const { title, cards } = column;
+const dispatch = useDispatch()
+  const { title, cards, _id } = column;
   const [isRenameColumnOpen, setIsRenameColumnOpen] = useState(false);
   const toggleEdit = () => {
     setIsRenameColumnOpen(!isRenameColumnOpen);
@@ -24,12 +26,12 @@ const ColumnItem = ({ column }) => {
         <div className={css.column_header_wrapper}>
           <h3 className={css.column_title}>{title}</h3>
           <div className={css.title_icons_wrapper}>
-            <button onClick={toggleEdit} className={css.culumn_title_btn}>
+            <button  onClick={toggleEdit} className={css.culumn_title_btn}>
               <svg className={css.icon_el} width={16} height={16}>
                 <use xlinkHref={`${iconSprite}#icon-pencil`} />
               </svg>
             </button>
-            <button className={css.culumn_title_btn}>
+            <button onClick={()=>{dispatch(deleteColumn(_id))}} className={css.culumn_title_btn}>
               <svg className={css.icon_el} width={16} height={16}>
                 <use xlinkHref={`${iconSprite}#icon-trash`} />
               </svg>
@@ -48,7 +50,7 @@ const ColumnItem = ({ column }) => {
         <AddCardBtn click={toggleAddCard} />
         {isRenameColumnOpen && (
           <Modal onClose={toggleEdit}>
-            <EditColumModal onClose={toggleEdit} />
+            <EditColumModal columnId={_id} onClose={toggleEdit} />
           </Modal>
         )}
         {isAddCardOpen && (
