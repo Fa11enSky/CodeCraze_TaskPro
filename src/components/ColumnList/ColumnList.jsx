@@ -4,10 +4,12 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchSingleBoard } from '../../redux/boards/operationsBoards';
-import { selectFilter, selectedBoard } from '../../redux/boards/selectors';
-import AddColumnModal from 'components/AddColumnModal/AddColumnModal';
-import Modal from 'components/Modal/Modal';
-import { setFilter } from '../../redux/boards/filterSlice';
+import { selectedBoard } from '../../redux/boards/selectors';
+import Modal from '../Modal/Modal';
+import FilterModal from 'components/FilterModal/FilterModal';
+import AddColumnButton from 'components/AddColumnButton/AddColumnButton';
+import OpenFiltersButton from 'components/OpenFiltersBtn/OpenFiltersBtn';
+import AddColumnModal from '../AddColumnModal/AddColumModal';
 const ColumnsList = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const board = useSelector(selectedBoard);
@@ -17,10 +19,12 @@ const ColumnsList = () => {
   const bgNumber = background || '1';
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
   const toggleAddColumn = () => {
-    setIsAddColumnOpen(!isAddColumnOpen)
+  setIsAddColumnOpen(!isAddColumnOpen)
   }
-
-
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
+  };
+  
   useEffect(() => {
     dispatch(fetchSingleBoard(params.boardId));
   }, [dispatch, params.boardId]);
