@@ -16,7 +16,7 @@ const ColumnsList = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const { title, columns, background } = board;
-  const bgNumber = background || '1';
+  const bgNumber = background;
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
   const toggleAddColumn = () => {
   setIsAddColumnOpen(!isAddColumnOpen)
@@ -24,11 +24,9 @@ const ColumnsList = () => {
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
   };
-  
   useEffect(() => {
     dispatch(fetchSingleBoard(params.boardId));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, params.boardId]);
 
   const isRetina = () => {
     if (window.devicePixelRatio > 1) {
@@ -47,12 +45,13 @@ const ColumnsList = () => {
     }
     return 'desktop';
   };
-
   const device = setDevice();
   const ratio = isRetina();
-  const bgurl = require(`../../assets/backgrounds/allBg/${device}_background_${
+  console.log(bgNumber)
+  let bgurl;
+  if(bgNumber){ bgurl = require(`../../assets/backgrounds/allBg/${device}_background_${
     bgNumber + ratio
-  }.jpg`);
+  }.jpg`);}
 
   return (
     <div
