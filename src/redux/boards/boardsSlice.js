@@ -9,7 +9,7 @@ import {
   fetchSingleBoard,
   updateBoard,
 } from './operationsBoards';
-import { addColumn, deleteColumn, updateColumn } from './operationsColumns';
+import { addColumn, deleteColumn } from './operationsColumns';
 import {
   createCard,
   deleteCard,
@@ -72,14 +72,6 @@ export const allBoardsSlice = createSlice({
         state.selectedBoard.columns.push(action.payload);
       })
       .addCase(addColumn.rejected, handleError)
-      .addCase(updateColumn.pending, hadlePending)
-      .addCase(updateColumn.fulfilled, (state, action) => {
-        const idx = state.selectedBoard.columns.findIndex(
-          el => el._id === action.payload._id
-        );
-        state.selectedBoard.columns.splice(idx, 1, action.payload);
-      })
-      .addCase(updateColumn.rejected, handleError)
       .addCase(deleteColumn.pending, hadlePending)
       .addCase(deleteColumn.fulfilled, (state, action) => {
         const idx = state.selectedBoard.columns.findIndex(
