@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   background: #1f1f1f;
   border-radius: 8px;
   right: 24px;
-  top: 14%;
+  /* top: 14%; */
 `;
 
 export const Button = styled.button`
@@ -58,11 +58,10 @@ export const ModalWrapper = styled.div`
 export const ModalContent = styled.div`
   border: 1px solid rgba(190, 219, 176, 0.5);
   border-radius: 8px;
-  width: 380px;
-  height: 234px;
-  background: #151515;
-  position: relative;
   width: 300px;
+  height: 234px;
+  background-color: var(--background_task_item);
+  position: relative;
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
@@ -78,7 +77,7 @@ export const ModalTitle = styled.span`
   font-size: 18px;
   line-height: 27px;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: var(--main_text_color);
   left: 24px;
   top: 24px;
 `;
@@ -104,7 +103,7 @@ export const ModalText = styled.span`
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: var(--main_text_color);
   margin-bottom: 14px;
 `;
 
@@ -121,7 +120,17 @@ export const ModalShowAll = styled.span`
   line-height: 18px;
   letter-spacing: -0.02em;
   text-decoration-line: underline;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--light_text);
+  &:hover {
+    color: var(--accent);
+  }
+`;
+
+export const CircleSvg = styled.svg`
+  width: 14px;
+  height: 14px;
+  color: ${props =>
+    props.theme === 'Dark' ? 'rgba(255, 255, 255, 0.5)' : '#fff'};
 `;
 
 export const ModalPriorities = styled.div`
@@ -148,19 +157,27 @@ export const PriorityCircle = styled.svg`
 `;
 
 export const PriorityCircleFill = styled.circle`
-  fill: ${props => props.fillColor || 'rgba(255, 255, 255, 0.3)'};
+  fill: ${props => props.fillColor || 'rgba(255, 255, 255, 0.5)'};
 `;
 
 export const PriorityCircleStroke = styled.circle`
-  stroke: ${props => props.strokeColor || 'rgba(255, 255, 255, 0.3)'};
+  stroke: ${props => props.strokeColor || 'rgba(255, 255, 255, 0.5)'};
   stroke-width: 1px;
+`;
+
+export const PriorityCircleWithout = styled.div`
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
 `;
 
 export const PriorityCircleLow = styled.div`
   width: 110px;
   height: 18px;
   border-radius: 100%;
-  fill: rgba(255, 255, 255, 0.3);
+  fill: rgba(255, 255, 255, 0.5);
 `;
 
 export const PriorityCircleMedium = styled.div`
@@ -175,11 +192,6 @@ export const PriorityCircleHigh = styled.div`
   height: 18px;
   border-radius: 100%;
   fill: #bedbb0;
-`;
-
-export const CircleSvg = styled.svg`
-  width: 14px;
-  height: 14px;
 `;
 
 export const PriorityText = styled.span`

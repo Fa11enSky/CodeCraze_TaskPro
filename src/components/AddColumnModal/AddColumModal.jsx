@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import svg from '../../assets/svgSprite/iconsSprite.svg';
 import css from './styles.module.css';
 import { useDispatch } from 'react-redux';
-import { updateColumn } from '../../redux/boards/operationsColumns';
-const EditColumnModal = ({ columnId, onClose }) => {
+import { addColumn } from '../../redux/boards/operationsColumns';
+import { useParams } from 'react-router';
+const AddColumnModal = ({ onClose }) => {
+  const { boardId } = useParams();
   const dispatch = useDispatch();
   const [valueInput, setValueInput] = useState('');
   const handleChange = ev => {
@@ -14,7 +16,7 @@ const EditColumnModal = ({ columnId, onClose }) => {
     if (!valueInput.length) {
       return;
     }
-    dispatch(updateColumn([columnId, { title: valueInput }]));
+    dispatch(addColumn([boardId, { title: valueInput }]));
     setValueInput('');
     e.target.reset();
     onClose();
@@ -26,7 +28,7 @@ const EditColumnModal = ({ columnId, onClose }) => {
           <use xlinkHref={`${svg}#close`} />
         </svg>
       </button>
-      <p className={css.title}>Edit column</p>
+      <p className={css.title}>Add column</p>
       <form onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
@@ -47,4 +49,4 @@ const EditColumnModal = ({ columnId, onClose }) => {
     </div>
   );
 };
-export default EditColumnModal;
+export default AddColumnModal;
