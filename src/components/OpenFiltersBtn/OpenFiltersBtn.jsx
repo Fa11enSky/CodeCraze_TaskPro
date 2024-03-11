@@ -1,8 +1,8 @@
 // OpenFiltersButton.jsx
 import React, { useState } from 'react';
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
-import { Wrapper, Button, SvgIcon, Text } from './ColumnFiltersStyles';
-import ColumnFiltersModal from './ColumnFiltersModal';
+import { Wrapper, Button, SvgIcon, Text } from './OpenFiltersBtn.styled';
+import ColumnFiltersModal from './OpenFiltersBtn.styled';
 // import { Container } from './ColumnFiltersModal';
 
 const OpenFiltersButton = ({ onFilterPriority }) => {
