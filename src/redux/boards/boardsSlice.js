@@ -77,7 +77,7 @@ export const allBoardsSlice = createSlice({
         const idx = state.selectedBoard.columns.findIndex(
           el => el._id === action.payload._id
         );
-        state.selectedBoard.columns.splice(idx, 1, action.payload);
+        state.selectedBoard.columns[idx].title=action.payload.title;
       })
       .addCase(updateColumn.rejected, handleError)
       .addCase(deleteColumn.pending, hadlePending)
