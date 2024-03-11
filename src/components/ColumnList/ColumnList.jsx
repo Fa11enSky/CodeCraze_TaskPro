@@ -9,7 +9,9 @@ import AddColumnModal from '../AddColumnModal/AddColumModal';
 import Modal from '../Modal/Modal';
 import AddColumnButton from '../AddColumnButton/AddColumnButton';
 import OpenFiltersButton from '../OpenFiltersBtn/OpenFiltersBtn';
+import FilterModal from '../FilterModal/FilterModal';
 const ColumnsList = () => {
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
   const board = useSelector(selectedBoard);
   const params = useParams();
   const dispatch = useDispatch();
@@ -18,7 +20,11 @@ const ColumnsList = () => {
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
   const toggleAddColumn = () => {
   setIsAddColumnOpen(!isAddColumnOpen)
-}
+  }
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen)
+  }
+  
   useEffect(() => {
     dispatch(fetchSingleBoard(params.boardId));
   }, [dispatch, params.boardId]);
@@ -54,7 +60,7 @@ const ColumnsList = () => {
     >
       <div className={css.headerWrapper}>
         <h4 className={css.board_title}>{title}</h4>
-        <OpenFiltersButton/>
+        <OpenFiltersButton click={toggleFilter}/>
       </div>
       {board.columns && board.columns[0]._id ? (
         <>
@@ -75,6 +81,7 @@ const ColumnsList = () => {
           <AddColumnModal onClose={toggleAddColumn} />
         </Modal>
       )}
+      {isFilterOpen && <Modal onClose={toggleFilter}><FilterModal onClose={ toggleFilter} /></Modal>}
     </div>
   );
 };
