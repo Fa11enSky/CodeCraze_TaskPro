@@ -16,7 +16,7 @@ const ColumnsList = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const { title, columns, background } = board;
-  const bgNumber = background || '1';
+  const bgNumber = background;
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
   const toggleAddColumn = () => {
   setIsAddColumnOpen(!isAddColumnOpen)
@@ -45,12 +45,13 @@ const ColumnsList = () => {
     }
     return 'desktop';
   };
-console.log('board.columns', board.columns)
   const device = setDevice();
   const ratio = isRetina();
-  const bgurl = require(`../../assets/backgrounds/allBg/${device}_background_${
+  console.log(bgNumber)
+  let bgurl;
+  if(bgNumber){ bgurl = require(`../../assets/backgrounds/allBg/${device}_background_${
     bgNumber + ratio
-  }.jpg`);
+  }.jpg`);}
 
   return (
     <div
@@ -65,7 +66,6 @@ console.log('board.columns', board.columns)
         <>
           <ul className={css.column_list}>
             {columns.map(el => {
-              console.log('el', el)
               return <ColumnItem key={el._id} column={el} />;
             })}
             <li>

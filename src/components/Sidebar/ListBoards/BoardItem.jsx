@@ -30,7 +30,7 @@ const BoardItem = ({ isActive, title, icon, id }) => {
   };
 
   return (
-    <Link to={id}>
+    <Link to={`/home/${id}`}>
       <BoardWrapper $isActive={isActive}>
         <TitleWrapper $isActive={isActive}>
           <BoardIcon $isActive={isActive}>
