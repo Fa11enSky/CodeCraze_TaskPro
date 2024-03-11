@@ -42,7 +42,6 @@ const HomePage = () => {
         </BackDropToSidebar>
       )}
       {size >= 1440 && <Sidebar />}
-      {/* <Link to="65ec5049fbc1f59b3d95acb2">dfdasfdadfa</Link> */}
       <ScreensPageLayout windowSize={size} burgerClick={sidebarToggle}>
         <ColumnsList />
       </ScreensPageLayout>

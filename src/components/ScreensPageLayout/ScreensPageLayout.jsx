@@ -15,14 +15,14 @@ const ScreensPageLayout = ({ windowSize, burgerClick }) => {
     if (activeBoard) {
       navigate(activeBoard);
     }
-  },[activeBoard, navigate])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   return (
     <div className={css.screens_page_layout}>
       <Header size={windowSize} showSidebar={burgerClick} />
 
       {isBoards.length===0?<ColumnListVoid />:<Outlet />}
-      {/* <ColumnListVoid/> */}
     </div>
   );
 };

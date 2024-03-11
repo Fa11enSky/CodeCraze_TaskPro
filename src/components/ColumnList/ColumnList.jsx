@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchSingleBoard } from '../../redux/boards/operationsBoards';
-
 import AddColumnModal from '../AddColumnModal/AddColumModal';
 import Modal from '../Modal/Modal';
 import AddColumnButton from '../AddColumnButton/AddColumnButton';
@@ -19,7 +18,7 @@ const ColumnsList = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const { title, columns, background } = board;
-  const bgNumber = background || '1';
+  const bgNumber = background;
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
 
   const toggleAddColumn = () => {
@@ -32,8 +31,7 @@ const ColumnsList = () => {
 
   useEffect(() => {
     dispatch(fetchSingleBoard(params.boardId));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, params.boardId]);
 
 
   const isRetina = () => {
@@ -53,11 +51,13 @@ const ColumnsList = () => {
     }
     return 'desktop';
   };
-
   const device = setDevice();
   const ratio = isRetina();
-  const bgurl = require(`../../assets/backgrounds/allBg/${device}_background_${bgNumber + ratio
-    }.jpg`);
+
+  let bgurl;
+  if(bgNumber){ bgurl = require(`../../assets/backgrounds/allBg/${device}_background_${
+    bgNumber + ratio
+  }.jpg`);}
 
   return (
     <div
