@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import css from './styles.module.css';
 import svg from '../../assets/svgSprite/iconsSprite.svg';
+import { useDispatch } from 'react-redux';
+import { setFilter } from '../../redux/boards/filterSlice';
 const FilterModal = ({ onClose }) => {
-  const [, setValue] = useState(1);
+
+  const dispatch = useDispatch()
+
   const handleChange = ev => {
-    setValue(ev.target.value);
+    dispatch(setFilter(ev.target.value))
+
   };
+
+  const resetFilter = () => {
+    dispatch(setFilter("all"))
+  }
+
   return (
     <div className={css.filter}>
       <button onClick={onClose} className={css.close}>
@@ -17,15 +27,15 @@ const FilterModal = ({ onClose }) => {
       <hr className={css.hr} />
       <div className={css.title_wrapper}>
         <p className={css.label_title}>Label color</p>
-        <button className={css.show_all_btn}>Show all</button>
+        <button onClick={resetFilter} className={css.show_all_btn}>Show all</button>
       </div>
       <label className={css.label}>
         <input
           onChange={handleChange}
           className={css.input}
           type="radio"
-          name="radio"
-          value={1}
+          name="label"
+          value="without"
         />
         <div className={css.grey}>
           <span></span>
@@ -37,8 +47,8 @@ const FilterModal = ({ onClose }) => {
           onChange={handleChange}
           className={css.input}
           type="radio"
-          name="radio"
-          value={2}
+          name="label"
+          value="low"
         />
         <div className={css.blue}>
           <span></span>
@@ -50,8 +60,8 @@ const FilterModal = ({ onClose }) => {
           onChange={handleChange}
           className={css.input}
           type="radio"
-          name="radio"
-          value={3}
+          name="label"
+          value="medium"
         />
         <div className={css.red}>
           <span></span>
@@ -63,8 +73,8 @@ const FilterModal = ({ onClose }) => {
           onChange={handleChange}
           className={css.input}
           type="radio"
-          name="radio"
-          value={4}
+          name="label"
+          value="high"
         />
         <div className={css.green}>
           <span></span>
