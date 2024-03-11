@@ -19,8 +19,7 @@ const ColumnsList = () => {
 }
   useEffect(() => {
     dispatch(fetchSingleBoard(params.boardId));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, params.boardId]);
 
   const isRetina = () => {
     if (window.devicePixelRatio > 1) {
