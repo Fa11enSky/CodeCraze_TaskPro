@@ -67,7 +67,7 @@ const CreateHelpButton = () => {
       </HelpContainer>
       {isModalOpen && (
         <Modal onClose={closeModalHelp}>
-          <NeedHelp />
+          <NeedHelp onClose={closeModalHelp} />
         </Modal>
       )}
     </>

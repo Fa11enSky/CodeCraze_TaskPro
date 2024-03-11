@@ -1,5 +1,20 @@
 import styled from 'styled-components';
 
+const NeedHelpInner = styled('div')`
+  position: relative;
+  max-width: 335px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--modal_content_bg);
+  box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.05);
+  border-radius: 8px;
+  @media screen and (min-width: 768px) {
+    max-width: 400px;
+  }
+`;
+
 const NeedHelpInnerText = styled('p')`
   font-weight: 500;
   font-size: 18px;
@@ -74,6 +89,7 @@ const NeedHelpInnerBtn = styled('button')`
   padding: 14px 122px;
   margin-top: 12px;
   background: var(--accent);
+  color: var(--add_card_btn_svg_bg);
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -81,11 +97,22 @@ const NeedHelpInnerBtn = styled('button')`
   font-size: 14px;
   letter-spacing: -0.02em;
 `;
+const CloseButton = styled.svg`
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  stroke: var(--main_text_color);
+  cursor: pointer;
+`;
 
 export {
+  NeedHelpInner,
   NeedHelpInnerText,
   NeedHelpInnerForm,
   NeedHelpInnerEmail,
   NeedHelpInnerComment,
   NeedHelpInnerBtn,
+  CloseButton,
 };
