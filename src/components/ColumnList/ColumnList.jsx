@@ -5,9 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchSingleBoard } from '../../redux/boards/operationsBoards';
 import { selectedBoard } from '../../redux/boards/selectors';
-import AddColumnModal from '../AddColumnModal/AddColumModal';
-import Modal from '../Modal/Modal';
-import AddColumnButton from 'components/AddColumnButton/AddColumnButton';
+import AddColumnModal from 'components/AddColumnModal/AddColumnModal';
+import Modal from 'components/Modal/Modal';
 const ColumnsList = () => {
   const board = useSelector(selectedBoard);
   const params = useParams();
@@ -60,12 +59,17 @@ const ColumnsList = () => {
               return <ColumnItem key={el._id} column={el} />;
             })}
             <li>
-              <AddColumnButton click={toggleAddColumn} />
+              <button
+                onClick={toggleAddColumn}
+                style={{ width: 335, height: 56 }}
+              >
+                add column
+              </button>
             </li>
           </ul>
         </>
       ) : (
-        <AddColumnButton click={toggleAddColumn}/>
+        <button onClick={toggleAddColumn}>addColumn</button>
       )}
       {isAddColumnOpen && (
           <Modal onClose={toggleAddColumn}>
