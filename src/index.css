@@ -65,9 +65,9 @@ body.light {
   --modal_content_bg: #fcfcfc;
   --avatar-icon: #ffffff;
   --avatar-bg: #f6f6f7;
-  --add_column_svg_bg:#161616;
-  --add_column_svg:#FFFFFF;
-  --add_column_modal_bg:#fcfcfc
+  --add_column_svg_bg: #161616;
+  --add_column_svg: #ffffff;
+  --add_column_modal_bg: #fcfcfc;
 }
 body.dark {
   --main_text_color: #ffffff;
@@ -104,10 +104,9 @@ body.dark {
   --modal_content_bg: #151515;
   --avatar-icon: #151515;
   --avatar-bg: #1f1f1f;
-  --add_column_svg_bg:#FFFFFF;
-  --add_column_svg:#121212;
-    --add_column_modal_bg:#151515
-
+  --add_column_svg_bg: #ffffff;
+  --add_column_svg: #121212;
+  --add_column_modal_bg: #151515;
 }
 body.violet {
   --main_text_color: #161616;
@@ -143,10 +142,9 @@ body.violet {
   --modal_content_bg: #fcfcfc;
   --avatar-icon: #ffffff;
   --avatar-bg: #ecedfd;
-  --add_column_svg_bg:#5255BC;
-  --add_column_svg:#FFFFFF;
-    --add_column_modal_bg:#fcfcfc
-
+  --add_column_svg_bg: #5255bc;
+  --add_column_svg: #ffffff;
+  --add_column_modal_bg: #fcfcfc;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

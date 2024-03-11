@@ -7,6 +7,7 @@ export const EditProfileContent = styled.div`
   max-width: 335px;
   max-height: 440px;
   padding: 24px;
+  background-color: var(--add_column_modal_bg);
 
   & h2 {
     margin: 0 0 24px 0;
@@ -28,7 +29,8 @@ export const AvatarImageContainer = styled.div`
   justify-content: center;
   width: 68px;
   height: 68px;
-  background-color: var(--avatar-bg);
+
+  ${props => !!props.$bg && 'background-color: var(--avatar-bg);'}
 
   & img {
     max-width: 100%;
@@ -95,6 +97,7 @@ export const EditProfileForm = styled(Form)`
     letter-spacing: -0.02em;
     line-height: 1.5;
     opacity: 0.4;
+    background-color: transparent;
 
     &:focus-visible {
       outline: 0;
