@@ -4,8 +4,6 @@ export const FilteredColumns = (props) => {
 
     const { columns, filter } = props
 
-    console.log(columns);
-    console.log(filter);
     if (!columns.columns) return
 
     const filtredColumn = columns.columns.map(column => ({
