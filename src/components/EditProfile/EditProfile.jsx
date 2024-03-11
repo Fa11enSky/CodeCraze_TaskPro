@@ -16,13 +16,12 @@ import {
   UploadAvatarButton,
 } from './EditProfile.styled';
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
+
 import { selectUser } from '../../redux/auth/selectors';
-import EditProfileSchema from './EditProfileSchema';
 import { updateUser } from '../../redux/auth/operations';
+import EditProfileSchema from './EditProfileSchema';
 
 const getInitialValues = user => {
-  console.log('initial values');
-
   return {
     name: user?.name || '',
     email: '',
@@ -69,6 +68,8 @@ const EditProfile = () => {
         enableReinitialize
       >
         {({ values, setValues, dirty }) => {
+          const userAvatar = values.avatarPreview || user.avatarUrl;
+
           return (
             <EditProfileForm
               autoComplete="off"
@@ -77,12 +78,9 @@ const EditProfile = () => {
             >
               <InputContainer data-avatar>
                 <AvatarContainer>
-                  <AvatarImageContainer>
-                    {values.avatarPreview || user.avatarUrl ? (
-                      <img
-                        src={values.avatarPreview || user.avatarUrl}
-                        alt="User avatar"
-                      />
+                  <AvatarImageContainer $bg={!userAvatar}>
+                    {userAvatar ? (
+                      <img src={userAvatar} alt="User avatar" />
                     ) : (
                       <svg>
                         <use href={`${sprite}#icon-user_default`} />

@@ -8,6 +8,7 @@ import EditColumModal from 'components/EditColumnModal/EditColumnModal';
 import { CardModal } from 'components/CardModal/CardModal';
 
 const ColumnItem = ({ column }) => {
+
   const { title, cards } = column;
   const [isRenameColumnOpen, setIsRenameColumnOpen] = useState(false);
   const toggleEdit = () => {
@@ -17,7 +18,6 @@ const ColumnItem = ({ column }) => {
   const toggleAddCard = () => {
     setIsAddCardOpen(!isAddCardOpen);
   };
-
   return (
     <>
       <li className={css.column_item}>
@@ -37,7 +37,7 @@ const ColumnItem = ({ column }) => {
           </div>
         </div>
         <ul className={css.task_list}>
-          {cards.map(el => {
+          {cards&&cards.map(el => {
             return (
               <li key={el._id}>
                 <TaskCard cardOwner={column._id} cardData={el} />
@@ -53,7 +53,7 @@ const ColumnItem = ({ column }) => {
         )}
         {isAddCardOpen && (
           <Modal onClose={toggleAddCard}>
-            <CardModal title={'Add card'} newcard />
+            <CardModal initialValues={column} newCard onClose={toggleAddCard} />
           </Modal>
         )}
       </li>
