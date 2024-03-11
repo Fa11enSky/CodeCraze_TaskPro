@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/CodeCraze_TaskPro/static/css/main.e10b3f1a.css",
-    "main.js": "/CodeCraze_TaskPro/static/js/main.e3bce82c.js",
+    "main.js": "/CodeCraze_TaskPro/static/js/main.ec65052a.js",
     "static/media/desktop_background_3@2x.jpg": "/CodeCraze_TaskPro/static/media/desktop_background_3@2x.ace7bb0943d2df122897.jpg",
     "static/media/tablet_background_3@2x.jpg": "/CodeCraze_TaskPro/static/media/tablet_background_3@2x.0e3a99728577b53ef478.jpg",
     "static/media/desktop_background_13@2x.jpg": "/CodeCraze_TaskPro/static/media/desktop_background_13@2x.e09f81e177cde4dc076c.jpg",
@@ -103,10 +103,10 @@
     "static/media/moblie_background_8.jpg": "/CodeCraze_TaskPro/static/media/moblie_background_8.8d2ee85ac2825da63fe0.jpg",
     "index.html": "/CodeCraze_TaskPro/index.html",
     "main.e10b3f1a.css.map": "/CodeCraze_TaskPro/static/css/main.e10b3f1a.css.map",
-    "main.e3bce82c.js.map": "/CodeCraze_TaskPro/static/js/main.e3bce82c.js.map"
+    "main.ec65052a.js.map": "/CodeCraze_TaskPro/static/js/main.ec65052a.js.map"
   },
   "entrypoints": [
     "static/css/main.e10b3f1a.css",
-    "static/js/main.e3bce82c.js"
+    "static/js/main.ec65052a.js"
   ]
 }
