@@ -32,14 +32,13 @@ export const CardModal = ({
   initialValues = {
     title: '',
     description: '',
-    radio: 'without',
+    label: 'without',
     date: new Date(),
-    id: null,
   },
   newCard = true,
   onClose,
 }) => {
-  const { title, description, date, radio, id } = initialValues;
+  const { title, description, date, label, _id } = initialValues;
 
   const [selectedDate, setSelectedDate] = useState(date);
   const dispatch = useDispatch();
@@ -48,13 +47,14 @@ export const CardModal = ({
     setSelectedDate(date);
   };
 
-  const handleSubmit = values => {
-    const { title, description, radio } = values;
-    const newCardData = { title, description, radio, selectedDate };
 
-    if (newCard) dispatch(createCard([id, newCardData]));
+  const handleSubmit = (values) => {
+    const { title, description, label } = values;
 
-    if (!newCard) dispatch(updateCard([id, newCardData]));
+    const newCardData = { title, description, label, deadline: selectedDate };
+    if (newCard) dispatch(createCard([_id, newCardData]));
+    if (!newCard) dispatch(updateCard([_id, newCardData]));
+    onClose()
   };
 
   return (
@@ -67,7 +67,7 @@ export const CardModal = ({
       </StyledDiv>
 
       <Formik
-        initialValues={{ title, description, radio }}
+        initialValues={{ title, description, label }}
         onSubmit={values => handleSubmit(values)}
       >
         <Form>
@@ -83,22 +83,22 @@ export const CardModal = ({
             <StyledP>Label color</StyledP>
             <RadioButtonDiv>
               <RadioLabel className="blue">
-                <RadioBtn type="radio" name="radio" value="low" />
+                <RadioBtn type="radio" name="label" value="low" />
                 <span></span>
               </RadioLabel>
 
               <RadioLabel className="red">
-                <RadioBtn type="radio" name="radio" value="medium" />
+                <RadioBtn type="radio" name="label" value="medium" />
                 <span></span>
               </RadioLabel>
 
               <RadioLabel className="green">
-                <RadioBtn type="radio" name="radio" value="high" />
+                <RadioBtn type="radio" name="label" value="high" />
                 <span></span>
               </RadioLabel>
 
               <RadioLabel className="grey">
-                <RadioBtn type="radio" name="radio" value="without" />
+                <RadioBtn type="radio" name="label" value="without" />
                 <span></span>
               </RadioLabel>
             </RadioButtonDiv>

@@ -8,6 +8,7 @@ import EditColumModal from 'components/EditColumnModal/EditColumnModal';
 import { CardModal } from 'components/CardModal/CardModal';
 
 const ColumnItem = ({ column }) => {
+
   const { title, cards } = column;
   const [isRenameColumnOpen, setIsRenameColumnOpen] = useState(false);
   const toggleEdit = () => {
@@ -52,7 +53,7 @@ const ColumnItem = ({ column }) => {
         )}
         {isAddCardOpen && (
           <Modal onClose={toggleAddCard}>
-            <CardModal title={'Add card'} newcard />
+            <CardModal initialValues={column} newCard onClose={toggleAddCard} />
           </Modal>
         )}
       </li>
