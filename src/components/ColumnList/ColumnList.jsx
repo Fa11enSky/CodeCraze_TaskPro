@@ -8,6 +8,7 @@ import { selectedBoard } from '../../redux/boards/selectors';
 import AddColumnModal from '../AddColumnModal/AddColumModal';
 import Modal from '../Modal/Modal';
 import AddColumnButton from '../AddColumnButton/AddColumnButton';
+import OpenFiltersButton from '../OpenFiltersBtn/OpenFiltersBtn';
 const ColumnsList = () => {
   const board = useSelector(selectedBoard);
   const params = useParams();
@@ -51,7 +52,10 @@ const ColumnsList = () => {
       className={css.task_list_container}
       style={{ backgroundImage: `url(${bgurl})` }}
     >
-      <h4 className={css.board_title}>{title}</h4>
+      <div className={css.headerWrapper}>
+        <h4 className={css.board_title}>{title}</h4>
+        <OpenFiltersButton/>
+      </div>
       {board.columns && board.columns[0]._id ? (
         <>
           <ul className={css.column_list}>
