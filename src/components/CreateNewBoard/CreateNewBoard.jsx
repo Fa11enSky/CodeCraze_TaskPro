@@ -14,7 +14,11 @@ import {
 } from '../../redux/boards/operationsBoards';
 
 import {
+  Modal,
+  ModalContent,
   NewBoardTitle,
+  Input,
+  ErrorMessage,
   IconTitle,
   IconWrap,
   Icon,
@@ -22,12 +26,9 @@ import {
   BgIcon,
   BackgroundItem,
   BackgroundImage,
-  Input,
-  ErrorMessage,
   Button,
   ContainerSvg,
   Svg,
-  ModalContent,
   CloseButton,
 } from './CreateNewBoard.styled';
 
@@ -142,7 +143,7 @@ const CreateNewBoard = ({ onClose }) => {
   };
 
   return (
-    <div>
+    <Modal>
       <ModalContent>
         <NewBoardTitle>New Board</NewBoardTitle>
         <form onSubmit={handleSubmit(handleCreateBoard)}>
@@ -175,7 +176,7 @@ const CreateNewBoard = ({ onClose }) => {
           <use href={`${sprite}#close`} />
         </CloseButton>
       </ModalContent>
-    </div>
+    </Modal>
   );
 };
 

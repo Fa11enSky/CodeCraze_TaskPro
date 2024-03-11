@@ -1,5 +1,23 @@
 import styled from 'styled-components';
 
+export const Modal = styled.div`
+  max-width: 98%;
+  width: 335px;
+  max-height: 98%;
+
+  @media screen and (min-width: 768px) {
+    width: 350px;
+  }
+`;
+
+export const ModalContent = styled.div`
+  background-color: var(--modal_content_bg);
+  border-radius: 8px;
+  z-index: 20;
+  position: relative;
+  padding: 24px;
+`;
+
 export const NewBoardTitle = styled.h2`
   margin: 0 0 24px 0;
   width: 96px;
@@ -12,25 +30,11 @@ export const NewBoardTitle = styled.h2`
   line-height: 27px;
   letter-spacing: -0.02em;
   color: var(--main_text_color);
-
-  @media screen and (min-width: 1440px) {
-    margin-left: 24px;
-    width: 212px;
-    height: 272px;
-    padding: 20px;
-  }
-`;
-
-export const ErrorMessage = styled.p`
-  color: var(--main_text_color);
-  margin-bottom: 10px;
-  text-align: center;
 `;
 
 export const Input = styled.input`
-  box-sizing: border-box;
   margin: 0 0 24px 0;
-  width: 302px;
+  width: 100%;
   height: 49px;
   padding-left: 20px;
   background: transparent;
@@ -63,13 +67,12 @@ export const Input = styled.input`
     outline: none;
     border: 1px solid #bedbb0;
   }
+`;
 
-  @media screen and (min-width: 1440px) {
-    margin-left: 24px;
-    width: 212px;
-    height: 272px;
-    padding: 20px;
-  }
+export const ErrorMessage = styled.p`
+  color: var(--main_text_color);
+  margin-bottom: 10px;
+  text-align: center;
 `;
 
 export const IconTitle = styled.h3`
@@ -80,13 +83,6 @@ export const IconTitle = styled.h3`
   line-height: 21px;
   letter-spacing: -0.02em;
   color: var(--main_text_color);
-
-  @media screen and (min-width: 1440px) {
-    margin-left: 24px;
-    width: 212px;
-    height: 272px;
-    padding: 20px;
-  }
 `;
 
 export const IconWrap = styled.div`
@@ -100,13 +96,6 @@ export const Icon = styled.svg`
   fill: transparent;
   stroke: ${({ selected }) => (selected ? 'var(--main_text_color)' : 'grey')};
   cursor: pointer;
-
-  @media screen and (min-width: 1440px) {
-    margin-left: 24px;
-    width: 212px;
-    height: 272px;
-    padding: 20px;
-  }
 `;
 
 export const BackgroundTitle = styled.h3`
@@ -117,13 +106,6 @@ export const BackgroundTitle = styled.h3`
   line-height: 21px;
   letter-spacing: -0.02em;
   color: var(--main_text_color);
-
-  @media screen and (min-width: 1440px) {
-    margin-left: 24px;
-    width: 212px;
-    height: 272px;
-    padding: 20px;
-  }
 `;
 
 export const BgIcon = styled.div`
@@ -156,7 +138,7 @@ export const BackgroundImage = styled.img`
 
 export const Button = styled.button`
   width: 100%;
-  padding: 10px 0 11px;
+  padding: 10px 0 10px;
   border-radius: 8px;
   margin: 0 auto;
   display: flex;
@@ -193,21 +175,6 @@ export const ContainerSvg = styled.div`
 
 export const Svg = styled.svg`
   stroke: var(--add_card_btn_svg);
-`;
-
-export const ModalContent = styled.div`
-  background-color: var(--modal_content_bg);
-  border-radius: 8px;
-  z-index: 20;
-  position: relative;
-  padding: 24px;
-
-  @media screen and (min-width: 1440px) {
-    margin-left: 24px;
-    width: 212px;
-    height: 272px;
-    padding: 20px;
-  }
 `;
 
 export const CloseButton = styled.svg`
