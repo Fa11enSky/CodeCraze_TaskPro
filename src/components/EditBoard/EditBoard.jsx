@@ -7,11 +7,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import data from '../../assets/backgroundIcons/data';
-import { updateBoard } from '../../redux/boards/operationsBoards';
-import { selectAllBoards } from '../../redux/boards/selectors';
+import {
+  updateBoard,
+  fetchSingleBoard,
+} from '../../redux/boards/operationsBoards';
+import { selectedBoard } from '../../redux/boards/selectors';
 
 import {
+  Modal,
+  ModalContent,
   NewBoardTitle,
+  Input,
   IconTitle,
   IconWrap,
   Icon,
@@ -19,11 +25,9 @@ import {
   BgIcon,
   BackgroundItem,
   BackgroundImage,
-  Input,
   Button,
   ContainerSvg,
   Svg,
-  ModalContent,
   CloseButton,
 } from '../CreateNewBoard/CreateNewBoard.styled';
 
@@ -34,13 +38,22 @@ const EditBoard = ({ onClose }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const board = useSelector(selectAllBoards);
+  const boardId = useSelector(state => state.boards.boardId);
+  const board = useSelector(state => selectedBoard(state, boardId));
 
   useEffect(() => {
-    setValue('title', board.title);
-    setSelectedIcon(board.icon);
-    setSelectedBackgroundId(board.background);
-  }, [board.background, board.icon, board.title, setValue]);
+    if (boardId) {
+      dispatch(fetchSingleBoard(boardId));
+    }
+  }, [dispatch, boardId]);
+
+  useEffect(() => {
+    if (board) {
+      setValue('title', board.title);
+      setSelectedIcon(board.icon);
+      setSelectedBackgroundId(board.background);
+    }
+  }, [board, board.background, board.icon, board.title, setValue]);
 
   const handleTitleChange = event => {
     setValue('title', event.target.value.toString());
@@ -121,7 +134,7 @@ const EditBoard = ({ onClose }) => {
   };
 
   return (
-    <div>
+    <Modal>
       <ModalContent>
         <NewBoardTitle>Edit Board</NewBoardTitle>
         <form onSubmit={handleSubmit(handleEditBoard)}>
@@ -153,7 +166,7 @@ const EditBoard = ({ onClose }) => {
           <use href={`${sprite}#close`} />
         </CloseButton>
       </ModalContent>
-    </div>
+    </Modal>
   );
 };
 
