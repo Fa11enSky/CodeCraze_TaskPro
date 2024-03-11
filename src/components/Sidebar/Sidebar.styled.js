@@ -9,7 +9,8 @@ const StyledSidebar = styled.section`
   padding-top: 14px;
   padding-bottom: 14px;
   background-color: var(--background_sidebar);
-
+  overflow: auto;
+  transition: background-color 200ms linear;
   @media screen and (min-width: 768px) {
     max-width: 212px;
     padding-top: 14px;
@@ -27,4 +28,12 @@ const SidebarContainer = styled.div`
   }
 `;
 
-export { StyledSidebar, SidebarContainer };
+const SidebarMargin = styled.div`
+  margin-top: 70px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 60px;
+  }
+`;
+
+export { StyledSidebar, SidebarContainer, SidebarMargin };
