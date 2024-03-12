@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Tooltip } from 'react-tooltip';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
+
 import { CardModal } from 'components/CardModal/CardModal/index';
-import TooltipOption from './TooltipOption/TooltipOption';
+import Modal from 'components/Modal/Modal';
+import TooltipComp from './Tooltip/TooltipComp';
+
 import { deleteCard } from '../../redux/boards/operationsCards';
-import { selectedBoard } from '../../redux/boards/selectors';
 import {
   CardBottom,
   CardContentWrapper,
@@ -24,7 +25,6 @@ import {
   ColorTag,
   FullCardWrapper,
 } from './TaskCard.styled';
-import Modal from 'components/Modal/Modal';
 import { getCurrentDate } from './services/getCurrentDate';
 import { parseDateToObject } from './services/parseDateToObject';
 import { formatDate } from './services/formatDate';
@@ -52,10 +52,6 @@ const TaskCard = ({ cardData }) => {
   /* -------------------- FORMATTING DEADLINE --------------------*/
 
   const formattedDeadline = formatDate(deadline.split(',')[0]);
-
-  /* -------------------- SELECT COLUMNS DATA --------------------*/
-
-  const { columns } = useSelector(selectedBoard);
 
   /* -------------------- PICK A PRIORITY COLOR + RADIO NUMBER --------------------*/
 
@@ -135,34 +131,13 @@ const TaskCard = ({ cardData }) => {
               </li>
             )}
             <li>
-              <CardControlsButton id="replace-tooltip">
+              <CardControlsButton name={_id} className={_id}>
                 <CardControlsIcon width={16} height={16}>
                   <use xlinkHref={`${sprite}#icon-arrov_circle`} />
                 </CardControlsIcon>
               </CardControlsButton>
-
               {/* Tooltip */}
-              <Tooltip
-                anchorSelect="#replace-tooltip"
-                place="bottom"
-                clickable="true"
-                style={{
-                  backgroundColor: 'var(--background_task_item)',
-                  boxShadow: '0 0 10px 0 var(--calendar_help)',
-                  padding: 18,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 8,
-                }}
-              >
-                {columns.map(column => (
-                  <TooltipOption
-                    key={column._id}
-                    cardId={_id}
-                    columnData={column}
-                  />
-                ))}
-              </Tooltip>
+              <TooltipComp cardId={_id} />
               {/* Tooltip */}
             </li>
             <li>
