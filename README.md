@@ -1,1 +1,1 @@
-<img  src="./img/3rCC.gif"/>
+<img width="100%" heigth="100%" src="https://steamuserimages-a.akamaihd.net/ugc/398930103907969515/2EBC8CCA9359D9205562057A192FA3ABEFED9D72/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"/>
