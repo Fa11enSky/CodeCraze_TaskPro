@@ -4,9 +4,7 @@ export const FilteredColumns = (props) => {
 
     const { columns, filter } = props
 
-    if (!columns || !columns.columns) return null
-
-    const filtredColumn = columns.columns.map(column => ({
+    const filtredColumn = columns.map(column => ({
         ...column,
         cards: Array.isArray(column.cards) ? column.cards.filter(card => {
             if (filter === 'all') return card;
