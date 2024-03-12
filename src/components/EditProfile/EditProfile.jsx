@@ -68,7 +68,7 @@ const EditProfile = () => {
         enableReinitialize
       >
         {({ values, setValues, dirty }) => {
-          const userAvatar = values.avatarPreview || user.avatarUrl;
+          const userAvatar = values.avatarPreview || user.avatarURL;
 
           return (
             <EditProfileForm

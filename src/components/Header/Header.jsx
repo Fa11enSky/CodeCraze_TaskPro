@@ -117,8 +117,8 @@ const Header = ({ showSidebar, size }) => {
             {user && <NameUser>{user.name ?? 'Name'}</NameUser>}
 
             <Button type="button" onClick={handleClik}>
-              {user.avatar ? (
-                <img src="" alt="User avatar" />
+              {user.avatarURL ? (
+                <img src={`${user.avatarURL}`} alt="User avatar" />
               ) : (
                 <Svg width={32} height={32}>
                   <use xlinkHref={`${sprite}#icon-user_default`} />

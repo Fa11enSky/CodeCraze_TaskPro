@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Tooltip } from 'react-tooltip';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
+
 import { CardModal } from 'components/CardModal/CardModal/index';
-import TooltipOption from './TooltipOption/TooltipOption';
+import Modal from 'components/Modal/Modal';
+import TooltipComp from './Tooltip/TooltipComp';
+
 import { deleteCard } from '../../redux/boards/operationsCards';
-import { selectedBoard } from '../../redux/boards/selectors';
 import {
   CardBottom,
   CardContentWrapper,
@@ -24,7 +25,6 @@ import {
   ColorTag,
   FullCardWrapper,
 } from './TaskCard.styled';
-import Modal from 'components/Modal/Modal';
 import { getCurrentDate } from './services/getCurrentDate';
 import { parseDateToObject } from './services/parseDateToObject';
 import { formatDate } from './services/formatDate';
@@ -43,7 +43,7 @@ _id - string.
 */
 
 const TaskCard = ({ cardData }) => {
-  let { title, description, label, deadline, _id } = cardData;
+  const { title, description, label, deadline, _id } = cardData;
 
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -51,11 +51,7 @@ const TaskCard = ({ cardData }) => {
 
   /* -------------------- FORMATTING DEADLINE --------------------*/
 
-  deadline = formatDate(deadline.split(',')[0]);
-
-  /* -------------------- SELECT COLUMNS DATA --------------------*/
-
-  const { columns } = useSelector(selectedBoard);
+  const formattedDeadline = formatDate(deadline.split(',')[0]);
 
   /* -------------------- PICK A PRIORITY COLOR + RADIO NUMBER --------------------*/
 
@@ -84,7 +80,7 @@ const TaskCard = ({ cardData }) => {
 
   /* -------------------- CARD CONTROLS FUNCTIONS --------------------*/
 
-  const editCard = () => {
+  const toggleEditCardModal = () => {
     return setShowEditModal(!showEditModal);
   };
 
@@ -92,7 +88,7 @@ const TaskCard = ({ cardData }) => {
 
   /* -------------------- IS SHOW NOTIFICATION ICON --------------------*/
 
-  const isDeadlineToday = deadline === getCurrentDate();
+  const isDeadlineToday = formattedDeadline === getCurrentDate();
 
   /* -------------------- CREATE INITIAL VALUES OBJ --------------------*/
 
@@ -100,8 +96,8 @@ const TaskCard = ({ cardData }) => {
     title,
     description,
     radio,
-    date: parseDateToObject(deadline),
-    id: _id,
+    date: parseDateToObject(formattedDeadline),
+    _id,
   };
 
   return (
@@ -121,7 +117,7 @@ const TaskCard = ({ cardData }) => {
             </CardInfoItem>
             <CardInfoItem>
               <CardInfoHeader>Deadline</CardInfoHeader>
-              <CardInfoValue>{deadline}</CardInfoValue>
+              <CardInfoValue>{formattedDeadline}</CardInfoValue>
             </CardInfoItem>
           </CardInfoList>
           <CardControlsList>
@@ -135,38 +131,17 @@ const TaskCard = ({ cardData }) => {
               </li>
             )}
             <li>
-              <CardControlsButton id="replace-tooltip">
+              <CardControlsButton name={_id} className={_id}>
                 <CardControlsIcon width={16} height={16}>
                   <use xlinkHref={`${sprite}#icon-arrov_circle`} />
                 </CardControlsIcon>
               </CardControlsButton>
-
               {/* Tooltip */}
-              <Tooltip
-                anchorSelect="#replace-tooltip"
-                place="bottom"
-                clickable="true"
-                style={{
-                  backgroundColor: 'var(--background_task_item)',
-                  boxShadow: '0 0 10px 0 var(--calendar_help)',
-                  padding: 18,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 8,
-                }}
-              >
-                {columns.map(column => (
-                  <TooltipOption
-                    key={column._id}
-                    cardId={_id}
-                    columnData={column}
-                  />
-                ))}
-              </Tooltip>
+              <TooltipComp cardId={_id} />
               {/* Tooltip */}
             </li>
             <li>
-              <CardControlsButton onClick={editCard}>
+              <CardControlsButton onClick={toggleEditCardModal}>
                 <CardControlsIcon width={16} height={16}>
                   <use xlinkHref={`${sprite}#icon-pencil`} />
                 </CardControlsIcon>
@@ -183,11 +158,11 @@ const TaskCard = ({ cardData }) => {
         </CardBottom>
       </CardContentWrapper>
       {showEditModal && (
-        <Modal onClose={editCard}>
+        <Modal onClose={toggleEditCardModal}>
           <CardModal
             initialValues={initValues}
             newCard={false}
-            onClose={editCard}
+            onClose={toggleEditCardModal}
           />
         </Modal>
       )}

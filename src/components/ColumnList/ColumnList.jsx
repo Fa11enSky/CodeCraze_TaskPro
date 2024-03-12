@@ -12,25 +12,24 @@ import { selectFilter, selectedBoard } from '../../redux/boards/selectors';
 import { FilteredColumns } from 'components/FiltredColumns';
 
 const ColumnsList = () => {
-  const [isFilterOpen, setIsFilterOpen] = useState(false)
-  const board = useSelector(selectedBoard);
-  const filter = useSelector(selectFilter)
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const filter = useSelector(selectFilter);
   const params = useParams();
   const dispatch = useDispatch();
-  const { title, columns, background } = board;
+  const { title, columns, background } = useSelector(selectedBoard);
   const bgNumber = background;
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
-
   const toggleAddColumn = () => {
-    setIsAddColumnOpen(!isAddColumnOpen)
-  }
+    setIsAddColumnOpen(!isAddColumnOpen);
+  };
   const toggleFilter = () => {
-
     setIsFilterOpen(!isFilterOpen);
   };
 
   useEffect(() => {
-    dispatch(fetchSingleBoard(params.boardId));
+    if (params.boardId) {
+      dispatch(fetchSingleBoard(params.boardId));
+    }
   }, [dispatch, params.boardId]);
 
 
@@ -41,7 +40,6 @@ const ColumnsList = () => {
       return '';
     }
   };
-
   const setDevice = () => {
     if (window.innerWidth <= 375) {
       return 'moblie';
@@ -53,12 +51,12 @@ const ColumnsList = () => {
   };
   const device = setDevice();
   const ratio = isRetina();
-
   let bgurl;
-  if(bgNumber){ bgurl = require(`../../assets/backgrounds/allBg/${device}_background_${
-    bgNumber + ratio
-  }.jpg`);}
-
+  if (bgNumber && bgNumber !== '0') {
+    bgurl = require(`../../assets/backgrounds/allBg/${device}_background_${
+      bgNumber + ratio
+    }.jpg`);
+  }
   return (
     <div
       className={css.task_list_container}
@@ -68,11 +66,10 @@ const ColumnsList = () => {
         <h4 className={css.board_title}>{title}</h4>
         <OpenFiltersButton click={toggleFilter} />
       </div>
-      {board.columns && board.columns[0]._id ? (
+      {columns && columns.length > 0 ? (
         <>
           <ul className={css.column_list}>
-
-            <FilteredColumns columns={{ columns }} filter={filter} />
+            <FilteredColumns columns={columns} filter={filter} />
             <li>
               <AddColumnButton click={toggleAddColumn} />
             </li>
@@ -86,12 +83,13 @@ const ColumnsList = () => {
           <AddColumnModal onClose={toggleAddColumn} />
         </Modal>
       )}
-      {isFilterOpen && <Modal onClose={toggleFilter}><FilterModal onClose={toggleFilter} /></Modal>}
+      {isFilterOpen && (
+        <Modal onClose={toggleFilter}>
+          <FilterModal onClose={toggleFilter} />
+        </Modal>
+      )}
     </div>
-
   );
 };
 
 export default ColumnsList;
-
-
