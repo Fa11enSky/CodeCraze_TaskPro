@@ -72,6 +72,7 @@ export const Button = styled.button`
   background-color: var(--background_userdefault);
   border: none;
   padding: 0;
+  overflow: hidden;
 
   &:hover,
   &focus {
