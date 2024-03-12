@@ -63,7 +63,9 @@ export const allBoardsSlice = createSlice({
       .addCase(createBoard.rejected, handleError)
       .addCase(updateBoard.pending, hadlePending)
       .addCase(updateBoard.fulfilled, (state, action) => {
-        state.selectedBoard=action.payload
+        state.selectedBoard.title = action.payload.title
+        state.selectedBoard.icon = action.payload.icon
+        state.selectedBoard.background=action.payload.background
         const idx = state.boards.findIndex(el => el._id === action.payload._id);
         state.boards[idx]=action.payload
       })
