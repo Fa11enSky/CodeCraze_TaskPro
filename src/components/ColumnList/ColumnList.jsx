@@ -8,8 +8,9 @@ import Modal from '../Modal/Modal';
 import AddColumnButton from '../AddColumnButton/AddColumnButton';
 import OpenFiltersButton from '../OpenFiltersBtn/OpenFiltersBtn';
 import FilterModal from '../FilterModal/FilterModal';
-import { selectFilter, selectedBoard } from '../../redux/boards/selectors';
+import { selectFilter, selectIsBoardsLoading, selectedBoard } from '../../redux/boards/selectors';
 import { FilteredColumns } from 'components/FiltredColumns';
+import BoardLoader from 'components/BoardLoader/BoardLoader';
 
 const ColumnsList = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -25,7 +26,8 @@ const ColumnsList = () => {
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
   };
-
+const isLoading = useSelector(selectIsBoardsLoading);
+  
   useEffect(() => {
     if (params.boardId) {
       dispatch(fetchSingleBoard(params.boardId));
@@ -58,37 +60,39 @@ const ColumnsList = () => {
     }.jpg`);
   }
   return (
-    <div
-      className={css.task_list_container}
-      style={{ backgroundImage: `url(${bgurl})` }}
-    >
-      <div className={css.headerWrapper}>
-        <h4 className={css.board_title}>{title}</h4>
-        <OpenFiltersButton click={toggleFilter} />
+   <>{isLoading&&<BoardLoader/>}
+      <div
+        className={css.task_list_container}
+        style={{ backgroundImage: `url(${bgurl})` }}
+      >
+        <div className={css.headerWrapper}>
+          <h4 className={css.board_title}>{title}</h4>
+          <OpenFiltersButton click={toggleFilter} />
+        </div>
+        {columns && columns.length > 0 ? (
+          <>
+            <ul className={css.column_list}>
+              <FilteredColumns columns={columns} filter={filter} />
+              <li className={css.addColumnBtn}>
+                <AddColumnButton click={toggleAddColumn} />
+              </li>
+            </ul>
+          </>
+        ) : (
+          <AddColumnButton click={toggleAddColumn} />
+        )}
+        {isAddColumnOpen && (
+          <Modal onClose={toggleAddColumn}>
+            <AddColumnModal onClose={toggleAddColumn} />
+          </Modal>
+        )}
+        {isFilterOpen && (
+          <Modal onClose={toggleFilter}>
+            <FilterModal onClose={toggleFilter} />
+          </Modal>
+        )}
       </div>
-      {columns && columns.length > 0 ? (
-        <>
-          <ul className={css.column_list}>
-            <FilteredColumns columns={columns} filter={filter} />
-            <li>
-              <AddColumnButton click={toggleAddColumn} />
-            </li>
-          </ul>
-        </>
-      ) : (
-        <AddColumnButton click={toggleAddColumn} />
-      )}
-      {isAddColumnOpen && (
-        <Modal onClose={toggleAddColumn}>
-          <AddColumnModal onClose={toggleAddColumn} />
-        </Modal>
-      )}
-      {isFilterOpen && (
-        <Modal onClose={toggleFilter}>
-          <FilterModal onClose={toggleFilter} />
-        </Modal>
-      )}
-    </div>
+   </>
   );
 };
 

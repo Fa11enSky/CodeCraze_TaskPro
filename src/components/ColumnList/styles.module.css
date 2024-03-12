@@ -37,6 +37,7 @@
   gap: 18px;
   overflow: auto;
   max-height: calc(100% - 134px);
+  height: calc(100% - 134px);
   padding-bottom: 24px;
 }
 @media screen and (min-width: 768px) {
@@ -64,6 +65,7 @@
 
 .column_list::-webkit-scrollbar {
   width: 12px;
+
 }
 .column_list::-webkit-scrollbar-track {
   background-color: var(--scroll_bar_bg_color);
@@ -76,5 +78,10 @@
 @media screen and (min-width: 1440px) {
   .column_list {
     max-width: calc(100vw - 260px);
+  }
+}
+@media screen and (max-width:375px) {
+  .addColumnBtn{
+    min-width: 275px
   }
 }

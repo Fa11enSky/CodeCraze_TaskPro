@@ -75,13 +75,18 @@ const EditBoard = ({ onClose }) => {
     //   background: data.selectedBackgroundId,
     // };
 
-    dispatch(updateBoard([board._id, newBoard]));
-
-    toast.success(`${data.title} has been successfully edited!`, {
-      theme: 'colored',
-      autoClose: 2500,
+    dispatch(updateBoard([board._id, newBoard])).then(d => {
+      console.log(d)
+      d.payload.title
+        ? toast.success(`${d.payload.title} has been successfully edited!`, {
+            theme: 'colored',
+            autoClose: 2500,
+          })
+        : toast.error(`${d.payload}`);
+      
+      onClose();
     });
-    onClose();
+
 
     // navigate(`${board._id}`);
   };

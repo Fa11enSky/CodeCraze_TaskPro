@@ -47,16 +47,16 @@ const ColumnItem = ({ column }) => {
           {cards &&
             cards.map(el => {
               return (
-                <li key={el._id}>
+                <li  key={el._id}>
                   <TaskCard cardOwner={column._id} cardData={el} />
                 </li>
               );
             })}
         </ul>
-        <AddCardBtn click={toggleAddCard} />
+        <AddCardBtn  click={toggleAddCard} />
         {isRenameColumnOpen && (
           <Modal onClose={toggleEdit}>
-            <EditColumModal columnId={_id} onClose={toggleEdit} />
+            <EditColumModal columnId={_id} title={title} onClose={toggleEdit} />
           </Modal>
         )}
         {isAddCardOpen && (
