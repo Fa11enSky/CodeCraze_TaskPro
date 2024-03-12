@@ -6,7 +6,14 @@ import sprite from '../../../assets/svgSprite/iconsSprite.svg';
 import { replaceCard } from '../../../redux/boards/operationsCards';
 import { TooltipButton, TooltipIcon, TooltipText } from './TooltipComp.styled';
 
-/* Компонент TooltipOption отримує cardId - string */
+/* Компонент TooltipOption отримує айді картки (cardId - string) і
+
+інформацію про колонку активної дошки (columnData), що включає в себе:
+
+title - string, назва колонки.
+
+id - string, айді колонки.
+*/
 
 const TooltipComp = ({ cardId }) => {
   const dispatch = useDispatch();
@@ -15,11 +22,11 @@ const TooltipComp = ({ cardId }) => {
 
   const { columns } = useSelector(selectedBoard);
 
-  /* -------------------- FILTER COLUMNS --------------------*/
+  /* -------------------- FILTERED COLUMNS --------------------*/
 
-  const filteredColumns = columns.filter(
-    column => column.cards && column.cards.every(card => card._id !== cardId)
-  );
+  // const filteredColumns =
+  //   columns &&
+  //   columns.filter(column => column.cards.every(card => card._id !== cardId));
 
   /* -------------------- FUNCTIONS --------------------*/
 
@@ -28,43 +35,30 @@ const TooltipComp = ({ cardId }) => {
 
   return (
     <Tooltip
+      // anchorSelect={`#${cardId}`}
       anchorSelect={`[name^='${cardId}']`}
       place="bottom"
       clickable="true"
-      opacity={1}
-      border="0.6px solid var(--calendar_help)"
       style={{
         backgroundColor: 'var(--background_task_item)',
-        borderRadius: 8,
+        boxShadow: '0 0 10px 0 var(--calendar_help)',
         padding: 18,
         display: 'flex',
         flexDirection: 'column',
         gap: 8,
       }}
     >
-      {filteredColumns.length > 0 ? (
-        filteredColumns.map(column => (
-          <TooltipButton
-            key={column._id}
-            onClick={() => moveCard(cardId, column._id)}
-          >
-            <TooltipText>{column.title}</TooltipText>
-            <TooltipIcon width={16} height={16}>
-              <use xlinkHref={`${sprite}#icon-arrov_circle`} />
-            </TooltipIcon>
-          </TooltipButton>
-        ))
-      ) : (
-        <h5
-          style={{
-            color: 'var(--light_text)',
-            fontSize: 14,
-            letterSpacing: 0.6,
-          }}
+      {columns.map(column => (
+        <TooltipButton
+          key={column._id}
+          onClick={() => moveCard(cardId, column._id)}
         >
-          No columns more
-        </h5>
-      )}
+          <TooltipText>{column.title}</TooltipText>
+          <TooltipIcon width={16} height={16}>
+            <use xlinkHref={`${sprite}#icon-arrov_circle`} />
+          </TooltipIcon>
+        </TooltipButton>
+      ))}
     </Tooltip>
   );
 };
