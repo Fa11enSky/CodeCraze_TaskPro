@@ -17,7 +17,7 @@ const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
 
 export const ModifiedDatePicker = ({ onChange, date = new Date() }) => {
     const [startDate, setStartDate] = useState(date);
-    const [todayDate, setTodayDate] = useState(new Date())
+    const [todayDate,] = useState(new Date())
     const [isOpen, setIsOpen] = useState(false);
 
 
