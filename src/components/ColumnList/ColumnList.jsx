@@ -27,8 +27,11 @@ const ColumnsList = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchSingleBoard(params.boardId));
+    if (params.boardId) {
+      dispatch(fetchSingleBoard(params.boardId));
+    }
   }, [dispatch, params.boardId]);
+
 
   const isRetina = () => {
     if (window.devicePixelRatio > 1) {
@@ -49,7 +52,7 @@ const ColumnsList = () => {
   const device = setDevice();
   const ratio = isRetina();
   let bgurl;
-  if (bgNumber) {
+  if (bgNumber && bgNumber !== '0') {
     bgurl = require(`../../assets/backgrounds/allBg/${device}_background_${
       bgNumber + ratio
     }.jpg`);
