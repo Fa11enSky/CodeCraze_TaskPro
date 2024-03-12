@@ -17,9 +17,17 @@ const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
 
 export const ModifiedDatePicker = ({ onChange, date = new Date() }) => {
     const [startDate, setStartDate] = useState(date);
+    const [todayDate,] = useState(new Date())
     const [isOpen, setIsOpen] = useState(false);
 
+
+
     const handleChange = (e) => {
+
+        e.setHours(23);
+        e.setMinutes(0);
+        e.setSeconds(0);
+
         setIsOpen(!isOpen);
         setStartDate(e);
         onChange(e)
@@ -33,13 +41,13 @@ export const ModifiedDatePicker = ({ onChange, date = new Date() }) => {
     return (
         <>
             <button className="custom-input" onClick={handleClick}>
-                {startDate.getDate() === new Date().getDate() && <><p>Today, {format(startDate, "MMMM d")}</p><span></span> </>}
-                {startDate.getDate() !== new Date().getDate() && <><p>{dayOfWeek[startDate.getDay()]}, {format(startDate, "MMMM d")}</p><span></span> </>}
+                {todayDate.getDate() === new Date().getDate() && <><p>Today, {format(startDate, "MMMM d")}</p><span></span> </>}
+                {todayDate.getDate() !== new Date().getDate() && <><p>{dayOfWeek[startDate.getDay()]}, {format(startDate, "MMMM d")}</p><span></span> </>}
             </button>
             {isOpen && (
                 <Modal onClose={() => setIsOpen(!isOpen)}>
                     <DatePicker id='date_picker'
-                        minDate={new Date()}
+                        minDate={todayDate}
                         calendarStartDay={1}
                         selected={startDate}
                         onChange={handleChange} inline /></Modal>
