@@ -40,6 +40,7 @@ export const allBoardsSlice = createSlice({
       .addCase(fetchAllBoard.pending, hadlePending)
       .addCase(fetchAllBoard.fulfilled, (state, action) => {
         state.boards = [...action.payload];
+        state.isLoading=false
       })
       .addCase(fetchAllBoard.rejected, (state, payload) => {
         state.isLoading = false;
@@ -47,8 +48,10 @@ export const allBoardsSlice = createSlice({
       })
       .addCase(fetchSingleBoard.pending, hadlePending)
       .addCase(fetchSingleBoard.fulfilled, (state, action) => {
+        state.isLoading = false;
         if (action.payload.columns[0].hasOwnProperty('_id')) {
           state.selectedBoard = action.payload;
+
           return;
         }
         state.selectedBoard = action.payload;
@@ -58,26 +61,33 @@ export const allBoardsSlice = createSlice({
       .addCase(fetchSingleBoard.rejected, handleError)
       .addCase(createBoard.pending, hadlePending)
       .addCase(createBoard.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.boards.push(action.payload);
+
       })
       .addCase(createBoard.rejected, handleError)
       .addCase(updateBoard.pending, hadlePending)
       .addCase(updateBoard.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.selectedBoard.title = action.payload.title;
         state.selectedBoard.icon = action.payload.icon;
         state.selectedBoard.background = action.payload.background;
         const idx = state.boards.findIndex(el => el._id === action.payload._id);
         state.boards[idx] = action.payload;
+
       })
       .addCase(updateBoard.rejected, handleError)
       .addCase(deleteBoard.pending, hadlePending)
       .addCase(deleteBoard.fulfilled, (state, action) => {
+        state.isLoading = false;
         const idx = state.boards.findIndex(el => el._id === action.payload);
         state.boards.splice(idx, 1);
+
       })
       .addCase(deleteBoard.rejected, handleError)
       .addCase(addColumn.pending, hadlePending)
       .addCase(addColumn.fulfilled, (state, action) => {
+                state.isLoading = false;
         const column = {...action.payload,cards:[]}
         state.selectedBoard.columns.push(column);
         
@@ -85,6 +95,7 @@ export const allBoardsSlice = createSlice({
       .addCase(addColumn.rejected, handleError)
       .addCase(updateColumn.pending, hadlePending)
       .addCase(updateColumn.fulfilled, (state, action) => {
+        state.isLoading = false;
         const idx = state.selectedBoard.columns.findIndex(
           el => el._id === action.payload._id
         );
@@ -96,6 +107,7 @@ export const allBoardsSlice = createSlice({
       .addCase(updateColumn.rejected, handleError)
       .addCase(deleteColumn.pending, hadlePending)
       .addCase(deleteColumn.fulfilled, (state, action) => {
+        state.isLoading = false;
         const idx = state.selectedBoard.columns.findIndex(
           el => el._id === action.payload
         );
@@ -105,6 +117,7 @@ export const allBoardsSlice = createSlice({
       .addCase(deleteColumn.rejected, handleError)
       .addCase(createCard.pending, hadlePending)
       .addCase(createCard.fulfilled, (state, action) => {
+        state.isLoading = false;
         const { payload } = action;
         const idx = state.selectedBoard.columns.findIndex(
           el => el._id === payload.cardOwner
@@ -123,6 +136,7 @@ export const allBoardsSlice = createSlice({
       .addCase(createCard.rejected, handleError)
       .addCase(updateCard.pending, hadlePending)
       .addCase(updateCard.fulfilled, (state, action) => {
+        state.isLoading = false;
         const { payload } = action;
         const columnToUpdate = state.selectedBoard.columns.findIndex(
           el => el._id === payload.cardOwner
@@ -141,6 +155,7 @@ export const allBoardsSlice = createSlice({
       .addCase(updateCard.rejected, handleError)
       .addCase(deleteCard.pending, hadlePending)
       .addCase(deleteCard.fulfilled, (state, action) => {
+        state.isLoading = false;
         const { payload } = action;
         // ! ______________________________________________
         state.selectedBoard.columns.forEach(column => {
@@ -153,6 +168,7 @@ export const allBoardsSlice = createSlice({
       .addCase(deleteCard.rejected, handleError)
       .addCase(replaceCard.pending, hadlePending)
       .addCase(replaceCard.fulfilled, (state, action) => {
+        state.isLoading = false;
         const {
           payload: { data },
         } = action;

@@ -56,7 +56,7 @@ const ColumnItem = ({ column }) => {
         <AddCardBtn  click={toggleAddCard} />
         {isRenameColumnOpen && (
           <Modal onClose={toggleEdit}>
-            <EditColumModal columnId={_id} onClose={toggleEdit} />
+            <EditColumModal columnId={_id} title={title} onClose={toggleEdit} />
           </Modal>
         )}
         {isAddCardOpen && (

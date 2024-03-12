@@ -3,7 +3,7 @@ import svg from '../../assets/svgSprite/iconsSprite.svg';
 import css from './styles.module.css';
 import { useDispatch } from 'react-redux';
 import { updateColumn } from '../../redux/boards/operationsColumns';
-const EditColumnModal = ({ columnId, onClose }) => {
+const EditColumnModal = ({ title,columnId, onClose }) => {
   const dispatch = useDispatch();
   const [valueInput, setValueInput] = useState('');
   const handleChange = ev => {
@@ -33,7 +33,7 @@ const EditColumnModal = ({ columnId, onClose }) => {
           name="title"
           className={css.input}
           type="text"
-          placeholder="Title"
+          placeholder={title}
         />
         <button type="submit" className={css.submBtn}>
           <span className={css.svg_wrapper}>
