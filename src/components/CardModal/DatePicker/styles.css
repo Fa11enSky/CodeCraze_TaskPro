@@ -111,7 +111,8 @@
 
 .custom-input {
   position: relative;
-  display: block;
+  display: flex;
+  gap: 4px;
   font-family: Poppins;
   font-size: 14px;
   font-weight: 500;
@@ -138,10 +139,9 @@
   }
 
   span {
-    position: absolute;
-    top: -3px;
-    left: 115px;
-    width: 15px;
+    position: relative;
+
+    width: 16px;
     height: 16px;
     border-radius: 50%;
 
@@ -151,6 +151,7 @@
     &::before {
       content: ' ';
       position: absolute;
+      top: 8px;
       width: 8px;
       height: 8px;
       border: 1px solid var(--accent);
@@ -161,6 +162,7 @@
     &::after {
       content: ' ';
       position: absolute;
+      top: 8px;
       width: 8px;
       height: 8px;
       border: 1px solid var(--accent);
