@@ -69,9 +69,13 @@ export const allBoardsSlice = createSlice({
       })
       .addCase(updateBoard.rejected, handleError)
       .addCase(deleteBoard.pending, hadlePending)
+
       .addCase(deleteBoard.fulfilled, (state, action) => {
         const idx = state.boards.findIndex(el => el._id === action.payload);
         state.boards.splice(idx, 1);
+        if (state.selectedBoard._id === action.payload) {
+          state.selectedBoard = {};
+        }
       })
       .addCase(deleteBoard.rejected, handleError)
       .addCase(addColumn.pending, hadlePending)
