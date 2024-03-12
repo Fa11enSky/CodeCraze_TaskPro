@@ -19,8 +19,9 @@ export const updateCard = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const [cardId, updates] = credentials;
+
       const { data } = await axios.patch(`/api/cards/${cardId}`, updates);
-      console.log(data);
+
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

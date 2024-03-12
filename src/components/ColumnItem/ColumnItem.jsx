@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { deleteColumn } from '../../redux/boards/operationsColumns';
 
 const ColumnItem = ({ column }) => {
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { title, cards, _id } = column;
   const [isRenameColumnOpen, setIsRenameColumnOpen] = useState(false);
   const toggleEdit = () => {
@@ -26,12 +26,17 @@ const dispatch = useDispatch()
         <div className={css.column_header_wrapper}>
           <h3 className={css.column_title}>{title}</h3>
           <div className={css.title_icons_wrapper}>
-            <button  onClick={toggleEdit} className={css.culumn_title_btn}>
+            <button onClick={toggleEdit} className={css.culumn_title_btn}>
               <svg className={css.icon_el} width={16} height={16}>
                 <use xlinkHref={`${iconSprite}#icon-pencil`} />
               </svg>
             </button>
-            <button onClick={()=>{dispatch(deleteColumn(_id))}} className={css.culumn_title_btn}>
+            <button
+              onClick={() => {
+                dispatch(deleteColumn(_id));
+              }}
+              className={css.culumn_title_btn}
+            >
               <svg className={css.icon_el} width={16} height={16}>
                 <use xlinkHref={`${iconSprite}#icon-trash`} />
               </svg>
@@ -39,13 +44,14 @@ const dispatch = useDispatch()
           </div>
         </div>
         <ul className={css.task_list}>
-          {cards&&cards.map(el => {
-            return (
-              <li key={el._id}>
-                <TaskCard cardOwner={column._id} cardData={el} />
-              </li>
-            );
-          })}
+          {cards &&
+            cards.map(el => {
+              return (
+                <li key={el._id}>
+                  <TaskCard cardOwner={column._id} cardData={el} />
+                </li>
+              );
+            })}
         </ul>
         <AddCardBtn click={toggleAddCard} />
         {isRenameColumnOpen && (
@@ -55,7 +61,11 @@ const dispatch = useDispatch()
         )}
         {isAddCardOpen && (
           <Modal onClose={toggleAddCard}>
-            <CardModal initialValues={column} newCard onClose={toggleAddCard} />
+            <CardModal
+              initialValues={{ ...column, title: '' }}
+              newCard
+              onClose={toggleAddCard}
+            />
           </Modal>
         )}
       </li>
