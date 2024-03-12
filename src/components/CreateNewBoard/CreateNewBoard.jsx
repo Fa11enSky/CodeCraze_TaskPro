@@ -72,7 +72,7 @@ const CreateNewBoard = ({ onClose }) => {
 
   const handleBackgroundSelect = backgroundId => {
     setSelectedBackgroundId(backgroundId);
-    setValue('background', backgroundId.toString());
+    setValue('background', backgroundId);
   };
 
   const handleCreateBoard = data => {
