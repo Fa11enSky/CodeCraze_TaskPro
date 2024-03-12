@@ -31,6 +31,7 @@ import {
   Svg,
   CloseButton,
 } from './CreateNewBoard.styled';
+import { useNavigate } from 'react-router-dom';
 
 const TitleSchema = Yup.object({
   title: Yup.string()
@@ -49,7 +50,7 @@ const CreateNewBoard = ({ onClose }) => {
     resolver: yupResolver(TitleSchema),
     mode: 'onChange',
   });
-
+const navigate=useNavigate()
   const [selectedIcon, setSelectedIcon] = useState('project');
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('null');
 
@@ -90,7 +91,8 @@ const CreateNewBoard = ({ onClose }) => {
       return;
     }
 
-    dispatch(createBoard(data)).then(() => {
+    dispatch(createBoard(data)).then((d) => {
+      navigate(d.payload._id)
       setValue('title', '');
       setValue('icon', '');
       setValue('background', '');
