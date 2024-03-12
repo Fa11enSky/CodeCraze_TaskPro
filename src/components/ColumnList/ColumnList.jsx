@@ -70,7 +70,7 @@ const ColumnsList = () => {
         <>
           <ul className={css.column_list}>
             <FilteredColumns columns={columns} filter={filter} />
-            <li>
+            <li className={css.addColumnBtn}>
               <AddColumnButton click={toggleAddColumn} />
             </li>
           </ul>

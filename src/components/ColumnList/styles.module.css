@@ -78,3 +78,8 @@
     max-width: calc(100vw - 260px);
   }
 }
+@media screen and (max-width:375px) {
+  .addColumnBtn{
+    min-width: 275px
+  }
+}

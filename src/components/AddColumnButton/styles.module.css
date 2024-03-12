@@ -35,3 +35,6 @@
 .btn_plus_icon {
   stroke: var(--add_column_svg);
 }
+@media screen and (max-width:375px) {
+.add_card_btn{width: 100%;}
+}
