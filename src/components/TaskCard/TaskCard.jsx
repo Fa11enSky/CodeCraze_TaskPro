@@ -43,7 +43,7 @@ _id - string.
 */
 
 const TaskCard = ({ cardData }) => {
-  let { title, description, label, deadline, _id } = cardData;
+  const { title, description, label, deadline, _id } = cardData;
 
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -51,7 +51,7 @@ const TaskCard = ({ cardData }) => {
 
   /* -------------------- FORMATTING DEADLINE --------------------*/
 
-  deadline = formatDate(deadline.split(',')[0]);
+  const formattedDeadline = formatDate(deadline.split(',')[0]);
 
   /* -------------------- SELECT COLUMNS DATA --------------------*/
 
@@ -84,7 +84,7 @@ const TaskCard = ({ cardData }) => {
 
   /* -------------------- CARD CONTROLS FUNCTIONS --------------------*/
 
-  const editCard = () => {
+  const toggleEditCardModal = () => {
     return setShowEditModal(!showEditModal);
   };
 
@@ -92,7 +92,7 @@ const TaskCard = ({ cardData }) => {
 
   /* -------------------- IS SHOW NOTIFICATION ICON --------------------*/
 
-  const isDeadlineToday = deadline === getCurrentDate();
+  const isDeadlineToday = formattedDeadline === getCurrentDate();
 
   /* -------------------- CREATE INITIAL VALUES OBJ --------------------*/
 
@@ -100,8 +100,8 @@ const TaskCard = ({ cardData }) => {
     title,
     description,
     radio,
-    date: parseDateToObject(deadline),
-    id: _id,
+    date: parseDateToObject(formattedDeadline),
+    _id,
   };
 
   return (
@@ -121,7 +121,7 @@ const TaskCard = ({ cardData }) => {
             </CardInfoItem>
             <CardInfoItem>
               <CardInfoHeader>Deadline</CardInfoHeader>
-              <CardInfoValue>{deadline}</CardInfoValue>
+              <CardInfoValue>{formattedDeadline}</CardInfoValue>
             </CardInfoItem>
           </CardInfoList>
           <CardControlsList>
@@ -166,7 +166,7 @@ const TaskCard = ({ cardData }) => {
               {/* Tooltip */}
             </li>
             <li>
-              <CardControlsButton onClick={editCard}>
+              <CardControlsButton onClick={toggleEditCardModal}>
                 <CardControlsIcon width={16} height={16}>
                   <use xlinkHref={`${sprite}#icon-pencil`} />
                 </CardControlsIcon>
@@ -183,11 +183,11 @@ const TaskCard = ({ cardData }) => {
         </CardBottom>
       </CardContentWrapper>
       {showEditModal && (
-        <Modal onClose={editCard}>
+        <Modal onClose={toggleEditCardModal}>
           <CardModal
             initialValues={initValues}
             newCard={false}
-            onClose={editCard}
+            onClose={toggleEditCardModal}
           />
         </Modal>
       )}

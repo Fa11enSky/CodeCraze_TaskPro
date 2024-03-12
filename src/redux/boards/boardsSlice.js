@@ -63,11 +63,11 @@ export const allBoardsSlice = createSlice({
       .addCase(createBoard.rejected, handleError)
       .addCase(updateBoard.pending, hadlePending)
       .addCase(updateBoard.fulfilled, (state, action) => {
-        state.selectedBoard.title = action.payload.title
-        state.selectedBoard.icon = action.payload.icon
-        state.selectedBoard.background=action.payload.background
+        state.selectedBoard.title = action.payload.title;
+        state.selectedBoard.icon = action.payload.icon;
+        state.selectedBoard.background = action.payload.background;
         const idx = state.boards.findIndex(el => el._id === action.payload._id);
-        state.boards[idx]=action.payload
+        state.boards[idx] = action.payload;
       })
       .addCase(updateBoard.rejected, handleError)
       .addCase(deleteBoard.pending, hadlePending)
@@ -153,25 +153,23 @@ export const allBoardsSlice = createSlice({
       .addCase(replaceCard.pending, hadlePending)
       .addCase(replaceCard.fulfilled, (state, action) => {
         const {
-          payload: { result },
+          payload: { data },
         } = action;
         // remove old card
-        console.log(result);
+
         state.selectedBoard.columns.forEach(column => {
-          const cardIdx = column.cards.findIndex(
-            card => card._id === result._id
-          );
+          const cardIdx = column.cards.findIndex(card => card._id === data._id);
           if (cardIdx !== -1) {
             column.cards.splice(cardIdx, 1);
           }
         });
         // !___________________________________________________
         const columnToUpdate = state.selectedBoard.columns.findIndex(
-          el => el._id === result.cardOwner
+          el => el._id === data.cardOwner
         );
         if (columnToUpdate === -1) return state;
 
-        state.selectedBoard.columns[columnToUpdate].cards.push(result);
+        state.selectedBoard.columns[columnToUpdate].cards.push(data);
       })
       .addCase(replaceCard.rejected, handleError),
 });
