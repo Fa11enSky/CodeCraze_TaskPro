@@ -58,23 +58,30 @@ const EditBoard = ({ onClose }) => {
   };
 
   const handleEditBoard = data => {
-    const boardData = {
-      title: data.title,
-      icon: data.selectedIcon,
-      background: data.selectedBackgroundId,
-    };
+    const { title, icon, background } = data;
+    let newBoard = {};
+    if (title === board.title) {
+      newBoard = {
+        icon: data.selectedIcon,
+        background: selectedBackgroundId,
+      };
+    } else {
+      newBoard = { title, icon, background };
+    }
 
-    dispatch(updateBoard([board._id, boardData])).then(() => {
-      setValue('title', data.title);
-      setValue('selectedIcon', data.selectedIcon);
-      setValue('selectedBackgroundId', data.selectedBackgroundId);
-      onClose();
-    });
+    //  const boardData = {
+    //   title: newTitle,
+    //   icon: data.selectedIcon,
+    //   background: data.selectedBackgroundId,
+    // };
+
+    dispatch(updateBoard([board._id, newBoard]));
 
     toast.success(`${data.title} has been successfully edited!`, {
       theme: 'colored',
       autoClose: 2500,
     });
+    onClose();
 
     // navigate(`${board._id}`);
   };

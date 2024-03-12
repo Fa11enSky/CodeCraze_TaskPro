@@ -76,10 +76,8 @@ export const allBoardsSlice = createSlice({
       .addCase(deleteBoard.rejected, handleError)
       .addCase(addColumn.pending, hadlePending)
       .addCase(addColumn.fulfilled, (state, action) => {
-        state.selectedBoard.columns.push(action.payload);
-        state.selectedBoard.columns[
-          state.selectedBoard.columns.length - 1
-        ].cards = [];
+        const column = { ...action.payload, cards: [] };
+        state.selectedBoard.columns.push(column);
       })
       .addCase(addColumn.rejected, handleError)
       .addCase(updateColumn.pending, hadlePending)
@@ -156,7 +154,6 @@ export const allBoardsSlice = createSlice({
           payload: { data },
         } = action;
         // remove old card
-
         state.selectedBoard.columns.forEach(column => {
           const cardIdx = column.cards.findIndex(card => card._id === data._id);
           if (cardIdx !== -1) {
