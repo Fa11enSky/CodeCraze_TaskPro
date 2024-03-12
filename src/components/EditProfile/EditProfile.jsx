@@ -28,7 +28,7 @@ const getInitialValues = user => {
   return {
     name: user?.name || '',
     email: '',
-    avatar: '',
+    avatar: null,
     password: '',
 
     emailPlaceholder: user?.email || 'Email',
@@ -67,6 +67,7 @@ const EditProfile = ({ onClose }) => {
             <use href={`${sprite}#close`} />
           </svg>
         </CloseButton>
+
         <h2>Edit Profile</h2>
 
         <Formik
@@ -103,12 +104,15 @@ const EditProfile = ({ onClose }) => {
                       accept="image/*"
                       hidden
                       onChange={event => {
+                        const file = event.currentTarget.files[0];
+                        const regex = /^image\/.*/;
+
                         setValues({
                           ...values,
-                          avatar: event.currentTarget.files[0],
-                          avatarPreview: URL.createObjectURL(
-                            event.currentTarget.files[0]
-                          ),
+                          avatar: file,
+                          avatarPreview: regex.test(file.type)
+                            ? URL.createObjectURL(file)
+                            : '',
                         });
                       }}
                     />
