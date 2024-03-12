@@ -8,6 +8,7 @@ export const EditProfileContent = styled.div`
   width: 100%;
   padding: 24px;
 
+  border-radius: 8px;
   background-color: var(--add_column_modal_bg);
 
   @media screen and (min-width: 375px) {
