@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 // import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
@@ -75,18 +74,8 @@ const EditBoard = ({ onClose }) => {
     //   background: data.selectedBackgroundId,
     // };
 
-    dispatch(updateBoard([board._id, newBoard])).then(d => {
-      console.log(d)
-      d.payload.title
-        ? toast.success(`${d.payload.title} has been successfully edited!`, {
-            theme: 'colored',
-            autoClose: 2500,
-          })
-        : toast.error(`${d.payload}`);
-      
-      onClose();
-    });
-
+    dispatch(updateBoard([board._id, newBoard]));
+    onClose();
 
     // navigate(`${board._id}`);
   };

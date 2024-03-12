@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const addColumn = createAsyncThunk(
   'column/create',
@@ -9,6 +10,8 @@ export const addColumn = createAsyncThunk(
       const { data } = await axios.post(`/api/columns/${boardId}`, column);
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
+
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -22,7 +25,9 @@ export const updateColumn = createAsyncThunk(
       const { data } = await axios.patch(`/api/columns/${id}`, column);
       return data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      toast.error(error.response.data.message);
+
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -34,7 +39,9 @@ export const deleteColumn = createAsyncThunk(
       await axios.delete(`/api/columns/${columnId}`);
       return columnId;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      toast.error(error.response.data.message);
+
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const createCard = createAsyncThunk(
   'cards/create',
@@ -9,6 +10,8 @@ export const createCard = createAsyncThunk(
       const { data } = await axios.post(`/api/cards/${id}`, newCard);
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
+
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -24,6 +27,7 @@ export const updateCard = createAsyncThunk(
 
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -36,6 +40,8 @@ export const deleteCard = createAsyncThunk(
       await axios.delete(`/api/cards/${id}`);
       return id;
     } catch (error) {
+      toast.error(error.response.data.message);
+
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -53,6 +59,8 @@ export const replaceCard = createAsyncThunk(
       );
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
+
       return thunkApi.rejectWithValue(error.message);
     }
   }

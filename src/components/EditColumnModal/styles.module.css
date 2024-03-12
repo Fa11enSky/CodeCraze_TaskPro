@@ -92,3 +92,15 @@
   outline: none;
   /* box-shadow: 0 2px 5px 0 var(--accent); */
 } 
+@media screen and (max-width:375px) {
+  .modal{
+    
+    max-width: 350px;
+  }
+  .submBtn{
+    width: 100%;
+  }
+  .input{
+    width: 100%;
+  }
+}
