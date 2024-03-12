@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 
 import * as Yup from 'yup';
@@ -10,10 +10,6 @@ import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import {
   NeedHelpInner,
   NeedHelpInnerText,
-  NeedHelpInnerForm,
-  NeedHelpInnerEmail,
-  NeedHelpInnerComment,
-  NeedHelpInnerBtn,
   CloseButton,
 } from './NeedHelp.styled';
 
@@ -31,8 +27,7 @@ const NeedHelp = ({ onClose }) => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (value, { setSubmit, resetForm }) => {
-    setSubmit(true);
+  const handleSubmit = (value, { resetForm }) => {
     const email = value.email;
     const text = value.text;
 
@@ -43,7 +38,7 @@ const NeedHelp = ({ onClose }) => {
       })
     );
     resetForm();
-    setSubmit(false);
+    handleClose();
   };
 
   const initialValues = {
@@ -51,38 +46,39 @@ const NeedHelp = ({ onClose }) => {
     text: '',
   };
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={supportSchema}
-      onSubmit={handleSubmit}
-    >
-      <NeedHelpInner>
-        <NeedHelpInnerText className="NeedHelpInner__text">
-          Need help
-        </NeedHelpInnerText>
-        <NeedHelpInnerForm className="NeedHelpInner__form">
-          <NeedHelpInnerEmail
-            className="NeedHelpInner__email"
+    <NeedHelpInner>
+      <NeedHelpInnerText className="NeedHelpInner__text">
+        Need help
+      </NeedHelpInnerText>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={supportSchema}
+        onSubmit={handleSubmit}
+      >
+        <Form className="NeedHelpInnerForm">
+          <Field
+            className="NeedHelpInnerEmail"
             id="email"
             name="email"
             type="email"
             placeholder="Email address"
           />
-          <NeedHelpInnerComment
-            className="NeedHelpInner__comment"
-            id="comment"
-            name="comment"
+          <Field
+            className="NeedHelpInnerComment"
+            id="text"
+            name="text"
+            as="textarea"
             placeholder="Comment"
-          ></NeedHelpInnerComment>
-          <NeedHelpInnerBtn className="NeedHelpInner__btn" type="submit">
+          ></Field>
+          <button className="NeedHelpInnerBtn" type="submit">
             Send
-          </NeedHelpInnerBtn>
-        </NeedHelpInnerForm>
-        <CloseButton onClick={handleClose}>
-          <use href={`${sprite}#close`} />
-        </CloseButton>
-      </NeedHelpInner>
-    </Formik>
+          </button>
+        </Form>
+      </Formik>
+      <CloseButton onClick={handleClose}>
+        <use href={`${sprite}#close`} />
+      </CloseButton>
+    </NeedHelpInner>
   );
 };
 
