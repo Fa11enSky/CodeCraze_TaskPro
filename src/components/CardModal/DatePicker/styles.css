@@ -123,19 +123,10 @@
   color: var(--accent);
   border: none;
   padding: 0;
-
   transition: opacity 0.3s;
+
   &:hover {
     opacity: 0.5;
-  }
-  &:hover {
-    span {
-      &::before,
-      &::after {
-        transform: rotate(360deg);
-        transition: border-color, rotate, 0.3s ease-in-out;
-      }
-    }
   }
 
   span {
@@ -169,5 +160,13 @@
       border-width: 2px 0 0 0;
       border-radius: 1px;
     }
+  }
+}
+
+.custom-input:hover span {
+  &::before,
+  &::after {
+    transform: rotate(360deg);
+    transition: border-color, rotate, 0.3s ease-in-out;
   }
 }
