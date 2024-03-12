@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import iconsSprite from '../../../assets/svgSprite/iconsSprite.svg';
 import {
   BoardIcon,
@@ -14,12 +14,14 @@ import EditBoard from '../../EditBoard/EditBoard';
 
 import { useDispatch } from 'react-redux';
 import { deleteBoard } from '../../../redux/boards/operationsBoards';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BoardItem = ({ isActive, title, icon, id }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [click, setClick] = useState(false);
 
   const openModalBoard = () => {
     setIsModalOpen(true);
@@ -28,6 +30,17 @@ const BoardItem = ({ isActive, title, icon, id }) => {
   const closeModalBoard = () => {
     setIsModalOpen(false);
   };
+
+  const handleDelete = () => {
+    dispatch(deleteBoard(id));
+    setClick(true);
+  };
+
+  useEffect(() => {
+    if (click) {
+      navigate('/home');
+    }
+  }, [click, navigate]);
 
   return (
     <>
@@ -47,7 +60,7 @@ const BoardItem = ({ isActive, title, icon, id }) => {
                 </ToolBarIcon>
               </ToolBarButton>
 
-              <ToolBarButton onClick={() => dispatch(deleteBoard(id))}>
+              <ToolBarButton onClick={handleDelete}>
                 <ToolBarIcon>
                   <use xlinkHref={`${iconsSprite}#icon-trash`} />
                 </ToolBarIcon>

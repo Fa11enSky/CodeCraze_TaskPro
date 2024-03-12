@@ -1,27 +1,44 @@
-import { ErrorMessage, Form } from 'formik';
+import { ErrorMessage, Field, Form } from 'formik';
 import styled from 'styled-components';
 
 export const EditProfileContent = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  max-width: 335px;
-  max-height: 440px;
+  width: 100%;
   padding: 24px;
+
+  border-radius: 8px;
   background-color: var(--add_column_modal_bg);
+
+  @media screen and (min-width: 375px) {
+    max-width: 335px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 400px;
+  }
 
   & h2 {
     margin: 0 0 24px 0;
-    color: var(--main_text_color);
+
     font-size: 18px;
     font-weight: 500;
     letter-spacing: -0.02em;
     line-height: 1.5;
+    color: var(--main_text_color);
   }
 `;
 
-export const AvatarContainer = styled.div`
-  align-self: center;
+export const EditProfileForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
   position: relative;
+`;
+
+export const AvatarContainer = styled.div`
+  position: relative;
+  align-self: center;
 `;
 
 export const AvatarImageContainer = styled.div`
@@ -42,6 +59,7 @@ export const AvatarImageContainer = styled.div`
     align-self: flex-end;
     max-width: 56px;
     max-height: 50px;
+
     fill: var(--avatar-icon);
 
     & use {
@@ -57,9 +75,11 @@ export const UploadAvatarButton = styled.div`
   max-width: 24px;
   max-height: 24px;
   padding: 7px;
+
   border: 0;
   border-radius: 6px;
   background-color: var(--accent);
+
   cursor: pointer;
 
   &:hover {
@@ -71,6 +91,7 @@ export const UploadAvatarButton = styled.div`
     max-width: 10px;
     max-height: 10px;
     margin: auto;
+
     stroke: #161616;
 
     & use {
@@ -79,59 +100,9 @@ export const UploadAvatarButton = styled.div`
   }
 `;
 
-export const EditProfileForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-
-  & input {
-    width: 100%;
-    height: 100%;
-    height: 49px;
-    padding: 14px 18px;
-    border: solid 1px var(--accent);
-    border-radius: 8px;
-    color: var(--main_text_color);
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1.5;
-    opacity: 0.4;
-    background-color: transparent;
-
-    &:focus-visible {
-      outline: 0;
-      opacity: 1;
-    }
-
-    &:focus-visible + span {
-      outline: 0;
-      opacity: 1;
-    }
-
-    &::placeholder {
-      color: var(--light_text);
-    }
-  }
-`;
-
-export const StyledErrorMessage = styled(ErrorMessage)`
-  color: red;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.5;
-  letter-spacing: -0.02em;
-`;
-
-export const StyledAvatarErrorMessage = styled(StyledErrorMessage)`
-  text-align: center;
-  margin: 14px 0 0 0;
-`;
-
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-
   margin: 0 0 14px 0;
 
   &[data-last-child] {
@@ -140,6 +111,37 @@ export const InputContainer = styled.div`
 
   &[data-avatar] {
     margin: 0 0 25px 0;
+  }
+`;
+
+export const EditProfileInput = styled(Field)`
+  width: 100%;
+  height: 100%;
+  max-height: 49px;
+  padding: 14px 18px;
+
+  border: solid 1px var(--accent);
+  border-radius: 8px;
+  background-color: transparent;
+  opacity: 0.4;
+
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  color: var(--main_text_color);
+
+  &:focus-visible {
+    outline: 0;
+    opacity: 1;
+  }
+
+  &::placeholder {
+    color: var(--light_text);
+  }
+
+  &[data-type='password'] {
+    padding-right: 54px;
   }
 `;
 
@@ -154,28 +156,66 @@ export const ShowHideButton = styled.button`
   max-width: 18px;
   max-height: 18px;
   padding: 0;
+
   border: 0;
   background-color: transparent;
 
   & svg {
-    stroke: var(--main_text_color);
     opacity: 0.4;
+
+    stroke: var(--main_text_color);
   }
 `;
 
 export const SubmitButton = styled.button`
   max-height: 49px;
   padding: 14px 0;
+
   border: 0;
   border-radius: 8px;
   background-color: var(--accent);
-  color: var(--main_text_color);
+
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.5;
+  color: var(--main_text_color);
 
   &:hover {
     background-color: var(--accent_hover);
+  }
+`;
+
+export const StyledErrorMessage = styled(ErrorMessage)`
+  color: red;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+`;
+
+export const StyledAvatarErrorMessage = styled(StyledErrorMessage)`
+  margin: 14px 0 0 0;
+
+  text-align: center;
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  max-width: 18px;
+  max-height: 18px;
+  padding: 0;
+
+  border: 0;
+  background-color: transparent;
+
+  & svg {
+    stroke: var(--main_text_color);
+  }
+
+  & use {
+    margin: auto;
   }
 `;

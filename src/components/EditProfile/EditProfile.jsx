@@ -5,8 +5,10 @@ import { useMemo, useState } from 'react';
 import {
   AvatarContainer,
   AvatarImageContainer,
+  CloseButton,
   EditProfileContent,
   EditProfileForm,
+  EditProfileInput,
   InputContainer,
   PasswordInputContainer,
   ShowHideButton,
@@ -20,12 +22,13 @@ import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import { selectUser } from '../../redux/auth/selectors';
 import { updateUser } from '../../redux/auth/operations';
 import EditProfileSchema from './EditProfileSchema';
+import Modal from 'components/Modal/Modal';
 
 const getInitialValues = user => {
   return {
     name: user?.name || '',
     email: '',
-    avatar: '',
+    avatar: null,
     password: '',
 
     emailPlaceholder: user?.email || 'Email',
@@ -33,18 +36,18 @@ const getInitialValues = user => {
   };
 };
 
-const EditProfile = () => {
+const EditProfile = ({ onClose }) => {
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
-
-  const initialValues = useMemo(() => getInitialValues(user), [user]);
 
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(prev => !prev);
   };
+
+  const initialValues = useMemo(() => getInitialValues(user), [user]);
 
   const handleSubmit = ({ avatar, name, email, password }, { resetForm }) => {
     const formData = new FormData();
@@ -57,118 +60,134 @@ const EditProfile = () => {
   };
 
   return (
-    // <Modal>
-    <EditProfileContent>
-      <h2>Edit Profile</h2>
+    <Modal onClose={onClose}>
+      <EditProfileContent>
+        <CloseButton onClick={onClose}>
+          <svg width="18px" height="18px">
+            <use href={`${sprite}#close`} />
+          </svg>
+        </CloseButton>
 
-      <Formik
-        initialValues={initialValues}
-        validationSchema={EditProfileSchema}
-        onSubmit={handleSubmit}
-        enableReinitialize
-      >
-        {({ values, setValues, dirty }) => {
-          const userAvatar = values.avatarPreview || user.avatarURL;
+        <h2>Edit Profile</h2>
 
-          return (
-            <EditProfileForm
-              autoComplete="off"
-              noValidate
-              encType="multipart/form-data"
-            >
-              <InputContainer data-avatar>
-                <AvatarContainer>
-                  <AvatarImageContainer $bg={!userAvatar}>
-                    {userAvatar ? (
-                      <img src={userAvatar} alt="User avatar" />
-                    ) : (
-                      <svg>
-                        <use href={`${sprite}#icon-user_default`} />
-                      </svg>
-                    )}
-                  </AvatarImageContainer>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={EditProfileSchema}
+          onSubmit={handleSubmit}
+          enableReinitialize
+        >
+          {({ values, setValues, dirty }) => {
+            const userAvatar = values.avatarPreview || user.avatarURL;
 
-                  <Field
-                    id="file"
-                    name="file"
-                    type="file"
-                    accept="image/*"
-                    hidden
-                    onChange={event => {
-                      setValues({
-                        ...values,
-                        avatar: event.currentTarget.files[0],
-                        avatarPreview: URL.createObjectURL(
-                          event.currentTarget.files[0]
-                        ),
-                      });
-                    }}
+            return (
+              <EditProfileForm
+                autoComplete="off"
+                noValidate
+                encType="multipart/form-data"
+              >
+                <InputContainer data-avatar>
+                  <AvatarContainer>
+                    <AvatarImageContainer $bg={!userAvatar}>
+                      {userAvatar ? (
+                        <img src={userAvatar} alt="User avatar" />
+                      ) : (
+                        <svg>
+                          <use href={`${sprite}#icon-user_default`} />
+                        </svg>
+                      )}
+                    </AvatarImageContainer>
+
+                    <Field
+                      id="file"
+                      name="file"
+                      type="file"
+                      accept="image/*"
+                      hidden
+                      onChange={event => {
+                        const file = event.currentTarget.files[0];
+                        const regex = /^image\/.*/;
+
+                        setValues({
+                          ...values,
+                          avatar: file,
+                          avatarPreview: regex.test(file.type)
+                            ? URL.createObjectURL(file)
+                            : '',
+                        });
+                      }}
+                    />
+                    <label htmlFor="file">
+                      <UploadAvatarButton>
+                        <svg>
+                          <use href={`${sprite}#plus`} />
+                        </svg>
+                      </UploadAvatarButton>
+                    </label>
+                  </AvatarContainer>
+
+                  <StyledAvatarErrorMessage name="avatar" component="span" />
+                </InputContainer>
+
+                <InputContainer>
+                  <EditProfileInput
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Name"
                   />
-                  <label htmlFor="file">
-                    <UploadAvatarButton>
-                      <svg>
-                        <use href={`${sprite}#plus`} />
-                      </svg>
-                    </UploadAvatarButton>
-                  </label>
-                </AvatarContainer>
 
-                <StyledAvatarErrorMessage name="avatar" component="span" />
-              </InputContainer>
+                  <StyledErrorMessage name="name" component="span" />
+                </InputContainer>
 
-              <InputContainer>
-                <Field id="name" name="name" type="text" placeholder="Name" />
-
-                <StyledErrorMessage name="name" component="span" />
-              </InputContainer>
-
-              <InputContainer>
-                <Field
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder={values.emailPlaceholder}
-                />
-
-                <StyledErrorMessage name="email" component="span" />
-              </InputContainer>
-
-              <InputContainer data-last-child>
-                <PasswordInputContainer>
-                  <Field
-                    id="password"
-                    name="password"
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="Password"
+                <InputContainer>
+                  <EditProfileInput
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder={values.emailPlaceholder}
                   />
-                  <ShowHideButton
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                  >
-                    {showPassword ? (
-                      <svg width="18" height="18" fill="none">
-                        <use href={`${sprite}#icon-vector`} />
-                      </svg>
-                    ) : (
-                      <svg width="18" height="18" fill="none">
-                        <use href={`${sprite}#icon-eye`} />
-                      </svg>
-                    )}
-                  </ShowHideButton>
-                </PasswordInputContainer>
 
-                <StyledErrorMessage name="password" component="span" />
-              </InputContainer>
+                  <StyledErrorMessage name="email" component="span" />
+                </InputContainer>
 
-              <SubmitButton type="submit" disabled={!dirty}>
-                Send
-              </SubmitButton>
-            </EditProfileForm>
-          );
-        }}
-      </Formik>
-    </EditProfileContent>
-    // </Modal>
+                <InputContainer data-last-child>
+                  <PasswordInputContainer>
+                    <EditProfileInput
+                      id="password"
+                      name="password"
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Password"
+                      data-type="password"
+                    />
+
+                    <ShowHideButton
+                      type="button"
+                      onClick={togglePasswordVisibility}
+                    >
+                      {showPassword ? (
+                        <svg width="18" height="18" fill="none">
+                          <use href={`${sprite}#icon-vector`} />
+                        </svg>
+                      ) : (
+                        <svg width="18" height="18" fill="none">
+                          <use href={`${sprite}#icon-eye`} />
+                        </svg>
+                      )}
+                    </ShowHideButton>
+                  </PasswordInputContainer>
+
+                  <StyledErrorMessage name="password" component="span" />
+                </InputContainer>
+
+                <SubmitButton type="submit" disabled={!dirty}>
+                  Send
+                </SubmitButton>
+              </EditProfileForm>
+            );
+          }}
+        </Formik>
+      </EditProfileContent>
+    </Modal>
   );
 };
 

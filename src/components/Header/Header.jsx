@@ -16,7 +16,6 @@ import Select from 'react-select';
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import EditProfile from '../EditProfile/EditProfile';
 import { selectUser } from '../../redux/auth/selectors.js';
-import Modal from 'components/Modal/Modal';
 import { selectTheme } from '../../redux/theme/selectors';
 import { changeTheme } from '../../redux/theme/operations';
 
@@ -31,6 +30,7 @@ const Header = ({ showSidebar, size }) => {
 
   const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
+  const th = options.findIndex(e => e.value === theme);
 
   useEffect(() => {
     setTheme({ value: theme });
@@ -62,6 +62,7 @@ const Header = ({ showSidebar, size }) => {
         <ListItem>
           <List>
             <Select
+              defaultValue={options[th]}
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
@@ -110,7 +111,7 @@ const Header = ({ showSidebar, size }) => {
               }}
               onChange={dispatchTheme}
               options={options}
-              placeholder="Theme"
+              placeholder={`Theme`}
             />
           </List>
           <List>
@@ -127,9 +128,7 @@ const Header = ({ showSidebar, size }) => {
             </Button>
 
             {isShowModal && (
-              <Modal width={400} onClose={() => setIsShowModal(false)}>
-                <EditProfile />
-              </Modal>
+              <EditProfile onClose={() => setIsShowModal(false)} />
             )}
           </List>
         </ListItem>
