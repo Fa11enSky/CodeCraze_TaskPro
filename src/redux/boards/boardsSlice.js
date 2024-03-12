@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-// import { addNewBoard, editBoardById } from './operations';
+
 import {
   createBoard,
   deleteBoard,
@@ -78,9 +76,8 @@ export const allBoardsSlice = createSlice({
       .addCase(deleteBoard.rejected, handleError)
       .addCase(addColumn.pending, hadlePending)
       .addCase(addColumn.fulfilled, (state, action) => {
-        const column = {...action.payload,cards:[]}
+        const column = { ...action.payload, cards: [] };
         state.selectedBoard.columns.push(column);
-        
       })
       .addCase(addColumn.rejected, handleError)
       .addCase(updateColumn.pending, hadlePending)
