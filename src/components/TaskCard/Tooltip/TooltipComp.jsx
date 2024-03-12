@@ -55,7 +55,7 @@ const TooltipComp = ({ cardId }) => {
           </TooltipButton>
         ))
       ) : (
-        <h5
+        <p
           style={{
             color: 'var(--light_text)',
             fontSize: 14,
@@ -63,7 +63,7 @@ const TooltipComp = ({ cardId }) => {
           }}
         >
           No columns more
-        </h5>
+        </p>
       )}
     </Tooltip>
   );
