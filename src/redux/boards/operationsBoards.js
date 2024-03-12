@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 export const fetchAllBoard = createAsyncThunk(
   'boards/all',
@@ -8,6 +9,7 @@ export const fetchAllBoard = createAsyncThunk(
       const { data } = await axios.get('/api/boards');
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -21,6 +23,8 @@ export const fetchSingleBoard = createAsyncThunk(
       const { data } = await axios.get(`/api/boards/${id}`);
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
+
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -41,6 +45,8 @@ export const createBoard = createAsyncThunk(
       const { data } = await axios.post('/api/boards', board);
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
+
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -57,6 +63,8 @@ export const updateBoard = createAsyncThunk(
       const { data } = await axios.patch(`/api/boards/${id}`, { ...board });
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
+
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -71,6 +79,8 @@ export const deleteBoard = createAsyncThunk(
       await axios.delete(`/api/boards/${id}`);
       return id;
     } catch (error) {
+      toast.error(error.response.data.message);
+
       return thunkAPI.rejectWithValue(error.message);
     }
   }

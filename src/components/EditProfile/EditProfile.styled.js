@@ -46,6 +46,8 @@ export const AvatarImageContainer = styled.div`
   justify-content: center;
   width: 68px;
   height: 68px;
+  border-radius:8px;
+  overflow: hidden;
 
   ${props => !!props.$bg && 'background-color: var(--avatar-bg);'}
 

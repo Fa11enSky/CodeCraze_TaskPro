@@ -221,48 +221,10 @@ img {
     padding-left: 24px;
   }
 }
-/* body.light {
-  --main_text_color: #161616;
-  --sidebar_text_color: #161616;
-  --accent: #bedbb0;
-  --void_page_color: #f6f6f7;
-  --accent_hover: rgba(190, 219, 176, 0.5);
-  --light_text: rgba(22, 22, 22, 0.7);
-  --background_sidebar: #ffffff;
-  --background_header: #ffffff;
-  --background_taskList: #fdfdfd;
-  --background_help: #e5e5e5;
-  --background_task_item: #ffffff;
-  --scroll_bar_color: rgba(255, 255, 255, 0.1);
-  --calendar_help: rgba(22, 22, 22, 0.2);
+.Toastify__toast {
+background-color:var(--background_task_item);
+color: var(--main_text_color);
+font-size: 14px;
+font-weight: 500;
+max-width: 280px;
 }
-body.dark {
-  --main_text_color: #ffffff;
-  --sidebar_text_color: #ffffff;
-  --accent: #bedbb0;
-  --void_page_color: #1f1f1f;
-
-  --light_text: #bedbb0;
-  --background_sidebar: #121212;
-  --background_header: #161616;
-  --background_taskList: #1f1f1f;
-  --background_help: #1f1f1f;
-  --background_task_item: #121212;
-  --scroll_bar_color: #e8e8e8;
-  --calendar_help: rgba(255, 255, 255, 0.2);
-}
-body.violet {
-  --main_text_color: #161616;
-  --sidebar_text_color: #ffffff;
-  --accent: #5255bc;
-
-  --accent_hover: rgba(82, 85, 188, 0.5);
-  --light_text: rgba(22, 22, 22, 0.7);
-  --background_sidebar: #5255bc;
-  --background_header: #ffffff;
-  --background_taskList: #d6d8ff;
-  --background_help: rgba(236, 237, 253, 0.4);
-  --background_task_item: #ffffff;
-  --scroll_bar_color: #b8bcfd;
-  --calendar_help: rgba(22, 22, 22, 0.2);
-} */
