@@ -13,14 +13,12 @@ import { FilteredColumns } from 'components/FiltredColumns';
 
 const ColumnsList = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const board = useSelector(selectedBoard);
   const filter = useSelector(selectFilter);
   const params = useParams();
   const dispatch = useDispatch();
-  const { title, columns, background } = board;
+  const { title, columns, background } = useSelector(selectedBoard);
   const bgNumber = background;
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
-
   const toggleAddColumn = () => {
     setIsAddColumnOpen(!isAddColumnOpen);
   };
@@ -39,7 +37,6 @@ const ColumnsList = () => {
       return '';
     }
   };
-
   const setDevice = () => {
     if (window.innerWidth <= 375) {
       return 'moblie';
