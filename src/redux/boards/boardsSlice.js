@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-// import { addNewBoard, editBoardById } from './operations';
+
 import {
   createBoard,
   deleteBoard,
@@ -40,7 +38,7 @@ export const allBoardsSlice = createSlice({
       .addCase(fetchAllBoard.pending, hadlePending)
       .addCase(fetchAllBoard.fulfilled, (state, action) => {
         state.boards = [...action.payload];
-        state.isLoading=false
+        state.isLoading = false;
       })
       .addCase(fetchAllBoard.rejected, (state, payload) => {
         state.isLoading = false;
@@ -63,7 +61,6 @@ export const allBoardsSlice = createSlice({
       .addCase(createBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.boards.push(action.payload);
-
       })
       .addCase(createBoard.rejected, handleError)
       .addCase(updateBoard.pending, hadlePending)
@@ -74,7 +71,6 @@ export const allBoardsSlice = createSlice({
         state.selectedBoard.background = action.payload.background;
         const idx = state.boards.findIndex(el => el._id === action.payload._id);
         state.boards[idx] = action.payload;
-
       })
       .addCase(updateBoard.rejected, handleError)
       .addCase(deleteBoard.pending, hadlePending)
@@ -82,15 +78,13 @@ export const allBoardsSlice = createSlice({
         state.isLoading = false;
         const idx = state.boards.findIndex(el => el._id === action.payload);
         state.boards.splice(idx, 1);
-
       })
       .addCase(deleteBoard.rejected, handleError)
       .addCase(addColumn.pending, hadlePending)
       .addCase(addColumn.fulfilled, (state, action) => {
-                state.isLoading = false;
-        const column = {...action.payload,cards:[]}
+        state.isLoading = false;
+        const column = { ...action.payload, cards: [] };
         state.selectedBoard.columns.push(column);
-        
       })
       .addCase(addColumn.rejected, handleError)
       .addCase(updateColumn.pending, hadlePending)
