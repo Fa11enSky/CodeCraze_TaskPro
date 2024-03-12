@@ -50,26 +50,8 @@ export const CardModal = ({
   const handleSubmit = values => {
     const { title, description, label } = values;
 
-    if (!newCard) {
-      try {
-        /*якщо користувач обрав сьогоднішню дату */
-        const today = new Date();
-        if (
-          today.getFullYear() === selectedDate.getFullYear() &&
-          today.getMonth() === selectedDate.getMonth() &&
-          today.getDate() === selectedDate.getDate()
-        )
-          throw new Error('Invalid date');
-      } catch (error) {
-        console.log(error);
-        return;
-      }
-
-      /* додаю до дати +1 день для відправки на бекенд */
-      selectedDate.setDate(selectedDate.getDate() + 1);
-    }
-
     const newCardData = { title, description, label, deadline: selectedDate };
+
     if (newCard) dispatch(createCard([_id, newCardData]));
     if (!newCard) dispatch(updateCard([_id, newCardData]));
     onClose();
@@ -89,12 +71,13 @@ export const CardModal = ({
         onSubmit={values => handleSubmit(values)}
       >
         <Form>
-          <TitleInput id="title" name="title" placeholder="Title" />
+          <TitleInput id="title" name="title" placeholder="Title" required />
           <DescriptionTextArea
             id="description"
             name="description"
             placeholder="Description"
             component="textarea"
+
           />
 
           <Layout>
@@ -127,7 +110,6 @@ export const CardModal = ({
             <ModifiedDatePicker
               onChange={handleDateChange}
               date={selectedDate}
-              newCard={newCard}
             />
           </Layout>
           <SubmitButton type="submit">
