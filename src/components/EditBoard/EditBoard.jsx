@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import data from '../../assets/backgroundIcons/data';
-import {
-  updateBoard,
-  fetchSingleBoard,
-} from '../../redux/boards/operationsBoards';
+import { updateBoard } from '../../redux/boards/operationsBoards';
 import { selectedBoard } from '../../redux/boards/selectors';
 
 import {
@@ -37,23 +34,14 @@ const EditBoard = ({ onClose }) => {
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const boardId = useSelector(state => state.boards.boardId);
-  const board = useSelector(state => selectedBoard(state, boardId));
+  // const navigate = useNavigate();
+  const board = useSelector(selectedBoard);
 
   useEffect(() => {
-    if (boardId) {
-      dispatch(fetchSingleBoard(boardId));
-    }
-  }, [dispatch, boardId]);
-
-  useEffect(() => {
-    if (board) {
-      setValue('title', board.title);
-      setSelectedIcon(board.icon);
-      setSelectedBackgroundId(board.background);
-    }
-  }, [board, board.background, board.icon, board.title, setValue]);
+    setValue('title', board.title);
+    setSelectedIcon(board.icon);
+    setSelectedBackgroundId(board.background);
+  }, [board.background, board.icon, board.title, setValue]);
 
   const handleTitleChange = event => {
     setValue('title', event.target.value.toString());
@@ -66,20 +54,17 @@ const EditBoard = ({ onClose }) => {
 
   const handleBackgroundSelect = backgroundId => {
     setSelectedBackgroundId(backgroundId);
-    setValue('selectedBackgroundId', backgroundId.toString());
+    setValue('selectedBackgroundId', backgroundId);
   };
 
   const handleEditBoard = data => {
-    const updateData = {
-      id: board._id,
-      board: {
-        title: data.title,
-        icon: data.selectedIcon,
-        background: data.selectedBackgroundId,
-      },
+    const boardData = {
+      title: data.title,
+      icon: data.selectedIcon,
+      background: data.selectedBackgroundId,
     };
 
-    dispatch(updateBoard(updateData)).then(() => {
+    dispatch(updateBoard([board._id, boardData])).then(() => {
       setValue('title', data.title);
       setValue('selectedIcon', data.selectedIcon);
       setValue('selectedBackgroundId', data.selectedBackgroundId);
@@ -91,7 +76,7 @@ const EditBoard = ({ onClose }) => {
       autoClose: 2500,
     });
 
-    navigate(`${data.title.toLowerCase()}`);
+    // navigate(`${board._id}`);
   };
 
   const renderIcons = () => {

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://codecraze-taskpro-backend.onrender.com/';
 
@@ -19,6 +20,7 @@ export const register = createAsyncThunk(
 
       return data;
     } catch (e) {
+      toast.error('Registration failed. Please try again');
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -32,6 +34,7 @@ export const logIn = createAsyncThunk(
 
       return data;
     } catch (e) {
+      toast.error('Login failed! Email or password is wrong');
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -61,8 +64,8 @@ export const refreshUser = createAsyncThunk(
       const { data } = await axios.get('api/users/current');
 
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );

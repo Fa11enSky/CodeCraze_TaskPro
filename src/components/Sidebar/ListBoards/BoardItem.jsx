@@ -30,37 +30,39 @@ const BoardItem = ({ isActive, title, icon, id }) => {
   };
 
   return (
-    <Link to={`/home/${id}`}>
-      <BoardWrapper $isActive={isActive}>
-        <TitleWrapper $isActive={isActive}>
-          <BoardIcon $isActive={isActive}>
-            <use xlinkHref={`${iconsSprite}#${icon}`} />
-          </BoardIcon>
-          <p>{title}</p>
-        </TitleWrapper>
-        {isActive && (
-          <ToolBar>
-            <ToolBarButton onClick={openModalBoard}>
-              <ToolBarIcon>
-                <use xlinkHref={`${iconsSprite}#icon-pencil`} />
-              </ToolBarIcon>
-            </ToolBarButton>
+    <>
+      <Link to={`/home/${id}`}>
+        <BoardWrapper $isActive={isActive}>
+          <TitleWrapper $isActive={isActive}>
+            <BoardIcon $isActive={isActive}>
+              <use xlinkHref={`${iconsSprite}#${icon}`} />
+            </BoardIcon>
+            <p>{title}</p>
+          </TitleWrapper>
+          {isActive && (
+            <ToolBar>
+              <ToolBarButton onClick={openModalBoard}>
+                <ToolBarIcon>
+                  <use xlinkHref={`${iconsSprite}#icon-pencil`} />
+                </ToolBarIcon>
+              </ToolBarButton>
 
-            {isModalOpen && (
-              <Modal isOpen={isModalOpen} onClose={closeModalBoard}>
-                <EditBoard onClose={closeModalBoard} />
-              </Modal>
-            )}
+              <ToolBarButton onClick={() => dispatch(deleteBoard(id))}>
+                <ToolBarIcon>
+                  <use xlinkHref={`${iconsSprite}#icon-trash`} />
+                </ToolBarIcon>
+              </ToolBarButton>
+            </ToolBar>
+          )}
+        </BoardWrapper>
+      </Link>
 
-            <ToolBarButton onClick={() => dispatch(deleteBoard(id))}>
-              <ToolBarIcon>
-                <use xlinkHref={`${iconsSprite}#icon-trash`} />
-              </ToolBarIcon>
-            </ToolBarButton>
-          </ToolBar>
-        )}
-      </BoardWrapper>
-    </Link>
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={closeModalBoard}>
+          <EditBoard onClose={closeModalBoard} />
+        </Modal>
+      )}
+    </>
   );
 };
 
