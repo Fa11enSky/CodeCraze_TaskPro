@@ -16,7 +16,6 @@ import Select from 'react-select';
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import EditProfile from '../EditProfile/EditProfile';
 import { selectUser } from '../../redux/auth/selectors.js';
-import Modal from 'components/Modal/Modal';
 import { selectTheme } from '../../redux/theme/selectors';
 import { changeTheme } from '../../redux/theme/operations';
 
@@ -127,9 +126,7 @@ const Header = ({ showSidebar, size }) => {
             </Button>
 
             {isShowModal && (
-              <Modal width={400} onClose={() => setIsShowModal(false)}>
-                <EditProfile />
-              </Modal>
+              <EditProfile onClose={() => setIsShowModal(false)} />
             )}
           </List>
         </ListItem>
