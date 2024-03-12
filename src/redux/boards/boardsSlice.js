@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-// import { addNewBoard, editBoardById } from './operations';
+
 import {
   createBoard,
   deleteBoard,
@@ -48,13 +46,13 @@ export const allBoardsSlice = createSlice({
       .addCase(fetchSingleBoard.pending, hadlePending)
       .addCase(fetchSingleBoard.fulfilled, (state, action) => {
         if (action.payload.columns[0].hasOwnProperty('_id')) {
-           state.selectedBoard = action.payload;
+          state.selectedBoard = action.payload;
           return;
         }
-        state.selectedBoard = action.payload
-        state.selectedBoard.columns=[]
+        state.selectedBoard = action.payload;
+        state.selectedBoard.columns = [];
       })
-      
+
       .addCase(fetchSingleBoard.rejected, handleError)
       .addCase(createBoard.pending, hadlePending)
       .addCase(createBoard.fulfilled, (state, action) => {
@@ -63,19 +61,27 @@ export const allBoardsSlice = createSlice({
       .addCase(createBoard.rejected, handleError)
       .addCase(updateBoard.pending, hadlePending)
       .addCase(updateBoard.fulfilled, (state, action) => {
+        state.selectedBoard.title = action.payload.title;
+        state.selectedBoard.icon = action.payload.icon;
+        state.selectedBoard.background = action.payload.background;
         const idx = state.boards.findIndex(el => el._id === action.payload._id);
-        state.boards.splice(idx, 1, action.payload);
+        state.boards[idx] = action.payload;
       })
       .addCase(updateBoard.rejected, handleError)
       .addCase(deleteBoard.pending, hadlePending)
+
       .addCase(deleteBoard.fulfilled, (state, action) => {
         const idx = state.boards.findIndex(el => el._id === action.payload);
         state.boards.splice(idx, 1);
+        if (state.selectedBoard._id === action.payload) {
+          state.selectedBoard = {};
+        }
       })
       .addCase(deleteBoard.rejected, handleError)
       .addCase(addColumn.pending, hadlePending)
       .addCase(addColumn.fulfilled, (state, action) => {
-        state.selectedBoard.columns.push(action.payload);
+        const column = { ...action.payload, cards: [] };
+        state.selectedBoard.columns.push(column);
       })
       .addCase(addColumn.rejected, handleError)
       .addCase(updateColumn.pending, hadlePending)
@@ -83,7 +89,10 @@ export const allBoardsSlice = createSlice({
         const idx = state.selectedBoard.columns.findIndex(
           el => el._id === action.payload._id
         );
-        state.selectedBoard.columns.splice(idx, 1, action.payload);
+        state.selectedBoard.columns[idx] = {
+          ...state.selectedBoard.columns[idx],
+          ...action.payload,
+        };
       })
       .addCase(updateColumn.rejected, handleError)
       .addCase(deleteColumn.pending, hadlePending)
@@ -98,20 +107,19 @@ export const allBoardsSlice = createSlice({
       .addCase(createCard.pending, hadlePending)
       .addCase(createCard.fulfilled, (state, action) => {
         const { payload } = action;
-        console.log(action)
         const idx = state.selectedBoard.columns.findIndex(
           el => el._id === payload.cardOwner
         );
-        
+
         if (idx === -1) {
           return state;
         }
-        if(state.selectedBoard.columns[idx].hasOwnProperty('cards')){
-          state.selectedBoard.columns[idx].cards.push(payload)
-          return
+        if (state.selectedBoard.columns[idx].hasOwnProperty('cards')) {
+          state.selectedBoard.columns[idx].cards.push(payload);
+          return;
         }
-        state.selectedBoard.columns[idx].cards = []
-        state.selectedBoard.columns[idx].cards.push(action.payload)
+        state.selectedBoard.columns[idx].cards = [];
+        state.selectedBoard.columns[idx].cards.push(action.payload);
       })
       .addCase(createCard.rejected, handleError)
       .addCase(updateCard.pending, hadlePending)
@@ -147,25 +155,22 @@ export const allBoardsSlice = createSlice({
       .addCase(replaceCard.pending, hadlePending)
       .addCase(replaceCard.fulfilled, (state, action) => {
         const {
-          payload: { result },
+          payload: { data },
         } = action;
         // remove old card
-        console.log(result);
         state.selectedBoard.columns.forEach(column => {
-          const cardIdx = column.cards.findIndex(
-            card => card._id === result._id
-          );
+          const cardIdx = column.cards.findIndex(card => card._id === data._id);
           if (cardIdx !== -1) {
             column.cards.splice(cardIdx, 1);
           }
         });
         // !___________________________________________________
         const columnToUpdate = state.selectedBoard.columns.findIndex(
-          el => el._id === result.cardOwner
+          el => el._id === data.cardOwner
         );
         if (columnToUpdate === -1) return state;
 
-        state.selectedBoard.columns[columnToUpdate].cards.push(result);
+        state.selectedBoard.columns[columnToUpdate].cards.push(data);
       })
       .addCase(replaceCard.rejected, handleError),
 });

@@ -20,7 +20,7 @@ export const register = createAsyncThunk(
 
       return data;
     } catch (e) {
-      toast.error('Registration failed. Please try again');
+      toast.error(`Registration failed. ${e.response.data.message}`);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -34,7 +34,7 @@ export const logIn = createAsyncThunk(
 
       return data;
     } catch (e) {
-      toast.error('Login failed! Email or password is wrong');
+      toast.error(`Login failed! ${e.response.data.message}`);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
