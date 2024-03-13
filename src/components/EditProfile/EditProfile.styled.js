@@ -80,7 +80,7 @@ export const UploadAvatarButton = styled.div`
 
   border: 0;
   border-radius: 6px;
-  background-color: var(--accent);
+  background-color: var(--modal_upload_avatar);
 
   cursor: pointer;
 
