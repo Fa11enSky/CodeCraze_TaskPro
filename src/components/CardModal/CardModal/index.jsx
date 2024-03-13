@@ -50,7 +50,9 @@ export const CardModal = ({
   const handleSubmit = values => {
     const { title, description, label } = values;
 
-    const newCardData = { title, description, label, deadline: selectedDate };
+
+    const newDescription = description !== null ? description : ""
+    const newCardData = { title, description: newDescription, label, deadline: selectedDate };
 
     if (newCard) dispatch(createCard([_id, newCardData]));
     if (!newCard) dispatch(updateCard([_id, newCardData]));
@@ -77,7 +79,6 @@ export const CardModal = ({
             name="description"
             placeholder="Description"
             component="textarea"
-            required
           />
 
           <Layout>
