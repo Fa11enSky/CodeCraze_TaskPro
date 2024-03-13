@@ -46,7 +46,7 @@ export const AvatarImageContainer = styled.div`
   justify-content: center;
   width: 68px;
   height: 68px;
-  border-radius:8px;
+  border-radius: 8px;
   overflow: hidden;
 
   ${props => !!props.$bg && 'background-color: var(--avatar-bg);'}
@@ -181,7 +181,7 @@ export const SubmitButton = styled.button`
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.5;
-  color: var(--main_text_color);
+  color: var(--modal_button_text);
 
   &:hover {
     background-color: var(--accent_hover);
