@@ -91,14 +91,14 @@ const TaskCard = ({ cardData }) => {
   const isDeadlineToday = formattedDeadline === getCurrentDate();
 
   /* -------------------- CREATE INITIAL VALUES OBJ --------------------*/
-
   const initValues = {
     title,
     description,
     radio,
-    date: parseDateToObject(formattedDeadline),
+    deadline,
     _id,
   };
+
 
   return (
     <FullCardWrapper>
