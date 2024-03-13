@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { deleteColumn } from '../../redux/boards/operationsColumns';
 
 const ColumnItem = ({ column }) => {
+
   const dispatch = useDispatch();
   const { title, cards, _id } = column;
   const [isRenameColumnOpen, setIsRenameColumnOpen] = useState(false);
@@ -47,13 +48,13 @@ const ColumnItem = ({ column }) => {
           {cards &&
             cards.map(el => {
               return (
-                <li  key={el._id}>
+                <li key={el._id}>
                   <TaskCard cardOwner={column._id} cardData={el} />
                 </li>
               );
             })}
         </ul>
-        <AddCardBtn  click={toggleAddCard} />
+        <AddCardBtn click={toggleAddCard} />
         {isRenameColumnOpen && (
           <Modal onClose={toggleEdit}>
             <EditColumModal columnId={_id} title={title} onClose={toggleEdit} />
@@ -62,7 +63,7 @@ const ColumnItem = ({ column }) => {
         {isAddCardOpen && (
           <Modal onClose={toggleAddCard}>
             <CardModal
-              initialValues={{ ...column, title: '' }}
+              initialValues={{ ...column, title: '', label: "without" }}
               newCard
               onClose={toggleAddCard}
             />

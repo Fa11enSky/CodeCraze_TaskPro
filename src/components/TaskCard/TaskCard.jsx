@@ -26,7 +26,6 @@ import {
   FullCardWrapper,
 } from './TaskCard.styled';
 import { getCurrentDate } from './services/getCurrentDate';
-import { parseDateToObject } from './services/parseDateToObject';
 import { formatDate } from './services/formatDate';
 
 /* Компонент TaskCard отримує об'єкт картки який включає:
@@ -56,27 +55,23 @@ const TaskCard = ({ cardData }) => {
   /* -------------------- PICK A PRIORITY COLOR + RADIO NUMBER --------------------*/
 
   let cardColor = '';
-  let radio = '';
 
   switch (label) {
     case 'low':
       cardColor = '#8fa1d0';
-      radio = '1';
       break;
     case 'medium':
       cardColor = '#e09cb5';
-      radio = '2';
       break;
     case 'high':
       cardColor = '#bedbb0';
-      radio = '3';
       break;
 
     default:
       cardColor = 'gray';
-      radio = '4';
       break;
   }
+
 
   /* -------------------- CARD CONTROLS FUNCTIONS --------------------*/
 
@@ -94,7 +89,7 @@ const TaskCard = ({ cardData }) => {
   const initValues = {
     title,
     description,
-    radio,
+    label,
     deadline,
     _id,
   };
