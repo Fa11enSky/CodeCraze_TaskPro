@@ -28,7 +28,7 @@ export const ListBoardStyle = styled.div`
     
   }
   @media screen and (min-width: 1440px) {
-    max-height: 206px;
+    max-height: 130px;
     overflow-y: auto;
   
   }
