@@ -3,14 +3,36 @@ import { SidebarContainer } from '../Sidebar.styled';
 
 export const ListBoardStyle = styled.div`
   margin-top: 40px;
-  overflow-y: auto;
+  overflow-y: hidden;
+  margin-bottom: 10px;
+  
+  
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+    
+  }
+  
+  &::-webkit-scrollbar-track {
+    background-color: var(--scroll_bar_bg_color);
+    border-radius: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--scroll_bar_color);
+    border-radius: 12px;
+  }
 
   @media screen and (min-width: 768px) {
-    /* max-height: 460px; */
-    max-height: 100%;
+    max-height: 460px;
+    
   }
   @media screen and (min-width: 1440px) {
     /* max-height: 206px; */
+
+    &:hover {
+    overflow-y: auto;
+  }
   }
 `;
 

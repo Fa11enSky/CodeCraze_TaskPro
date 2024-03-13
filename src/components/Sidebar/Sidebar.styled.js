@@ -11,10 +11,15 @@ const StyledSidebar = styled.section`
   background-color: var(--background_sidebar);
   overflow: auto;
   transition: background-color 200ms linear;
+  
   @media screen and (min-width: 768px) {
     max-width: 212px;
     padding-top: 14px;
     padding-bottom: 14px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    overflow: hidden;
   }
 `;
 
