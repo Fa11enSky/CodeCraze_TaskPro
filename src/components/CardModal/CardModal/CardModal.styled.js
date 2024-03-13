@@ -311,13 +311,10 @@ export const SubmitButton = styled.button`
 
 export const SubmitSpan = styled.span`
   position: relative;
-  /* top: 50%;
-left: 112px;
-transform: translate(-50%, -50%); */
   width: 28px;
   height: 28px;
   border-radius: 8px;
-  background: rgba(22, 22, 22, 1);
+  background: var(--button_svg_background);
 
   &::before {
     content: ' ';
@@ -326,7 +323,7 @@ transform: translate(-50%, -50%); */
     left: 14px;
     width: 4px;
     height: 4px;
-    border: 1px solid white;
+    border: 1px solid var(--add_card_btn_svg);
     border-width: 0 0 1px 1px;
   }
 
@@ -337,7 +334,7 @@ transform: translate(-50%, -50%); */
     left: 10px;
     width: 4px;
     height: 4px;
-    border: 1px solid rgba(255, 255, 255, 1);
+    border: 1px solid var(--add_card_btn_svg);
     border-width: 1px 1px 0 0;
   }
 
