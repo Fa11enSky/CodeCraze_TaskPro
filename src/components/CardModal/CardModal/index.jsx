@@ -50,9 +50,8 @@ export const CardModal = ({
   const handleSubmit = values => {
     const { title, description, label } = values;
 
-
-    const newDescription = description !== null ? description : ""
-    const newCardData = { title, description: newDescription, label, deadline: selectedDate };
+    const newCardData = { title, label, deadline: selectedDate };
+    if (description !== null) newCardData.description = description
 
     if (newCard) dispatch(createCard([_id, newCardData]));
     if (!newCard) dispatch(updateCard([_id, newCardData]));
