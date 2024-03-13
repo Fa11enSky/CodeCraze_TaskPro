@@ -145,7 +145,7 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   background-color: var(--accent);
-  color: #161616;
+  color: var(--modal_button_text);
   font-size: 14px;
   font-weight: 500;
   border-color: transparent;
