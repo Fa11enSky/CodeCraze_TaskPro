@@ -24,15 +24,13 @@ export const ListBoardStyle = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    max-height: 460px;
+    max-height: 100vh;
     
   }
   @media screen and (min-width: 1440px) {
-    /* max-height: 206px; */
-
-    &:hover {
+    max-height: 206px;
     overflow-y: auto;
-  }
+  
   }
 `;
 
