@@ -33,14 +33,14 @@ export const CardModal = ({
     title: '',
     description: '',
     label: 'without',
-    date: new Date(),
+    deadline: new Date(),
   },
   newCard = true,
   onClose,
 }) => {
-  const { title, description, date, label, _id } = initialValues;
+  const { title, description, deadline, label, _id } = initialValues;
 
-  const [selectedDate, setSelectedDate] = useState(date);
+  const [selectedDate, setSelectedDate] = useState(deadline);
   const dispatch = useDispatch();
 
   const handleDateChange = date => {
@@ -77,7 +77,7 @@ export const CardModal = ({
             name="description"
             placeholder="Description"
             component="textarea"
-
+            required
           />
 
           <Layout>
