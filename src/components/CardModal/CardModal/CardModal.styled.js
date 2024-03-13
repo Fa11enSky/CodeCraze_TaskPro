@@ -4,9 +4,9 @@ import { Field } from "formik"
 export const ModalDiv = styled.div`
 font-family: Poppins;
 color: rgba(255, 255, 255, 1);
-
-width: 335px;
-max-height: 900px;
+max-width: 335px;
+width: 100%;
+max-height: 522px;
 margin: 10% auto;
 
 border-radius: 8px;
@@ -103,7 +103,8 @@ text-align: left;
 color: var(--main_text_color);
 
 background-color: inherit;
-width: 287px;
+max-width: 287px;
+width: 100%;
 height: 49px;
 border-radius: 8px;
 border: 1px solid var(--accent);
@@ -134,7 +135,8 @@ text-align: left;
 
 color: var(--main_text_color);
 background-color: inherit;
-width: 287px;
+max-width: 287px;
+width: 100%;
 height: 154px;
 border-radius: 8px;
 border: 1px solid var(--accent);
@@ -265,7 +267,8 @@ flex-direction:row;
 align-items: center;
 justify-content: center;
 position: relative;
-width: 287px;
+max-width: 287px;
+width: 100%;
 height: 49px;
 padding: 10px 0px 11px 0px;
 border-radius: 8px;
@@ -301,10 +304,10 @@ color: rgba(22, 22, 22, 1);
 `
 
 export const SubmitSpan = styled.span`
- position: absolute;
-top: 50%;
+ position: relative;
+/* top: 50%;
 left: 112px;
-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%); */
 width: 28px;
 height: 28px;
 border-radius: 8px;
@@ -333,10 +336,10 @@ background: rgba(22, 22, 22, 1);
     border-width: 1px 1px 0 0;
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   left: 120px;
   &::before{
     
   }
-  }
+  } */
 `

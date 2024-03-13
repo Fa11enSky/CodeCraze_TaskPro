@@ -110,7 +110,6 @@
 }
 
 .custom-input {
-  position: relative;
   display: flex;
   gap: 4px;
   font-family: Poppins;
