@@ -68,6 +68,9 @@ body.light {
   --add_column_svg_bg: #161616;
   --add_column_svg: #ffffff;
   --add_column_modal_bg: #fcfcfc;
+
+  --modal_button_text: #161616;
+  --modal_upload_avatar: #bedbb0;
 }
 body.dark {
   --main_text_color: #ffffff;
@@ -107,6 +110,9 @@ body.dark {
   --add_column_svg_bg: #ffffff;
   --add_column_svg: #121212;
   --add_column_modal_bg: #151515;
+
+  --modal_button_text: #161616;
+  --modal_upload_avatar: #bedbb0;
 }
 body.violet {
   --main_text_color: #161616;
@@ -145,6 +151,9 @@ body.violet {
   --add_column_svg_bg: #5255bc;
   --add_column_svg: #ffffff;
   --add_column_modal_bg: #fcfcfc;
+
+  --modal_button_text: #ffffff;
+  --modal_upload_avatar: #ecedfd;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -222,12 +231,12 @@ img {
   }
 }
 .Toastify__toast {
-background-color:var(--background_task_item);
-color: var(--main_text_color);
-font-size: 14px;
-font-weight: 500;
-max-width: 280px;
+  background-color: var(--background_task_item);
+  color: var(--main_text_color);
+  font-size: 14px;
+  font-weight: 500;
+  max-width: 280px;
 }
-button{
+button {
   font-family: inherit;
 }

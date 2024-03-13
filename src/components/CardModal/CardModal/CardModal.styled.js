@@ -292,7 +292,7 @@ export const SubmitButton = styled.button`
     font-weight: 500;
     line-height: 21px;
     letter-spacing: -0.32px;
-    color: rgba(22, 22, 22, 1);
+    color: var(--modal_button_text);
   }
 
   &:hover {
