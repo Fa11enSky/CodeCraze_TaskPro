@@ -3,16 +3,16 @@ import { SidebarContainer } from '../Sidebar.styled';
 
 export const ListBoardStyle = styled.div`
   margin-top: 40px;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   margin-bottom: 10px;
-  
-  
-  
+  max-height: calc(100vh - 625px);
+  overflow-y: auto;
+  min-height: 80px;
+
   &::-webkit-scrollbar {
     width: 8px;
-    
   }
-  
+
   &::-webkit-scrollbar-track {
     background-color: var(--scroll_bar_bg_color);
     border-radius: 12px;
@@ -24,13 +24,12 @@ export const ListBoardStyle = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    max-height: 100vh;
-    
+    /* max-height: 100vh; */
   }
+  /* тут зафіксував висоту так щоби все було статичним а 
+  контейнер з списком дошок вираховувався залежно від висоти екрану */
   @media screen and (min-width: 1440px) {
-    max-height: 130px;
-    overflow-y: auto;
-  
+    max-height: calc(100vh - 625px);
   }
 `;
 
