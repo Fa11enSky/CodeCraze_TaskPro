@@ -202,22 +202,12 @@ export const StyledAvatarErrorMessage = styled(StyledErrorMessage)`
   text-align: center;
 `;
 
-export const CloseButton = styled.button`
+export const CloseButton = styled.svg`
   position: absolute;
   top: 14px;
   right: 14px;
-  max-width: 18px;
-  max-height: 18px;
-  padding: 0;
-
-  border: 0;
-  background-color: transparent;
-
-  & svg {
-    stroke: var(--main_text_color);
-  }
-
-  & use {
-    margin: auto;
-  }
+  width: 18px;
+  height: 18px;
+  stroke: var(--main_text_color);
+  cursor: pointer;
 `;

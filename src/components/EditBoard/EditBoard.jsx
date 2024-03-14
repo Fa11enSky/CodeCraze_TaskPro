@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-// import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
@@ -33,7 +32,6 @@ const EditBoard = ({ onClose }) => {
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   const board = useSelector(selectedBoard);
 
   useEffect(() => {
@@ -68,16 +66,8 @@ const EditBoard = ({ onClose }) => {
       newBoard = { title, icon, background };
     }
 
-    //  const boardData = {
-    //   title: newTitle,
-    //   icon: data.selectedIcon,
-    //   background: data.selectedBackgroundId,
-    // };
-
     dispatch(updateBoard([board._id, newBoard]));
     onClose();
-
-    // navigate(`${board._id}`);
   };
 
   const renderIcons = () => {

@@ -15,6 +15,7 @@ import {
 import Select from 'react-select';
 import sprite from '../../assets/svgSprite/iconsSprite.svg';
 import EditProfile from '../EditProfile/EditProfile';
+import Modal from '../Modal/Modal';
 import { selectUser } from '../../redux/auth/selectors.js';
 import { selectTheme } from '../../redux/theme/selectors';
 import { changeTheme } from '../../redux/theme/operations';
@@ -42,8 +43,12 @@ const Header = ({ showSidebar, size }) => {
 
   const [isShowModal, setIsShowModal] = useState(false);
 
-  const handleClik = () => {
+  const openHandleClik = () => {
     setIsShowModal(true);
+  };
+
+  const closeHandleClik = () => {
+    setIsShowModal(false);
   };
 
   const user = useSelector(selectUser);
@@ -117,7 +122,7 @@ const Header = ({ showSidebar, size }) => {
           <List>
             {user && <NameUser>{user.name ?? 'Name'}</NameUser>}
 
-            <Button type="button" onClick={handleClik}>
+            <Button type="button" onClick={openHandleClik}>
               {user.avatarURL ? (
                 <img src={`${user.avatarURL}`} alt="User avatar" />
               ) : (
@@ -128,7 +133,9 @@ const Header = ({ showSidebar, size }) => {
             </Button>
 
             {isShowModal && (
-              <EditProfile onClose={() => setIsShowModal(false)} />
+              <Modal isOpen={isShowModal} onClose={closeHandleClik}>
+                <EditProfile onClose={closeHandleClik} />
+              </Modal>
             )}
           </List>
         </ListItem>
