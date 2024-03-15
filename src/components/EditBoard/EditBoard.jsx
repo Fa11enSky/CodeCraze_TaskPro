@@ -36,6 +36,8 @@ const EditBoard = ({ onClose }) => {
 
   useEffect(() => {
     setValue('title', board.title);
+    setValue('icon', board.icon);
+    setValue('background', board.background);
     setSelectedIcon(board.icon);
     setSelectedBackgroundId(board.background);
   }, [board.background, board.icon, board.title, setValue]);
@@ -46,12 +48,12 @@ const EditBoard = ({ onClose }) => {
 
   const handleIconSelect = icon => {
     setSelectedIcon(icon);
-    setValue('selectedIcon', icon);
+    setValue('icon', icon);
   };
 
   const handleBackgroundSelect = backgroundId => {
     setSelectedBackgroundId(backgroundId);
-    setValue('selectedBackgroundId', backgroundId);
+    setValue('background', backgroundId);
   };
 
   const handleEditBoard = data => {
@@ -59,8 +61,8 @@ const EditBoard = ({ onClose }) => {
     let newBoard = {};
     if (title === board.title) {
       newBoard = {
-        icon: data.selectedIcon,
-        background: selectedBackgroundId,
+        icon: data.icon,
+        background: data.background,
       };
     } else {
       newBoard = { title, icon, background };
