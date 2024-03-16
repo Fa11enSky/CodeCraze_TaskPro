@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -31,7 +32,6 @@ import {
   Svg,
   CloseButton,
 } from './CreateNewBoard.styled';
-import { useNavigate } from 'react-router-dom';
 
 const TitleSchema = Yup.object({
   title: Yup.string()
@@ -50,13 +50,13 @@ const CreateNewBoard = ({ onClose }) => {
     resolver: yupResolver(TitleSchema),
     mode: 'onChange',
   });
-const navigate=useNavigate()
-  const [selectedIcon, setSelectedIcon] = useState('project');
-  const [selectedBackgroundId, setSelectedBackgroundId] = useState('null');
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [selectedIcon, setSelectedIcon] = useState('icon-project');
+  const [selectedBackgroundId, setSelectedBackgroundId] = useState('0');
 
   const existingBoardTitles = useSelector(state => state.boards.boards);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchAllBoard());
@@ -91,8 +91,8 @@ const navigate=useNavigate()
       return;
     }
 
-    dispatch(createBoard(data)).then((d) => {
-      navigate(d.payload._id)
+    dispatch(createBoard(data)).then(d => {
+      navigate(d.payload._id);
       setValue('title', '');
       setValue('icon', '');
       setValue('background', '');

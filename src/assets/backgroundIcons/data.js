@@ -16,7 +16,7 @@ import starrySky from './starry-sky.png';
 import yacht from './yacht.png';
 
 const data = [
-  { id: null, image: bgIcon },
+  { id: '0', image: bgIcon },
   { id: '1', image: flowers },
   { id: '2', image: night },
   { id: '3', image: pinkTree },
